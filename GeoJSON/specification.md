@@ -63,7 +63,17 @@ TO DECIDE: which themes are covered?
 
 ### INSPIRE Requirements
 
-This encoding does not address all requirements of the INSPIRE GML encoding as laid out in the D2.7. The following list lists the requirements from that document and shows which ones are also met in this alternate encoding:
+The Implementing Rules on interoperability of spatial data sets and services (Commission Regulation (EU) No 1089/2010) lays down the following requirements for encodings:
+
+> **Article 7 -- Encoding**
+>
+> 1. Every encoding rule used to encode spatial data shall conform to EN ISO 19118. In particular, it shall specify schema
+> conversion rules for all spatial object types and all attributes and association roles and the output data structure used. 
+> 2. Every encoding rule used to encode spatial data shall be made available.
+
+D2.7 specifies more detailed requirements and recommendations for encodings.
+
+This encoding does not address all requirements laid out in the D2.7. The following list lists the requirements from that document and shows which ones are also met in this alternate encoding:
 
 TO DECIDE: which requirements and recommendations should this encoding also meet?
 
