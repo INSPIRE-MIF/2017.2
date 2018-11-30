@@ -14,6 +14,9 @@ relevant, the covered INSPIRE theme(s)).
 # Example instance
 Provide a link to an example instance of the described example or attach an example file.
 
+## Sources
+Please describe/list the sources of data used in this example.
+
 # Underlying (INSPIRE) conceptual model
 If the encoding is implementing a conceptual model (e.g. from INSPIRE), please provide
 details and/or a reference to the conceptual model (e.g. the relevant INSPIRE application
@@ -32,5 +35,5 @@ specific (complex) types, complex structures in general, etc.)?
 This is an optional section for additional information, e.g.
 - Are there known limitations or issues with the encoding?
 - What enhancements would you like to do to the example?
-- What do you consider to be the best features of this example?
+- What do you consider to be the best aspects/characteristics of this example?
 - What clients or other software was this encoding tested with? What were the results?
