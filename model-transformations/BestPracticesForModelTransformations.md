@@ -33,21 +33,81 @@ The complete study is available [here](https://www.geoportal.de/SharedDocs/Downl
     </tr>
     <tr>
         <td>Description</td>
-        <td>The complex structure of model elements can be reduced by applying a flattening method. The principle of the flattening is to derive a flat model structure by moving the nested child elements to its parent. The elements can be renamed to represent the former element path in the name of the resulting element and to avoid naming conflicts. The cardinality of the derived elements should be calculated from the cardinalities of the former element path. 
-        If the upper bound of the resulting element multiplicity is not unbounded, but greater than 1, it is possible to create a single element for each occurrence to avoid elements with multiple value occurrence. In this case, the derived element name could be suffixed by an index value. when applied recursively, this method flattens the structure of multiple levels.
+        <td><p>The complex structure of model elements can be reduced by applying a flattening method. The principle of the flattening is to derive a flat model structure by moving the nested child elements to its parent. The elements can be renamed to represent the former element path in the name of the resulting element and to avoid naming conflicts. The cardinality of the derived elements should be calculated from the cardinalities of the former element path.</p> 
+        <p>If the upper bound of the resulting element multiplicity is not unbounded, but greater than 1, it is possible to create a single element for each occurrence to avoid elements with multiple value occurrence. In this case, the derived element name could be suffixed by an index value. when applied recursively, this method flattens the structure of multiple levels.</p>
         </td>
     </tr>
     <tr>
         <td>UML Model</td>
-        <td></td>
+        <td>TODO</td>
     </tr>
     <tr>
         <td>Example instance in default encoding:</td>
-        <td></td>
+        <td>
+            <pre><code>
+                <gn:NamedPlace gml:id="NamedPlace_Example">
+                    <gn:beginLifespanVersion xsi:nil="true"/>
+                    <gn:geometry>
+                        <gml:Point gml:id="_d7180a8f-a590-44da-8b45-41d96d5cba5e" srsName="http://www.opengis.net/def/crs/EPSG/0/25832" srsDimension="2">
+                        <gml:pos>471979.2568 5564594.2444</gml:pos>
+                        </gml:Point>
+                    </gn:geometry>
+                    <gn:inspireId>
+                        <base:Identifier>
+                            <base:localId>NamedPlace_Example</base:localId>
+                            <base:namespace>https://www.examples.eu/</base:namespace>
+                        </base:Identifier>
+                    </gn:inspireId>
+                    <gn:localType xsi:nil="true"/>
+                    <gn:name>
+                        <gn:GeographicalName>
+                            <gn:language>deu</gn:language>
+                            <gn:nativeness xsi:nil="true"/>
+                            <gn:nameStatus xsi:nil="true"/>
+                            <gn:sourceOfName xsi:nil="true"/>
+                            <gn:pronunciation xsi:nil="true"/>
+                            <gn:spelling>
+                                <gn:SpellingOfName>
+                                <gn:text>München</gn:text>
+                                <gn:script xsi:nil="true"/>
+                                </gn:SpellingOfName>
+                            </gn:spelling>
+                        </gn:GeographicalName>
+                    </gn:name>
+                    <gn:name>
+                        <gn:GeographicalName>
+                            <gn:language>eng</gn:language>
+                            <gn:nativeness xsi:nil="true"/>
+                            <gn:nameStatus xsi:nil="true"/>
+                            <gn:sourceOfName xsi:nil="true"/>
+                            <gn:pronunciation xsi:nil="true"/>
+                            <gn:spelling>
+                                <gn:SpellingOfName>
+                                <gn:text>Munich</gn:text>
+                                <gn:script xsi:nil="true"/>
+                                </gn:SpellingOfName>
+                            </gn:spelling>
+                        </gn:GeographicalName>
+                    </gn:name>
+                    <gn:type xsi:nil="true"/>
+                </gn:NamedPlace>
+            </code></pre>
+        </td>
     </tr>
     <tr>
         <td>Example instance in simplified encoding:</td>
-        <td></td>
+        <td>
+            <pre><code>
+            {
+                "inspireId.localId": "NamedPlace_Example",
+                "inspireId.namespace": "https://www.examples.eu/",
+                "name_1.language": "deu",
+                "name_1.spelling.text": "München",
+                "name_2.language": "eng",
+                "name_2.spelling.text": "Munich"
+            }
+            </code></pre>
+        </td>
     </tr>
     <tr>
         <td>Model transformation rule: </td>
@@ -55,23 +115,23 @@ The complete study is available [here](https://www.geoportal.de/SharedDocs/Downl
     </tr>
     <tr>
         <td>Instance transformation rule:</td>
-        <td></td>
+        <td>For each value, a property is created, so instance values can simply be copied.</td>
     </tr>
     <tr>
         <td>Solves usability issues:</td>
-        <td></td>
+        <td>The flattened data can be filtered and symbolized easily in desktop GIS and web GIS software. The flattened data can be processed much easier by many tools, e.g. it can be converted to excel easily</td>
     </tr>
     <tr>
         <td>Known usability issues:</td>
-        <td></td>
+        <td>Flattening of large arrays will lead to a very large number of properties on the first level. Some software and formats can only work with a limited number of properties on a layer (ArcMap has 65.534, shapefile is limited to 250), so this can limit usability in extreme cases. Some software also has limits on the length of property names (File Geodatabase = 64 characters, Shapefile = 11 characters).</td>
     </tr>
     <tr>
         <td>Reversibility:</td>
-        <td>Full</td>
+        <td>Full (if property names don't have to be shortened)</td>
     </tr>
 </table>
 
-Notes:
+Notes: No notes.
 
 ### Transformation 2: 2016.1 Fitness for purpose Annex III - Danish comments
 
