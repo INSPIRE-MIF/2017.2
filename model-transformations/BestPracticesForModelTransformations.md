@@ -44,65 +44,69 @@ The complete study is available [here](https://www.geoportal.de/SharedDocs/Downl
     <tr>
         <td>Example instance in default encoding:</td>
         <td>
-            <pre><code><gn:NamedPlace gml:id="NamedPlace_Example">
-    <gn:beginLifespanVersion xsi:nil="true"/>
-    <gn:geometry>
-        <gml:Point gml:id="_d7180a8f-a590-44da-8b45-41d96d5cba5e" srsName="http://www.opengis.net/def/crs/EPSG/0/25832" srsDimension="2">
-        <gml:pos>471979.2568 5564594.2444</gml:pos>
-        </gml:Point>
-    </gn:geometry>
-    <gn:inspireId>
-        <base:Identifier>
-            <base:localId>NamedPlace_Example</base:localId>
-            <base:namespace>https://www.examples.eu/</base:namespace>
-        </base:Identifier>
-    </gn:inspireId>
-    <gn:localType xsi:nil="true"/>
-    <gn:name>
-        <gn:GeographicalName>
-            <gn:language>deu</gn:language>
-            <gn:nativeness xsi:nil="true"/>
-            <gn:nameStatus xsi:nil="true"/>
-            <gn:sourceOfName xsi:nil="true"/>
-            <gn:pronunciation xsi:nil="true"/>
-            <gn:spelling>
-                <gn:SpellingOfName>
-                <gn:text>München</gn:text>
-                <gn:script xsi:nil="true"/>
-                </gn:SpellingOfName>
-            </gn:spelling>
-        </gn:GeographicalName>
-    </gn:name>
-    <gn:name>
-        <gn:GeographicalName>
-            <gn:language>eng</gn:language>
-            <gn:nativeness xsi:nil="true"/>
-            <gn:nameStatus xsi:nil="true"/>
-            <gn:sourceOfName xsi:nil="true"/>
-            <gn:pronunciation xsi:nil="true"/>
-            <gn:spelling>
-                <gn:SpellingOfName>
-                <gn:text>Munich</gn:text>
-                <gn:script xsi:nil="true"/>
-                </gn:SpellingOfName>
-            </gn:spelling>
-        </gn:GeographicalName>
-    </gn:name>
-    <gn:type xsi:nil="true"/>
-</gn:NamedPlace></code></pre>
+
+    <gn:NamedPlace gml:id="NamedPlace_Example">
+        <gn:beginLifespanVersion xsi:nil="true"/>
+        <gn:geometry>
+            <gml:Point gml:id="_d7180a8f-a590-44da-8b45-41d96d5cba5e" srsName="http://www.opengis.net/def/crs/EPSG/0/25832" srsDimension="2">
+            <gml:pos>471979.2568 5564594.2444</gml:pos>
+            </gml:Point>
+        </gn:geometry>
+        <gn:inspireId>
+            <base:Identifier>
+                <base:localId>NamedPlace_Example</base:localId>
+                <base:namespace>https://www.examples.eu/</base:namespace>
+            </base:Identifier>
+        </gn:inspireId>
+        <gn:localType xsi:nil="true"/>
+        <gn:name>
+            <gn:GeographicalName>
+                <gn:language>deu</gn:language>
+                <gn:nativeness xsi:nil="true"/>
+                <gn:nameStatus xsi:nil="true"/>
+                <gn:sourceOfName xsi:nil="true"/>
+                <gn:pronunciation xsi:nil="true"/>
+                <gn:spelling>
+                    <gn:SpellingOfName>
+                    <gn:text>München</gn:text>
+                    <gn:script xsi:nil="true"/>
+                    </gn:SpellingOfName>
+                </gn:spelling>
+            </gn:GeographicalName>
+        </gn:name>
+        <gn:name>
+            <gn:GeographicalName>
+                <gn:language>eng</gn:language>
+                <gn:nativeness xsi:nil="true"/>
+                <gn:nameStatus xsi:nil="true"/>
+                <gn:sourceOfName xsi:nil="true"/>
+                <gn:pronunciation xsi:nil="true"/>
+                <gn:spelling>
+                    <gn:SpellingOfName>
+                    <gn:text>Munich</gn:text>
+                    <gn:script xsi:nil="true"/>
+                    </gn:SpellingOfName>
+                </gn:spelling>
+            </gn:GeographicalName>
+        </gn:name>
+        <gn:type xsi:nil="true"/>
+    </gn:NamedPlace>
+
         </td>
     </tr>
     <tr>
         <td>Example instance in simplified encoding:</td>
         <td>
-            <pre><code>{
-    "inspireId.localId": "NamedPlace_Example",
-    "inspireId.namespace": "https://www.examples.eu/",
-    "name_1.language": "deu",
-    "name_1.spelling.text": "München",
-    "name_2.language": "eng",
-    "name_2.spelling.text": "Munich"
-}</code></pre>
+
+    {
+        "inspireId.localId": "NamedPlace_Example",
+        "inspireId.namespace": "https://www.examples.eu/",
+        "name_1.language": "deu",
+        "name_1.spelling.text": "München",
+        "name_2.language": "eng",
+        "name_2.spelling.text": "Munich"
+    }
+
         </td>
     </tr>
     <tr>
@@ -136,12 +140,3 @@ Also in 2017, the Danish Agency for Data Supply and Efficiency (SDFE) conducted 
 ## Evaluation of transformation methods for different use cases
 
 ## Selected Best Practices
-
-
-    <gn:NamedPlace gml:id="NamedPlace_Example">
-        <gn:beginLifespanVersion xsi:nil="true"/>
-        <gn:geometry>
-            <gml:Point gml:id="_d7180a8f-a590-44da-8b45-41d96d5cba5e" srsName="http://www.opengis.net/def/crs/EPSG/0/25832" srsDimension="2">
-            <gml:pos>471979.2568 5564594.2444</gml:pos>
-            </gml:Point>
-        </gn:geometry>
