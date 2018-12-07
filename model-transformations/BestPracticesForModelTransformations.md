@@ -23,28 +23,29 @@ The complete study is available [here](https://www.geoportal.de/SharedDocs/Downl
 #### Rule P1-REC001: Flattening of complex structures
 
 <table>
-    <tr>
-        <td>Name of the Rule</td>
-        <td>Flattening of complex structures</td>
-    </tr>
-    <tr>
-        <td>Category</td>
-        <td>General model simplification rules</td>
-    </tr>
-    <tr>
-        <td>Description</td>
-        <td><p>The complex structure of model elements can be reduced by applying a flattening method. The principle of the flattening is to derive a flat model structure by moving the nested child elements to its parent. The elements can be renamed to represent the former element path in the name of the resulting element and to avoid naming conflicts. The cardinality of the derived elements should be calculated from the cardinalities of the former element path.</p> 
-        <p>If the upper bound of the resulting element multiplicity is not unbounded, but greater than 1, it is possible to create a single element for each occurrence to avoid elements with multiple value occurrence. In this case, the derived element name could be suffixed by an index value. When applied recursively, this method flattens the structure of multiple levels.</p>
-        </td>
-    </tr>
-    <tr>
-        <td>UML Model</td>
-        <td>TODO</td>
-    </tr>
-    <tr>
-        <td>Example instance in default encoding:</td>
-        <td>
+<tr>
+<td>Name of the Rule</td>
+<td>Flattening of complex structures</td>
+</tr>
+<tr>
+<td>Category</td>
+<td>General model simplification rules</td>
+</tr>
+<tr>
+<td>Description</td>
+<td><p>The complex structure of model elements can be reduced by applying a flattening method. The principle of the flattening is to derive a flat model structure by moving the nested child elements to its parent. The elements can be renamed to represent the former element path in the name of the resulting element and to avoid naming conflicts. The cardinality of the derived elements should be calculated from the cardinalities of the former element path.</p> 
+<p>If the upper bound of the resulting element multiplicity is not unbounded, but greater than 1, it is possible to create a single element for each occurrence to avoid elements with multiple value occurrence. In this case, the derived element name could be suffixed by an index value. When applied recursively, this method flattens the structure of multiple levels.</p>
+</td>
+</tr>
+<tr>
+<td>UML Model</td>
+<td>TODO</td>
+</tr>
+<tr>
+<td>Example instance in default encoding:</td>
+<td>
 
+```xml
     <gn:NamedPlace gml:id="NamedPlace_Example">
         <gn:beginLifespanVersion xsi:nil="true"/>
         <gn:geometry>
@@ -91,13 +92,15 @@ The complete study is available [here](https://www.geoportal.de/SharedDocs/Downl
         </gn:name>
         <gn:type xsi:nil="true"/>
     </gn:NamedPlace>
+```
+   
+</td>
+</tr>
+<tr>
+<td>Example instance in simplified encoding:</td>
+<td>
 
-        </td>
-    </tr>
-    <tr>
-        <td>Example instance in simplified encoding:</td>
-        <td>
-
+```json
     {
         "inspireId.localId": "NamedPlace_Example",
         "inspireId.namespace": "https://www.examples.eu/",
@@ -106,29 +109,30 @@ The complete study is available [here](https://www.geoportal.de/SharedDocs/Downl
         "name_2.language": "eng",
         "name_2.spelling.text": "Munich"
     }
+``` 
 
-        </td>
-    </tr>
-    <tr>
-        <td>Model transformation rule: </td>
-        <td></td>
-    </tr>
-    <tr>
-        <td>Instance transformation rule:</td>
-        <td>For each value, a property is created, so instance values can simply be copied.</td>
-    </tr>
-    <tr>
-        <td>Solves usability issues:</td>
-        <td>The flattened data can be filtered and symbolized easily in desktop GIS and web GIS software. The flattened data can be processed much easier by many tools, e.g. it can be converted to excel easily</td>
-    </tr>
-    <tr>
-        <td>Known usability issues:</td>
-        <td>Flattening of large arrays will lead to a very large number of properties on the first level. Some software and formats can only work with a limited number of properties on a layer (ArcMap has 65.534, shapefile is limited to 250), so this can limit usability in extreme cases. Some software also has limits on the length of property names (File Geodatabase = 64 characters, Shapefile = 11 characters).</td>
-    </tr>
-    <tr>
-        <td>Reversibility:</td>
-        <td>Full (if property names don't have to be shortened)</td>
-    </tr>
+</td>
+</tr>
+<tr>
+<td>Model transformation rule: </td>
+<td></td>
+</tr>
+<tr>
+<td>Instance transformation rule:</td>
+<td>For each value, a property is created, so instance values can simply be copied.</td>
+</tr>
+<tr>
+<td>Solves usability issues:</td>
+<td>The flattened data can be filtered and symbolized easily in desktop GIS and web GIS software. The flattened data can be processed much easier by many tools, e.g. it can be converted to excel easily</td>
+</tr>
+<tr>
+<td>Known usability issues:</td>
+<td>Flattening of large arrays will lead to a very large number of properties on the first level. Some software and formats can only work with a limited number of properties on a layer (ArcMap has 65.534, shapefile is limited to 250), so this can limit usability in extreme cases. Some software also has limits on the length of property names (File Geodatabase = 64 characters, Shapefile = 11 characters).</td>
+</tr>
+<tr>
+<td>Reversibility:</td>
+<td>Full (if property names don't have to be shortened)</td>
+</tr>
 </table>
 
 Notes: No notes.
