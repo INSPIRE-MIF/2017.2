@@ -15,11 +15,7 @@
 * Conformance Classes
     * Core GeoJSON support
     * Projected CRS support
-    * Nested property support
     * Array property support
-    * Reference support
-    * 3D Geometry support
-    * Topology Support
 * Mapping to the Default INSPIRE encoding
     * This encoding to INSPIRE GML
 	* INSPIRE GML to this encoding
@@ -35,9 +31,11 @@ GeoJSON is an open standard format designed for representing simple geographical
 
 The features include points (therefore addresses and locations), line strings (therefore streets, highways and boundaries), polygons (countries, provinces, tracts of land), and multi-part collections of these types. GeoJSON features need not represent entities of the physical world only; mobile routing and navigation apps, for example, might describe their service coverage using GeoJSON.
 
-The GeoJSON format differs from other GIS standards in that it was written and is maintained not by a formal standards organization, but by an Internet working group of developers.
+The GeoJSON has originally been defined by an Internet working group of developers who needed a solution to encode geometries for use in web applications. It has since been formalised as an [IETF internet standard](https://tools.ietf.org/html/rfc7946). The IETF is the premier Internet standards organization.
 
-A notable offspring of GeoJSON is TopoJSON, an extension of GeoJSON that encodes geospatial topology and that typically provides smaller file sizes. 
+A notable offspring of GeoJSON is [TopoJSON](https://github.com/topojson/topojson), an extension of GeoJSON that encodes geospatial topology and that provides smaller file sizes for polygons or other data sets where multiple features share geometries.
+
+Within INSPIRE, this encoding represents an (TODO alternative|additional) encoding for data from several themes, with a focus on usability of the data in GIS desktop and web clients such as ArcMap, QGIS, OpenLayers, Leaflet, FME and hale studio.
 
 ## Scope
 
