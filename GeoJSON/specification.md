@@ -15,11 +15,7 @@
 * Conformance Classes
     * Core GeoJSON support
     * Projected CRS support
-    * Nested property support
     * Array property support
-    * Reference support
-    * 3D Geometry support
-    * Topology Support
 * Mapping to the Default INSPIRE encoding
     * This encoding to INSPIRE GML
 	* INSPIRE GML to this encoding
@@ -35,9 +31,11 @@ GeoJSON is an open standard format designed for representing simple geographical
 
 The features include points (therefore addresses and locations), line strings (therefore streets, highways and boundaries), polygons (countries, provinces, tracts of land), and multi-part collections of these types. GeoJSON features need not represent entities of the physical world only; mobile routing and navigation apps, for example, might describe their service coverage using GeoJSON.
 
-The GeoJSON format differs from other GIS standards in that it was written and is maintained not by a formal standards organization, but by an Internet working group of developers.
+The GeoJSON has originally been defined by an Internet working group of developers who needed a solution to encode geometries for use in web applications. It has since been formalised as an [IETF internet standard](https://tools.ietf.org/html/rfc7946). The IETF is the premier Internet standards organization.
 
-A notable offspring of GeoJSON is TopoJSON, an extension of GeoJSON that encodes geospatial topology and that typically provides smaller file sizes. 
+A notable offspring of GeoJSON is [TopoJSON](https://github.com/topojson/topojson), an extension of GeoJSON that encodes geospatial topology and that provides smaller file sizes for polygons or other data sets where multiple features share geometries.
+
+Within INSPIRE, this encoding represents an (TODO alternative|additional) encoding for data from several themes, with a focus on usability of the data in GIS desktop and web clients such as ArcMap, QGIS, OpenLayers, Leaflet, FME and hale studio.
 
 ## Scope
 
@@ -49,11 +47,10 @@ This alternate encoding specifically addresses data usability in web and desktop
 
 The encoding is also developed with the best practices for "Spatial data on the Web" and the WFS 3.0 standard in mind, for which it should provide a complementary format. 
 
-TO DECIDE: What this  encoding does not cover:
+TO DECIDE: What this encoding does not cover:
 
 * 3D geometries
 * Coverage/Raster data
-
 
 ### Coverage of INSPIRE Themes
 
@@ -71,29 +68,15 @@ The Implementing Rules on interoperability of spatial data sets and services (Co
 > conversion rules for all spatial object types and all attributes and association roles and the output data structure used. 
 > 2. Every encoding rule used to encode spatial data shall be made available.
 
-D2.7 specifies more detailed requirements and recommendations for encodings.
+D2.7 specifies more detailed requirements and recommendations for encodings. The following list lists the requirements from that document and shows which ones are also met in this alternate encoding:
 
-This encoding does not address all requirements laid out in the D2.7. The following list lists the requirements from that document and shows which ones are also met in this alternate encoding:
+> * Requirement 3: Every data specification that uses coverages shall specify how range values are encoded and how the information from the conceptual model is represented in the encoding so that a data provider can encode their coverage functions in a way that a receiving system can decode in an unambiguous way.
+> * Requirement 6: Attributes and association roles with the stereotype <<voidable>> shall be converted to XML Schema as if the stereotype were ignored - except that the content model of the property element shall receive two additional optional attributes: 
+>    * The global attribute `xsi:nil` (specified by XML Schema); in the schema this is expressed by an attribute `nillable` with the value `―true`. 
+>    * A local, unqualified attribute ―nilReason with the type `gml:NilReasonType`.
+> * Requirement 12: ... documents shall be required to be encoded using UTF-8 as character encoding.
 
-TO DECIDE: which requirements and recommendations should this encoding also meet?
-
-* Requirement 1: Every encoding rule in INSPIRE shall conform to ISO 19118. In particular, it shall specify schema conversion rules for all elements of the conceptual schema language that are used in the INSPIRE application schemas to which the rule is applied.
-* Requirement 2: Every data specification shall specify a mandatory encoding rule that has to be supported for the spatial data of that theme.
-* Requirement 3: Every data specification that uses coverages shall specify how range values are encoded and how the information from the conceptual model is represented in the encoding so that a data provider can encode their coverage functions in a way that a receiving system can decode in an unambiguous way.
-* Requirement 4: A GML application shall be specified for the application schema.
-* Requirement 5: The encoding rule specified in ISO 19136 Annex E with the extensions in GML 3.3 shall be applied with the additional rules stated in this Annex. For types within the scope of the ISO/TS 19139 encoding rule, the encoding rule of ISO/TS 19139 shall be applied.
-* Requirement 6: Attributes and association roles with the stereotype <<voidable>> shall be converted to XML Schema as if the stereotype were ignored - except that the content model of the property element shall receive two additional optional attributes: 
-    * The global attribute `xsi:nil` (specified by XML Schema); in the schema this is expressed by an attribute `nillable` with the value `―true`. 
-    * A local, unqualified attribute ―nilReason with the type `gml:NilReasonType`.
-* Requirement 7: Not relevant
-* Requirement 8: Not relevant
-* Requirement 9: Not relevant
-* Requirement 10: All INSPIRE code lists shall be assigned a tagged value "asDictionary" with the value "true".
-* Requirement 11: Not relevant
-* Requirement 12: XML documents shall be required to be encoded using UTF-8 as character encoding.
-* Requirement 13: Not relevant
-
-Recommendations from D2.7:
+D2.7 also lists several relevant recommendations:
 
 * Recommendation 1: Every data specification should use the default encoding rule specified in Annex B as the mandatory encoding rule and document all additional type mappings.
 * Recommendation 2: If the default encoding rule is not a mandatory encoding rule in a data specification, the reasons for this should be explained and the default encoding rule should be supported as an additional encoding rule.
@@ -104,29 +87,61 @@ Recommendations from D2.7:
 
 ## Normative References
 
-This section contains references to standards documents and related resources:
+This section contains references to standards documents and related resources.
 
 * [GeoJSON - IETF RFC 7946](https://tools.ietf.org/html/rfc7946)
+
+TODO: After definition of the INSPIRE themes for which this encoding will be applicble, add these references here.
 
 ## Terms and Definitions
 
 A glossary of terms and their definitions used in the document.
 
+TODO: Add Terms from issues and other sources as discussed in the WG
+
 ## General Encoding Rules
 
-Required section. Describes the common rules of the encoding.
+This section describes which common rules have to be applied for this encoding.
 
-* Character Encoding in UTF-8
-* Default CRS is WGS 84
+* `GEN-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
+* `GEN-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84)).
 
 ## Conformance Classes
 
-Optional section, required only if the specification defines conformance classes. If it does, this seection should always start with a "core" conformance class. It can then add any number of additional conformance classes.
+This specification defines several conformance classes. The core GeoJSON class is optimized for usability in currently existing clients and describes how specifically to encode data sets for that prupose.
 
-## Mapping to the Default INSPIRE encoding
+### Core GeoJSON support
 
-Decide whether to provide an implementaiton-level mapping or a conceptual level mapping.
-Describe how this encoding can be derived from data encoded in INSPIRE GML.
+#### Model Transformation
+
+Any conformance class in an encoding specification may optionally define a number of model transformation rules that should be applied before the encoding. These transformations are documented in the [Best Practices for Model Transformations](../model-transformations/BestPracticesForModelTransformations.md) paper serve the purpose of adapting the conceptual model (UML) to better match the logical model of the target platform. In the context of this conformance class in the GeoJSON encoding, the described rules address the following issues:
+
+* Multiple Geometries
+* Nested Properties
+* References to other elements and code lists
+* Attributes such as `uom` and `nilReason`
+* Arrays/Lists
+* ...
+
+#### Specific encoding rules for this conformance class
+
+### Projected CRS support
+
+While the default CRS for any data encoded in GeoJSON is WGS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
+
+* `PROJ-REQ-01`: An INSPIRE Download service delivering data encoded in GeoJSON shall be able to deliver projected geometries if a client requests these explicitly, at least for the spatial reference systems documented in section 6.3. of the data specifications that fall within the scope of this encodign specification.
+
+### Array property support
+
+High-cardinality properties can quickly lead to data usability issues when the property is simply flattened, as it can generate potentially hundreds of thousands of fields. Several of the clients as well as other delivery formats have limits on the number of supported fields, and using such data would become very unwieldy. At the same time, some clients such as QGIS support arrays of simple elements. This conformance clas thus allows arrays of simple properties to be used.
+
+
+## Mapping from and to the Default INSPIRE encoding
+
+TODO: Decide whether this is addressed by the descriptions of the model transformation rules.
+TODO: Decide whether to provide an implementation-level mapping or a conceptual level mapping.
+
+Describe how this data in this encoding can be derived from data encoded in INSPIRE GML.
 Describe how data encoded in this alternate encoding can be transformed to INSPIRE GML.
 
 ## Annex I (Normative/Informative): Abstract / Executable Test Suite
@@ -139,12 +154,7 @@ Examples:
 * XML Schema
 * JSON Schema
 * ETS
-* OpenAPI
 
-## Annex II (Informative): Compatibility Tables 
-
-Show which conformance classes can be used with which software (“Can I Use…”)
-
-## Annex III (Informative): Examples
+## Annex II (Informative): Examples
 
 Provide examples, at least one for each conformance class.
