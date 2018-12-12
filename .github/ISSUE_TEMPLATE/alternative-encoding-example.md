@@ -14,7 +14,7 @@ relevant, the covered INSPIRE theme(s)).
 # Example instance
 Provide a link to an example instance of the described example or attach an example file.
 
-## Sources
+# Sources
 Please describe/list the sources of data used in this example.
 
 # Underlying (INSPIRE) conceptual model
