@@ -1,0 +1,29 @@
+{  
+   "type":"FeatureCollection",
+   "name":"AdminUnitName",
+   "features":[  
+      {  
+         "type":"Feature",
+         "id":"ES.SDGC.AU.28.900",
+         "properties":{  
+            "ad:inspireId_base:Identifier_base:localId":28.900,
+            "ad:inspireId_base:Identifier_base:namespace":"ES.SDGC.AU",
+            "ad:alternativeIdentifier":28.900,
+            "ad:beginLifespanVersion_nilReason":"missing",
+            "ad:status_nilReason":"missing",
+            "ad:validFrom_nilReason":"missing",
+            "ad:situatedWithin":"",
+            "ad:name_gn:GeographicalName_gn:language":"esp",
+            "ad:name_gn:GeographicalName_gn:nativeness_nilReason":"missing",
+            "ad:name_gn:GeographicalName_gn:nameStatus_nilReason":"missing",
+            "ad:name_gn:GeographicalName_gn:sourceOfName_nilReason":"missing",
+            "ad:name_gn:GeographicalName_gn:pronunciation_gn:PronunciationOfName_nilReason":"missing",
+            "ad:name_gn:GeographicalName_gn:spelling_gn:SpellingOfName_gn:text":"MADRID",
+            "ad:name_gn:GeographicalName_gn:spelling_gn:SpellingOfName_gn:script":"latn",
+            "ad:level":4,
+            "ad:adminUnit_nilReason":"missing"
+         },
+         "geometry":null
+      }
+   ]
+}

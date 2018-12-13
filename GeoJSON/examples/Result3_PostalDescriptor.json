@@ -1,0 +1,25 @@
+{  
+   "type":"FeatureCollection",
+   "name":"PostalDescriptor",
+   "features":[  
+      {  
+         "type":"Feature",
+         "id":"ES.SDGC.PD.28.900.28046",
+         "properties":{
+            "ad:beginLifespanVersion_nilReason":"UNKNOWN",
+            "ad:endLifespanVersion_nilReason":"UNKNOWN",
+            "ad:validFrom_nilReason":"UNKNOWN",
+            "ad:validTo_nilReason":"UNKNOWN",
+            "ad:name_ad:postName_gn:GeographicalName_gn:language":"esp",
+            "ad:name_ad:postName_gn:GeographicalName_gn:nativeness":"Endonym",
+            "ad:name_ad:postName_gn:GeographicalName_gn:nameStatus":"Official",
+            "ad:name_ad:postName_gn:GeographicalName_gn:sourceOfName":"Catastro",
+            "ad:name_ad:postName_gn:GeographicalName_gn:pronunciation_gn:PronunciationOfName":"",
+            "ad:name_ad:postName_gn:GeographicalName_gn:spelling_gn:SpellingOfName_gn:text":"",
+            "ad:name_ad:postName_gn:GeographicalName_gn:spelling_gn:SpellingOfName_gn:script":"Latn",
+            "ad:postCode":28046
+         },
+         "geometry":null
+      }
+   ]
+}
