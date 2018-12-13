@@ -1,0 +1,25 @@
+{  
+   "type":"FeatureCollection",
+   "name":"ThoroughfareName",
+   "features":[  
+      {  
+         "type":"Feature",
+         "id":"ES.SDGC.TN.28.900.2128",
+         "properties":{  
+            "ad:alternativeIdentifier":2128,
+            "ad:beginLifespanVersion_nilReason":"UNKNOWN",
+            "ad:endLifespanVersion_nilReason":"UNKNOWN",
+            "ad:validFrom_nilReason":"UNKNOWN",
+            "ad:validTo_nilReason":"UNKNOWN",
+            "ad:name_ad:ThoroughfareNameValue_ad:name_gn:GeographicalName_gn:language":"esp",
+            "ad:name_ad:ThoroughfareNameValue_ad:name_gn:GeographicalName_gn:nativeness":"Endonym",
+            "ad:name_ad:ThoroughfareNameValue_ad:name_gn:GeographicalName_gn:nameStatus":"Official",
+            "ad:name_ad:ThoroughfareNameValue_ad:name_gn:GeographicalName_gn:sourceOfName":"Catastro",
+            "ad:name_ad:ThoroughfareNameValue_ad:name_gn:GeographicalName_gn:pronunciation_gn:PronunciationOfName":"",
+            "ad:name_ad:ThoroughfareNameValue_ad:name_gn:GeographicalName_gn:spelling_gn:SpellingOfName_gn:text":"CL FAUSTINO LOPEZ",
+            "ad:name_ad:ThoroughfareNameValue_ad:name_gn:GeographicalName_gn:spelling_gn:SpellingOfName_gn:script":"Latn"
+         },
+         "geometry":null
+      }
+   ]
+}

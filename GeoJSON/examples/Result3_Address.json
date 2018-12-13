@@ -1,0 +1,39 @@
+{  
+   "type":"FeatureCollection",
+   "name":"Address",
+   "crs":{  
+      "type":"name",
+      "properties":{  
+         "name":"urn:ogc:def:crs:EPSG::25830"
+      }
+   },
+   "features":[  
+      {  
+         "type":"Feature",
+         "id":"ES.SDGC.AD.28.900.2128.16.2006624VK4820E",
+         "properties":{  
+            "ad:Address_gml_id":"ES.SDGC.AD.28.900.2128.16.2006624VK4820E",
+            "ad:inspireId_base_Identifier_localId":"28.900.2128.16.2006624VK4820E",
+            "ad:inspireId_base_Identifier_namespace":"ES.SDGC.AD",
+            "ad:position_GeographicPosition_specification":"Entrance",
+            "ad:position_GeographicPosition_method":"fromFeature",
+            "ad:position_GeographicPosition_default":"true",
+            "ad:locator_AddressLocator_designator_LocatorDesignator_designator":"16",
+            "ad:locator_AddressLocator_designator_LocatorDesignator_type":1,
+            "ad:level":"siteLevel",
+            "ad:validFrom_nilReason":"other:unpopulated",
+            "ad:beginLifespanVersion":"2002\/01\/22 00:00:00",
+            "ad:component_xlink:href_1":"ES.SDGC.PD.28.900.28046",
+            "ad:component_xlink:href_2":"ES.SDGC.TN.28.900.2128",
+            "ad:component_xlink:href_3":"ES.SDGC.AU.28.900"
+         },
+         "geometry":{  
+            "type":"Point",
+            "coordinates":[  
+               441964.1775,
+               4480451.104
+            ]
+         }
+      }
+   ]
+}
