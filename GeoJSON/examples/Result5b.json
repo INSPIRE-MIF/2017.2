@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "Result5b",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": "ES.SDGC.AD.28.900.2128.16.2006624VK4820E", "ad:Address_gml_id": "ES.SDGC.AD.28.900.2128.16.2006624VK4820E", "ad:inspireId_base_Identifier_localId": "28.900.2128.16.2006624VK4820E", "ad:inspireId_base_Identifier_namespace": "ES.SDGC.AD", "ad:position_GeographicPosition_specification": "Entrance", "ad:position_GeographicPosition_method": "fromFeature", "ad:position_GeographicPosition_default": "true", "ad:locator_AddressLocator_designator_LocatorDesignator_designator": "16", "ad:locator_AddressLocator_designator_LocatorDesignator_type": 1, "ad:level": "siteLevel", "ad:validFrom_nilReason": "other:unpopulated", "ad:beginLifespanVersion": "2002\/01\/22 00:00:00", "ad:ThoroughfareName": "CL FAUSTINO LOPEZ", "ad:adminUnitname_level4": "MADRID", "ad:postName": "", "ad:postCode": 28046 }, "geometry": { "type": "Point", "coordinates": [ -3.684639023856348, 40.472714326473088 ] } }
+]
+}
