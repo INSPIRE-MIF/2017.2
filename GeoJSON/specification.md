@@ -14,7 +14,7 @@
     * Requirements and Recommendations
 * Conformance Classes
     * Core GeoJSON support
-    * Projected CRS support
+    * Alternate CRS support
     * Array property support
 * Mapping to the Default INSPIRE encoding
     * This encoding to INSPIRE GML
@@ -125,9 +125,9 @@ Any conformance class in an encoding specification may optionally define a numbe
 
 #### Specific encoding rules for this conformance class
 
-### Projected CRS support
+### Alternate Coordinate Reference System support
 
-While the default CRS for any data encoded in GeoJSON is WGS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
+While the required Coordinate Reference System for any data encoded in GeoJSON is WGS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
 
 * `PROJ-REQ-01`: An INSPIRE Download service delivering data encoded in GeoJSON shall be able to deliver projected geometries if a client requests these explicitly, at least for the spatial reference systems documented in section 6.3. of the data specifications that fall within the scope of this encodign specification.
 
