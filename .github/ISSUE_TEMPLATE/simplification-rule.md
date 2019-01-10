@@ -27,11 +27,11 @@ Add the category into one of the following categoies:
 
 ## Description
 
-Prosa description of the purpose and approach of the transformation rule.
+Prosa description of the purpose and approach of the transformation rule. Include notes on when this rule should be used, and when it should not be used.
 
 ## UML Model
 
-If this rule falls into the "Alternate Structures for specific types" category, provide a UML class diagram of your alternative model. For other rules, you may optionally provide a UML diagram.
+If this rule falls into the "Alternate Structures for specific types" category, provide a UML class diagram of your implementation model as well as of the original conceptual model for comparison purposes.
 
 ## Example instance in default encoding:
 
@@ -60,4 +60,16 @@ Describe whether this transformation leaves problems unsolved, or introduces new
 ## Reversibility:
 
 Describe whether the transformation is unidirectional from the default model / encoding to the simplified model / encoding, or whether it can be partially or entirely reversed.
+
+## Information Loss
+
+Describe under which conditions there is no information loss when using this transformation, i.e. when using this rule allows to stay in line with the requirements of the Implementing Rules and the Data Specification(s).
+
+## Scope
+
+Flag this transformation to incate whether it is specific to one or multiple encodings.
+
+## Examples
+
+Describe which examples that the working group provided used this rule.
 
