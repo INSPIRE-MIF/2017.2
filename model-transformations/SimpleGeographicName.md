@@ -7,13 +7,13 @@
 </tr>
 <tr>
 <td>Description</td>
-<td><p>Geographical Names are re-used throughout more than 20 INSPIRE themes overall, ranging from Cardastral Parcels and Addresses to Statistical Units. For many existing data sets, the `GeographicalName` type is overspecified, with very little information being unique to each instance. For cases</p>
+<td><p>Geographical Names are re-used throughout more than 20 INSPIRE themes overall, ranging from Cardastral Parcels and Addresses to Statistical Units. For many existing data sets, the `GeographicalName` type is overspecified, with very little information being unique to each instance. For cases where only minimal information on names is available, this simplifed structure can be used. One key use case that is quite frequent however is to have names in more than one language. There are multiple official languages in more than half of the countries affected by INSPIRE.</p> 
+<p>The simplified name consists of one property per language, which will contain the spelling.text subproperty value of the originall property:</p>
 <ul>
-    <li>locator_designator_addressNumber</li>
-    <li>locator_designator_addressNumberExtension</li>
-    <li>locator_designator_entranceDoorIdentifier</li>
+    <li>name_deu</li>
+	<li>name_fra</li>
 </ul>
-<p>...</p>
+<p>For other properties of the original `GeographicalName`, such as `nameStatus` and `nativeness`, defaults may be documented in the dataset metadata.</p>
 </td>
 </tr>
 <tr>
@@ -25,22 +25,52 @@
 <td>
 
 ```xml
-<ad:Address gml:id="MIG20172_example_Address">
-	<ad:inspireId>...</ad:inspireId>
-	<ad:position>...</ad:position>
-	<ad:locator>
-		<ad:AddressLocator>
-			<ad:designator>
-				<ad:LocatorDesignator>
-					<ad:designator>99</ad:designator>
-					<ad:type xlink:href="http://inspire.ec.europa.eu/codelist/LocatorDesignatorTypeValue/addressNumber">addressNumber</ad:type>
-				</ad:LocatorDesignator>
-			</ad:designator>
-			<ad:level>unitLevel</ad:level>
-		</ad:AddressLocator>
-	</ad:locator>
-	...
-</ad:Address>
+<gn:NamedPlace gml:id="MIG20172_example_NamedPlace">
+	<gn:beginLifespanVersion xsi:nil="true"/>
+	<gn:geometry>
+		<gml:Point gml:id="_d7180a8f-a590-44da-8b45-41d96d5cba5e" srsName="http://www.opengis.net/def/crs/EPSG/0/25832" srsDimension="2">
+		<gml:pos>471979.2568 5564594.2444</gml:pos>
+		</gml:Point>
+	</gn:geometry>
+	<gn:inspireId>
+		<base:Identifier>
+			<base:localId>NamedPlace_Example</base:localId>
+			<base:namespace>https://www.examples.eu/</base:namespace>
+		</base:Identifier>
+	</gn:inspireId>
+	<gn:localType xsi:nil="true"/>
+	<gn:name>
+		<gn:GeographicalName>
+			<gn:language>deu</gn:language>
+			<gn:nativeness xsi:nil="true"/>
+			<gn:nameStatus xsi:nil="true"/>
+			<gn:sourceOfName xsi:nil="true"/>
+			<gn:pronunciation xsi:nil="true"/>
+			<gn:spelling>
+				<gn:SpellingOfName>
+				<gn:text>München</gn:text>
+				<gn:script xsi:nil="true"/>
+				</gn:SpellingOfName>
+			</gn:spelling>
+		</gn:GeographicalName>
+	</gn:name>
+	<gn:name>
+		<gn:GeographicalName>
+			<gn:language>eng</gn:language>
+			<gn:nativeness xsi:nil="true"/>
+			<gn:nameStatus xsi:nil="true"/>
+			<gn:sourceOfName xsi:nil="true"/>
+			<gn:pronunciation xsi:nil="true"/>
+			<gn:spelling>
+				<gn:SpellingOfName>
+				<gn:text>Munich</gn:text>
+				<gn:script xsi:nil="true"/>
+				</gn:SpellingOfName>
+			</gn:spelling>
+		</gn:GeographicalName>
+	</gn:name>
+	<gn:type xsi:nil="true"/>
+</gn:NamedPlace>
 ```
    
 </td>
@@ -50,12 +80,24 @@
 <td>
 
 ```xml
-<ad:Address gml:id="MIG20172_example_Address">
-	<ad:inspireId>...</ad:inspireId>
-	<ad:position>...</ad:position>
-	<ads:locator_designator_addressNumber>99</ad:locator_designator_addressNumber>
-	...
-</ad:Address>
+<gn:NamedPlace gml:id="MIG20172_example_NamedPlace">
+	<gn:beginLifespanVersion xsi:nil="true"/>
+	<gn:geometry>
+		<gml:Point gml:id="_d7180a8f-a590-44da-8b45-41d96d5cba5e" srsName="http://www.opengis.net/def/crs/EPSG/0/25832" srsDimension="2">
+		<gml:pos>471979.2568 5564594.2444</gml:pos>
+		</gml:Point>
+	</gn:geometry>
+	<gn:inspireId>
+		<base:Identifier>
+			<base:localId>NamedPlace_Example</base:localId>
+			<base:namespace>https://www.examples.eu/</base:namespace>
+		</base:Identifier>
+	</gn:inspireId>
+	<gn:localType xsi:nil="true"/>
+	<gns:name_deu>München</gns:name_deu>
+	<gns:name_eng>Munich</gns:name_eng>
+	<gn:type xsi:nil="true"/>
+</gn:NamedPlace>
 ``` 
 
 </td>
@@ -65,31 +107,28 @@
 <td>
     <p>Parameters:</p> 
     <ul>
-        <li>`separator`: The character to use to separate the original property name from the type name of the components.</li>
+        <li>`separator`: The character to use to separate the original property name from the ISO 639-3 language code.</li>
     </ul>
-    <p>Create a new property for every value in an associated code list, using the original property name, the separator, and the name of the element (i.e. without a ...type suffix) to build the new property name.</p>
+    <p>Create a new property for every language.</p>
 </td>
 </tr>
 <tr>
 <td>Instance transformation rule:</td>
-<td><p>Parameters:</p> 
-    <ul>
-        <li>`valueProperty`: The name of the property from which to take the value to be copied to the transformed instance.</li>
-    </ul>
-    <p>Copy the value of the `valueProperty` to the newly created property. If the `valueProperty` is still a complex property, it might have to be transformed usign a different rule in addition.</p>
-    </td>
+<td>
+	<p>Copy the value of the `spelling.text` to the new property.</p>
+</td>
 </tr>
 <tr>
 <td>Solves usability issues:</td>
-<td>The flattened data can be filtered and symbolized easily in desktop GIS and web GIS software. The flattened data can be processed much easier by many tools, e.g. it can be converted to excel easily</td>
+<td>The transformed data structure can easily be edited, filtered and symbolized in desktop GIS and web GIS software. This transformation also reduced data volume significantly in datasets that use in-place encoding of `GeographicalNames`.</td>
 </tr>
 <tr>
 <td>Known usability issues:</td>
-<td>Flattening of large arrays will lead to a very large number of properties on the first level. Some software and formats can only work with a limited number of properties on a layer (ArcMap has 65.534, shapefile is limited to 250), so this can limit usability in extreme cases. Some software also has limits on the length of property names (File Geodatabase = 64 characters, Shapefile = 11 characters).</td>
+<td>None.</td>
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>
-<td>This rule can only be applied if there is at maximum one occurence of each codelist value for the type property in a set of properties.</td>
+<td>This rule discards individual metadata abour geographical names, such as the name status and its nativeness. If this information is homogeneous, it should be documented in the dataset metadata. If it is heterogeneous, this transformation will result in a loss of information and is not bijective.</td>
 </tr>
 <tr>
 <td>Examples of this encoding rule:</td>
@@ -97,4 +136,6 @@
 </tr>
 </table>
 
-Notes: No notes.
+Notes:
+
+- This rule may be enhanced by storing additional properties that were present on the original name in "subfields" such as `name_deu_nativeness`.

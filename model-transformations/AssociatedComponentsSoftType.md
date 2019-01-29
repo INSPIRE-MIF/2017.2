@@ -66,6 +66,7 @@
     <p>Parameters:</p> 
     <ul>
         <li>`separator`: The character to use to separate the original property name from the type name of the components.</li>
+		<li>`keyProperty`: The name of the property from whose allowed values (Enumeration or Codelist) to take the new property names.
     </ul>
     <p>Create a new property for every value in an associated code list, using the original property name, the separator, and the name of the element (i.e. without a ...type suffix) to build the new property name.</p>
 </td>

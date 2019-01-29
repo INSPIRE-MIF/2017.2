@@ -104,7 +104,11 @@ TODO: Add Terms from issues and other sources as discussed in the WG
 This section describes which common rules have to be applied for this encoding.
 
 * `GEN-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
-* `GEN-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([WGS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84)).
+* `GEN-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([CRS 84] TODO(http://www.opengis.net/def/crs/OGC/1.3/CRS84)), unless there is prior arrangement.
+
+Note: INSPIRE compliance requires ETRS89, TODO use a model transformation rule instead which "simplifies" ETRS89 to CRS84? Can assume equivalence....
+
+TODO Add a recommendation to include the CRS member if it is not CRS84.
 
 ## Conformance Classes
 
@@ -127,7 +131,7 @@ Any conformance class in an encoding specification may optionally define a numbe
 
 ### Alternate Coordinate Reference System support
 
-While the required Coordinate Reference System for any data encoded in GeoJSON is WGS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
+While the required Coordinate Reference System for any data encoded in GeoJSON is CRS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
 
 * `PROJ-REQ-01`: An INSPIRE Download service delivering data encoded in GeoJSON shall be able to deliver projected geometries if a client requests these explicitly, at least for the spatial reference systems documented in section 6.3. of the data specifications that fall within the scope of this encodign specification.
 
