@@ -13,7 +13,7 @@
     <li>inspireId_namespace</li>
     <li>name_spelling_text</li>
 </ul>
-<p>This model tranasformation rules does not handle cardinalities greater than 1; it thus does not introduce any numeric elements into the new property name to account for multiple occurences. These should be resolved using any of the three Transformation Rules that can deal with that (Primitive Array, Associations to Soft Typed properties, Associations to Hard Typed properties).</p>
+<p>This model transformation rule does not handle cardinalities greater than 1; it thus does not introduce any numeric elements into the new property name to account for multiple occurences. It also does not make use of the element names as they would be encoded in XML to keep the resulting proeprty names shorter. In most cases outside the use of substitution groups, this does not lead to issues. These should be resolved using any of the three Transformation Rules that can deal with that ([Primitive Array](), [Associations to Soft Typed properties](), [Associations to Hard Typed properties]()).</p>
 </td>
 </tr>
 <tr>
@@ -47,29 +47,26 @@
     <ul>
         <li>`separator`: The character to use to separate the original property name from the type name of the components.</li>
     </ul>
-    <p>...</p>
+    <p>Recursively go down through the complex structure of the property and concatenate the local name of the property, using the `separator` character in between each local name. This rule will drop inherited properties that have the same local name as a property declared on the feature type or property type itself, e.g. `gml:name` vs. `gn:name`. Note that Geometry properties are excluded from this rule!</p>
 </td>
 </tr>
 <tr>
 <td>Instance transformation rule:</td>
-<td><p>Parameters:</p> 
-    <ul>
-        <li>`valueProperty`: The name of the property from which to take the value to be copied to the transformed instance.</li>
-    </ul>
-    <p>...</p>
+<td><p>Parameters: None</p>
+    <p>As described above, this rule does not handle property occurences greater than 1; if more than one instance of a property occur, only the first instance will be kept.</p>
     </td>
 </tr>
 <tr>
 <td>Solves usability issues:</td>
-<td>...</td>
+<td>This rule deals with most nested property structures and flattens them, so that the data can be used easily in analysis and visualisation.</td>
 </tr>
 <tr>
 <td>Known usability issues:</td>
-<td>...</td>
+<td>This rule has no fixed limit in the character length of the resulting property names. Some of these names can get very long. The rule should thus be combined with others that reduce the likelyhood of that happening, such as [SimpleGeographicName](./SimpleGeographicName.html).</td>
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>
-<td>...</td>
+<td>Data transformed using this rule is INSPIRE compliant as long as the cardinality of the soruce data was 0..1 for all affected properties.</td>
 </tr>
 <tr>
 <td>Examples of this encoding rule:</td>
