@@ -94,7 +94,7 @@
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>
-<td>...</td>
+<td>Fully compliant.</td>
 </tr>
 <tr>
 <td>Examples of this encoding rule:</td>

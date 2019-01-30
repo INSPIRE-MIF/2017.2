@@ -25,7 +25,30 @@
 <td>
 
 ```xml
-
+<am:ManagementRestrictionOrRegulationZone>
+  <!-- ... -->
+  <am:legalBasis>
+    <base2:LegislationCitation>
+      <base2:name>Bekendtgørelse af lov om skove</base2:name>
+      <base2:shortName>LBK nr 122 af 26/01/2017</base2:shortName>
+      <base2:date>
+        <gmd:CI_Date>
+          <gmd:date>
+            <gco:Date>2017-01-26</gco:Date>
+          </gmd:date>
+          <gmd:dateType>
+            <gmd:CI_DateTypeCode
+              codeListValue="creation"
+              codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" />
+          </gmd:dateType>
+        </gmd:CI_Date>
+      </base2:date>
+      <base2:link>http://www.retsinformation.dk/eli/lta/2017/122</base2:link>
+      <base2:level xlink:href="http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national" xlink:title="national" />
+    </base2:LegislationCitation>
+  </am:legalBasis>
+  <!-- ... -->
+</am:ManagementRestrictionOrRegulationZone>
 ```
    
 </td>
@@ -35,7 +58,18 @@
 <td>
 
 ```xml
-
+<ams:ManagementRestrictionOrRegulationZone>
+  <!-- ... -->
+  <ams:legalBasis_name>Bekendtgørelse af lov om skove</ams:legalBasis_name>
+  <ams:legalBasis_shortName>LBK nr 122 af 26/01/2017</ams:legalBasis_shortName>
+  <ams:legalBasis_date_date>2017-01-26</ams:legalBasis_date_date>
+  <ams:legalBasis_date_dateType_codeListValue>creation</ams:legalBasis_date_dateType_codeListValue>
+  <ams:legalBasis_date_dateType_codeList>http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode</ams:legalBasis_date_dateType_codeList>
+  <ams:legalBasis_link>http://www.retsinformation.dk/eli/lta/2017/122</ams:legalBasis_link>
+  <ams:legalBasis_linklevel_title>national</ams:legalBasis_linklevel>
+  <ams:legalBasis_linklevel_href>http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national</ams:legalBasis_linklevel>
+  <!-- ... -->
+</ams:ManagementRestrictionOrRegulationZone>
 ``` 
 
 </td>
