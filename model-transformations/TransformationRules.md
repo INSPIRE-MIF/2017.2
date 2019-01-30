@@ -46,8 +46,8 @@ This section contains a selection of examples for model transformations we have 
 
 ### MT005: Simple Geographic Name
 
-[Simple Geographic Name](./SimpleGeographicName.html)
+[Simple Geographic Name](./SimpleGeographicName.md)
 
 ### MT006: Property Composition to Association
 
-[Property Composition to Association](./PropertyCompositionToAssocation.html)
+[Property Composition to Association](./PropertyCompositionToAssocation.md)

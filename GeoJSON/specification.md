@@ -6,26 +6,22 @@
 * Scope
     * Use Cases
 	* Themes
+    * Technical Issues
 	* Cross-cutting INSPIRE requirements
-* Conformance
 * Normative References
 * Terms and Definitions
 * General Encoding rules
     * Requirements and Recommendations
+    * Alternate Coordinate Reference Systems
 * Conformance Classes
-    * Core GeoJSON support
-    * Alternate CRS support
-    * Array property support
-* Mapping to the Default INSPIRE encoding
-    * This encoding to INSPIRE GML
-	* INSPIRE GML to this encoding
+    * Simple Addresses
+    * Simple Environmental Monitoring Facilities
 * Annex I (Normative/Informative): Abstract / Executable Test Suite
-* Annex II (Informative): Compatibility Tables 
-* Annex III (Informative): Examples
+* Annex II (Informative): Examples
 
 ## Introduction
 
-*Describe what this document contains and what the high-level objective of this encoding is. Clarify the objectives, and ideally KPIs for these objectives.*
+This section describes what this document contains and what the high-level objective of this encoding is.
 
 GeoJSON is an open standard format designed for representing simple geographical features, along with their non-spatial attributes. It is based on JSON, the JavaScript Object Notation. The body of the specification deals with describing GeoJSON Geometry Objects. These may be points (which can be used for features like addresses and locations), line strings (e.g. for streets, highways, boundaries), polygons (countries, provinces, tracts of land), and multi-part collections of these types.
 
@@ -35,7 +31,9 @@ The GeoJSON format has originally been defined by an Internet working group of d
 
 A notable offspring of GeoJSON is [TopoJSON](https://github.com/topojson/topojson), an extension of GeoJSON that encodes geospatial topology and that provides smaller file sizes for polygons or other data sets where multiple features share geometries.
 
-Within INSPIRE, this encoding represents an (TODO alternative|additional) encoding for data from several themes, with a focus on usability of the data in GIS desktop and web clients such as ArcMap, QGIS, OpenLayers, Leaflet, FME and hale studio.
+Within INSPIRE, this encoding represents an *alternative* encoding for data from several themes, with a focus on usability of the data in GIS desktop and web clients such as ArcMap, QGIS, OpenLayers, Leaflet, FME and hale studio. It can server as an alternative encoding that can be used instead of the default encoding for simple data, where there is no information loss. In other cases, this GeoJSON encoding may serve as an *additional* encoding only.
+
+This draft Alternative Encoding encompasses the INSPIRE themes Addresses (including GeographicalName properties) and Environmental Monitoring Facilities (including O&M properties).
 
 ## Scope
 
@@ -45,9 +43,9 @@ This sections describes the scope of the GeoJSON alternate encoding. GeoJSON is 
 
 This alternate encoding specifically addresses data usability in web and desktop client software, such as ArcMap, QGIS, Leaflet and OpenLayers. It optimizes usage of INSPIRE data for mapping and geoprocessing in such applications.
 
-The encoding is also developed with the best practices for "Spatial data on the Web" and the WFS 3.0 standard in mind, for which it should provide a complementary format. 
+The encoding is also developed with the best practices for [Spatial data on the Web](https://www.w3.org/TR/sdw-bp/) and the [WFS 3.0 standard](https://github.com/opengeospatial/WFS_FES) in mind, for which it should provide a complementary format. 
 
-TO DECIDE: What this encoding does not cover:
+The encoding does not cover:
 
 * 3D geometries
 * Coverage/Raster data
@@ -56,9 +54,19 @@ TO DECIDE: What this encoding does not cover:
 
 This encoding covers the following themes:
 
-TO DECIDE: which themes are covered?
+* Annex I: Addresses
+* Annex III: Environmental Monitoring Facilities
 
-### INSPIRE Requirements
+### Technical Issues
+
+The encoding should also resolve specific technical issues that have been problematic when using the default encoding:
+
+* See findings in https://github.com/INSPIRE-MIF/2017.2/issues/48
+* For ArcGIS: https://github.com/INSPIRE-MIF/2017.2/issues/18
+* Abstract geometry types for an object (mixed geometry types in a FeatureCollection)
+* Be able to display types on map, e.g. date/time, xlinks, coded values and codelists
+
+### INSPIRE Requirements for Encodings
 
 The Implementing Rules on interoperability of spatial data sets and services (Commission Regulation (EU) No 1089/2010) lays down the following requirements for encodings:
 
@@ -82,16 +90,14 @@ D2.7 also lists several relevant recommendations:
 * Recommendation 2: If the default encoding rule is not a mandatory encoding rule in a data specification, the reasons for this should be explained and the default encoding rule should be supported as an additional encoding rule.
 * Recommendation 3: Encoding rules should be based on international, preferably open, standards.
 * Recommendation 4: Additional encoding rules should only be added, if the new encoding rule has unique characteristics required by the data that are not fulfilled by an encoding rule that has already been endorsed.
-* Recommendation 5: For the download of a pre-defined (part of a) spatial data set via the operations specified in part A of the download service implementing rule and for the download of spatial objects via the operations specified in part B of the download service implementing rule, the same object collection container should be used for the same type of representation.
-* Recommendation 6: If the GetFeatureInfo operation is offered by a view service, it should use the same encoding as the download service.
 
 ## Normative References
 
 This section contains references to standards documents and related resources.
 
 * [GeoJSON - IETF RFC 7946](https://tools.ietf.org/html/rfc7946)
-
-TODO: After definition of the INSPIRE themes for which this encoding will be applicble, add these references here.
+* INSPIRE Addresses
+* INSPIRE Environmental Monitoring Facilities
 
 ## Terms and Definitions
 
@@ -103,62 +109,49 @@ TODO: Add Terms from issues and other sources as discussed in the WG
 
 This section describes which common rules have to be applied for this encoding.
 
-* `GEN-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
-* `GEN-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([CRS 84] TODO(http://www.opengis.net/def/crs/OGC/1.3/CRS84)), unless there is prior arrangement.
+* `GEOJSON-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
+* `GEOJSON-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84)), unless there is prior arrangement.
+* `GEOJSON-REQ-03`: As INSPIRE mandates the use of the European Terrestrial Reference System 1989  (ETRS89, see [Requirement 1](https://inspire.ec.europa.eu/reports/ImplementingRules/DataSpecifications/INSPIRE_Specification_CRS_v2.0.pdf)) for the areas within the geographical scope of ETRS89 and both CRS84 and ETRS89 use the GRS 80 ellipsoid (although with minor enhancements), we shall assume CRS 84 to be equivalent to ETRS89. If, for any dataset, this assumption would be problematic, then GeoJSON cannot serve as an alternative encoding for that dataset.
+* `GEOJSON-REQ-04`: In the GeoJSON encoding, `nilReason` information is not maintained per feature, but rather in the dataset metadata. Properties that have `nil` values can thus be ignored in the encoding. If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding for that dataset
 
-Note: INSPIRE compliance requires ETRS89, TODO use a model transformation rule instead which "simplifies" ETRS89 to CRS84? Can assume equivalence....
+### Alternate Coordinate Reference System support
 
-TODO Add a recommendation to include the CRS member if it is not CRS84.
+While the required Coordinate Reference System for any data encoded in GeoJSON is CRS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
+
+* `GEOJSON-REC-01`: An INSPIRE Download service delivering data encoded in GeoJSON shall be able to deliver projected geometries if a client requests these explicitly, at least for the spatial reference systems documented in section 6.3. of the data specifications that fall within the scope of this encodign specification. When delivering data that is not in [CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84), the GeoJSON data should include the `crs` member as defined in the deprecated (Draft 6 of the GeoJSON specification)[http://wiki.geojson.org/GeoJSON_draft_version_6].
 
 ## Conformance Classes
 
-This specification defines several conformance classes. The core GeoJSON class is optimized for usability in currently existing clients and describes how specifically to encode data sets for that prupose.
+This specification defines one conformance class per supported theme. 
 
-### Core GeoJSON support
-
-#### Model Transformation
-
-Any conformance class in an encoding specification may optionally define a number of model transformation rules that should be applied before the encoding. These transformations are documented in the [Best Practices for Model Transformations](../model-transformations/BestPracticesForModelTransformations.md) paper serve the purpose of adapting the conceptual model (UML) to better match the logical model of the target platform. In the context of this conformance class in the GeoJSON encoding, the described rules address the following issues:
+Any conformance class in an encoding specification may  define a number of model transformation rules that should be applied before the encoding. These transformations are documented in the [Model Transformation Rules](../model-transformations/TransformationRules.md) paper. They serve the purpose of adapting the conceptual model (UML) to better match the logical model of the target platform. In the context of this conformance class in the GeoJSON encoding, the described rules address the following issues:
 
 * Multiple Geometries
 * Nested Properties
 * References to other elements and code lists
 * Attributes such as `uom` and `nilReason`
 * Arrays/Lists
-* ...
 
-#### Specific encoding rules for this conformance class
+### Simple Addresses (ads)
 
-### Alternate Coordinate Reference System support
+#### Model Transformation
 
-While the required Coordinate Reference System for any data encoded in GeoJSON is CRS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
+This section describes which rules with which parameters are applied to the Addresses conceptual model before applying the general rules of this encoding:
 
-* `PROJ-REQ-01`: An INSPIRE Download service delivering data encoded in GeoJSON shall be able to deliver projected geometries if a client requests these explicitly, at least for the spatial reference systems documented in section 6.3. of the data specifications that fall within the scope of this encodign specification.
+1. Substitute all occurences of GeographicName with the Simple Geographic Name through Rule `MT005(separator: '_')`. 
+2. Inline all addressComponents through Rule `MT003(separator: '_')`, using the respective typenames to create unique property names.
+3. Flatten the Locator/Designator structure through application of `MT004(separator: '_', keyProperty: 'type')` (Flatten aggregated or associated components using codelist values).
+4. Apply the General Flattening rule to simplify the remaining properties: `MT003(separator: '_')`
 
-### Array property support
+#### Abstract Test Suite
 
-High-cardinality properties can quickly lead to data usability issues when the property is simply flattened, as it can generate potentially hundreds of thousands of fields. Several of the clients as well as other delivery formats have limits on the number of supported fields, and using such data would become very unwieldy. At the same time, some clients such as QGIS support arrays of simple elements. This conformance clas thus allows arrays of simple properties to be used.
+TODO
+
+#### Examples
+
+TODO
+
+### Simple Environmental Monitoring Facilities (ems)
 
 
-## Mapping from and to the Default INSPIRE encoding
 
-TODO: Decide whether this is addressed by the descriptions of the model transformation rules.
-TODO: Decide whether to provide an implementation-level mapping or a conceptual level mapping.
-
-Describe how this data in this encoding can be derived from data encoded in INSPIRE GML.
-Describe how data encoded in this alternate encoding can be transformed to INSPIRE GML.
-
-## Annex I (Normative/Informative): Abstract / Executable Test Suite
-
-Every alternative encoding needs to describe a method for validation of data sets using this encoding.
-
-Describe how to ensure validity of a data set encoded using these rules. This description can be abstract or executable.
-Examples:
-
-* XML Schema
-* JSON Schema
-* ETS
-
-## Annex II (Informative): Examples
-
-Provide examples, at least one for each conformance class.

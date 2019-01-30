@@ -133,7 +133,6 @@
         </ad:PostalDescriptor>
     </ads:component_PostalDescriptor">
 </ad:Address>
-
 ``` 
 
 </td>
@@ -141,7 +140,10 @@
 <tr>
 <td>Model transformation rule: </td>
 <td>
-    <p>Parameters: `separator`: The character to use to separate the original property name from the type name of the components.</p>
+    <p>Parameters:</p>
+    <ul>
+        <li> `separator`: The character to use to separate the original property name from the type name of the components.</li>
+    </ul>
     <p>Create a new property for every possible associated type, using the original property name, the separator, and the name of the element (i.e. without a ...type suffix) to build the new property name.</p>
 </td>
 </tr>
