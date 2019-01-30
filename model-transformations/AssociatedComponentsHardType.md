@@ -34,7 +34,7 @@
 	<ad:component xlink:href="#AddressAreaName_1"/>
 	<ad:component xlink:href="#PostalDescriptor_1"/>
 </ad:Address>
-...
+<!-- ... -->
 <ad:ThoroughfareName gml:id="ThoroughfareName_1">
     <ad:inspireId>...</ad:inspireId>
     <ad:name>

@@ -39,7 +39,7 @@
 			<ad:level>unitLevel</ad:level>
 		</ad:AddressLocator>
 	</ad:locator>
-	...
+	<!-- ... -->
 </ad:Address>
 ```
    
@@ -54,7 +54,7 @@
 	<ad:inspireId>...</ad:inspireId>
 	<ad:position>...</ad:position>
 	<ads:locator_designator_addressNumber>99</ad:locator_designator_addressNumber>
-	...
+	<!-- ... -->
 </ad:Address>
 ``` 
 

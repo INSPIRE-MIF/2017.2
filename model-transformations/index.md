@@ -30,20 +30,24 @@ This section contains a selection of examples for model transformations we have 
 
 ### MT001: Flattening of nested structures
 
-[General Flattening of nested structures](./GeneralFlattening.html)
+[General Flattening of nested structures](./GeneralFlattening.md)
 
 ### MT002: Extract Primitive Arrays
 
-[Extract Primitive Array](./ExtractPrimitiveArray.html)
+[Extract Primitive Array](./ExtractPrimitiveArray.md)
 
 ### MT003: Association/Aggregation to Composition with Hard Typing
 
-[Association/Aggregation to Composition with Hard Typing](./AssociatedComponentsHardType.html)
+[Association/Aggregation to Composition with Hard Typing](./AssociatedComponentsHardType.md)
 
 ### MT004: Association/Aggregation to Composition with Soft Typing
 
-[Association/Aggregation to Composition with Soft Typing](./AssociatedComponentsSoftType.html)
+[Association/Aggregation to Composition with Soft Typing](./AssociatedComponentsSoftType.md)
 
 ### MT005: Simple Geographic Name
 
 [Simple Geographic Name](./SimpleGeographicName.html)
+
+### MT006: Property Composition to Association
+
+[Property Composition to Association](./PropertyCompositionToAssocation.html)

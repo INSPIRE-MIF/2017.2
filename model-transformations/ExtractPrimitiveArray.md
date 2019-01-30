@@ -24,11 +24,11 @@
 
 ```xml
 <au:AdministrativeUnit gml:id="MIG20172_example_AdministrativeUnit">
-    ...
+    <!-- ... -->
     <au:lowerLevelUnit xlink:href="#MIG20172_example_AdministrativeUnit_low1"/>
     <au:lowerLevelUnit xlink:href="#MIG20172_example_AdministrativeUnit_low2"/>
     <au:lowerLevelUnit xlink:href="#MIG20172_example_AdministrativeUnit_low3"/>
-    ...
+    <!-- ... -->
 </AdministrativeUnit>
 ```
    
