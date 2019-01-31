@@ -1,4 +1,4 @@
-## Simplified Geographical Name
+## General Flattening
 
 <table>
 <tr>
