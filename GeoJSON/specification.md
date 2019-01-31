@@ -59,10 +59,10 @@ This encoding covers the following themes:
 
 ### Technical Issues
 
-The encoding should also resolve specific technical issues that have been problematic when using the default encoding:
+The encoding resolves specific technical issues that have been problematic when using the default encoding:
 
-* See findings in https://github.com/INSPIRE-MIF/2017.2/issues/48
-* For ArcGIS: https://github.com/INSPIRE-MIF/2017.2/issues/18
+* TODO List specific issues (see findings in https://github.com/INSPIRE-MIF/2017.2/issues/48)
+* TODO List specific issues related to ArcGIS (see https://github.com/INSPIRE-MIF/2017.2/issues/18)
 * Abstract geometry types for an object (mixed geometry types in a FeatureCollection)
 * Be able to display types on map, e.g. date/time, xlinks, coded values and codelists
 
@@ -78,18 +78,11 @@ The Implementing Rules on interoperability of spatial data sets and services (Co
 
 D2.7 specifies more detailed requirements and recommendations for encodings. The following list lists the requirements from that document and shows which ones are also met in this alternate encoding:
 
-> * Requirement 3: Every data specification that uses coverages shall specify how range values are encoded and how the information from the conceptual model is represented in the encoding so that a data provider can encode their coverage functions in a way that a receiving system can decode in an unambiguous way.
-> * Requirement 6: Attributes and association roles with the stereotype <<voidable>> shall be converted to XML Schema as if the stereotype were ignored - except that the content model of the property element shall receive two additional optional attributes: 
->    * The global attribute `xsi:nil` (specified by XML Schema); in the schema this is expressed by an attribute `nillable` with the value `―true`. 
->    * A local, unqualified attribute ―nilReason with the type `gml:NilReasonType`.
 > * Requirement 12: ... documents shall be required to be encoded using UTF-8 as character encoding.
 
 D2.7 also lists several relevant recommendations:
 
-* Recommendation 1: Every data specification should use the default encoding rule specified in Annex B as the mandatory encoding rule and document all additional type mappings.
-* Recommendation 2: If the default encoding rule is not a mandatory encoding rule in a data specification, the reasons for this should be explained and the default encoding rule should be supported as an additional encoding rule.
 * Recommendation 3: Encoding rules should be based on international, preferably open, standards.
-* Recommendation 4: Additional encoding rules should only be added, if the new encoding rule has unique characteristics required by the data that are not fulfilled by an encoding rule that has already been endorsed.
 
 ## Normative References
 
@@ -111,8 +104,12 @@ This section describes which common rules have to be applied for this encoding.
 
 * `GEOJSON-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
 * `GEOJSON-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84)), unless there is prior arrangement.
-* `GEOJSON-REQ-03`: As INSPIRE mandates the use of the European Terrestrial Reference System 1989  (ETRS89, see [Requirement 1](https://inspire.ec.europa.eu/reports/ImplementingRules/DataSpecifications/INSPIRE_Specification_CRS_v2.0.pdf)) for the areas within the geographical scope of ETRS89 and both CRS84 and ETRS89 use the GRS 80 ellipsoid (although with minor enhancements), we shall assume CRS 84 to be equivalent to ETRS89. If, for any dataset, this assumption would be problematic, then GeoJSON cannot serve as an alternative encoding for that dataset.
-* `GEOJSON-REQ-04`: In the GeoJSON encoding, `nilReason` information is not maintained per feature, but rather in the dataset metadata. Properties that have `nil` values can thus be ignored in the encoding. If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding for that dataset
+
+NOTE As INSPIRE mandates the use of the European Terrestrial Reference System 1989  (ETRS89, see [Requirement 1](https://inspire.ec.europa.eu/reports/ImplementingRules/DataSpecifications/INSPIRE_Specification_CRS_v2.0.pdf)) for the areas within the geographical scope of ETRS89 and both CRS84 and ETRS89 use the GRS 80 ellipsoid (although with minor enhancements), we shall assume CRS 84 to be equivalent to ETRS89. If, for any dataset, this assumption would be problematic, then GeoJSON cannot serve as an alternative encoding for that dataset.
+
+* `GEOJSON-REQ-03`: In the GeoJSON encoding, `nilReason` information shall not be maintained per feature, but rather in the dataset metadata. Properties that have `nil` values shall thus be ignored in the encoding.
+
+NOTE If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding for that dataset
 
 ### Alternate Coordinate Reference System support
 
