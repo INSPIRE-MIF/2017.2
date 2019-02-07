@@ -7,7 +7,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td><p>Geographical Names are re-used throughout more than 20 INSPIRE themes overall, ranging from Cardastral Parcels and Addresses to Statistical Units. For many existing data sets, the `GeographicalName` type is overspecified, with very little information being unique to each instance. For cases where only minimal information on names is available, this simplifed structure can be used. One key use case that is quite frequent however is to have names in more than one language. There are multiple official languages in more than half of the countries affected by INSPIRE.</p> 
+<td><p>Geographical Names are re-used throughout more than 20 INSPIRE themes overall, ranging from Cardastral Parcels and Addresses to Statistical Units. For many existing data sets, the `GeographicalName` type is overspecified, with very little information being unique to each instance. For cases where only minimal information on names is available, this simplified structure can be used. One key use case that is quite frequent however is to have names in more than one language. There are multiple official languages in more than half of the countries affected by INSPIRE.</p> 
 <p>The simplified name consists of one property per language, which will contain the spelling.text subproperty value of the original property:</p>
 <ul>
     <li>name_deu</li>
