@@ -2,18 +2,18 @@
 
 ## Table of Contents
 
-* Introduction
-* Scope
+* [Introduction](#introduction)
+* [Scope](#scope)
     * Use Cases
 	* Themes
     * Technical Issues
 	* Cross-cutting INSPIRE requirements
-* Normative References
-* Terms and Definitions
-* General Encoding rules
+* [Normative References](#normative-references)
+* [Terms and Definitions](#terms-and-definitions)
+* [General Encoding rules](#general-encoding-rules)
     * Requirements and Recommendations
     * Alternate Coordinate Reference Systems
-* Conformance Classes
+* [Conformance Classes](#conformance-classes)
     * Simple Addresses
     * Simple Environmental Monitoring Facilities
 * Annex I (Normative/Informative): Abstract / Executable Test Suite
@@ -31,7 +31,7 @@ The GeoJSON format has originally been defined by an Internet working group of d
 
 A notable offspring of GeoJSON is [TopoJSON](https://github.com/topojson/topojson), an extension of GeoJSON that encodes geospatial topology and that provides smaller file sizes for polygons or other data sets where multiple features share geometries.
 
-Within INSPIRE, this encoding represents an *alternative* encoding for data from several themes, with a focus on usability of the data in GIS desktop and web clients such as ArcMap, QGIS, OpenLayers, Leaflet, FME and hale studio. It can server as an alternative encoding that can be used instead of the default encoding for simple data, where there is no information loss. In other cases, this GeoJSON encoding may serve as an *additional* encoding only.
+Within INSPIRE, this encoding represents an *alternative* encoding for data from several themes, with a focus on usability of the data in GIS desktop and web clients such as ArcMap, QGIS, OpenLayers, Leaflet, FME and hale studio. It can serve as an alternative encoding that can be used instead of the default encoding for simple data, where there is no information loss. In other cases, this GeoJSON encoding may serve as an *additional* encoding only.
 
 This draft Alternative Encoding encompasses the INSPIRE themes Addresses (including GeographicalName properties) and Environmental Monitoring Facilities (including O&M properties).
 
@@ -61,10 +61,11 @@ This encoding covers the following themes:
 
 The encoding resolves specific technical issues that have been problematic when using the default encoding:
 
-* TODO List specific issues (see findings in https://github.com/INSPIRE-MIF/2017.2/issues/48)
-* TODO List specific issues related to ArcGIS (see https://github.com/INSPIRE-MIF/2017.2/issues/18)
-* Abstract geometry types for an object (mixed geometry types in a FeatureCollection)
-* Be able to display types on map, e.g. date/time, xlinks, coded values and codelists
+* Most GIS software cannot fully make use of non-smple attributes and nested structures for styling, processing and filtering;
+* Support for multiple values per property is an issue in ArcGIS and other GIS tools;
+* References to other features often cannot be resolved by GIS tools; Propertes of referenced features cannot be used in styling or for filtering ;
+* Abstract geometry types for an object mean that a wide range of different geometries can be used;
+* Mixed geometry types in a FeatureCollection are usually not supported;
 
 ### INSPIRE Requirements for Encodings
 
@@ -80,7 +81,7 @@ D2.7 specifies more detailed requirements and recommendations for encodings. The
 
 > * Requirement 12: ... documents shall be required to be encoded using UTF-8 as character encoding.
 
-D2.7 also lists several relevant recommendations:
+D2.7 also contains a relevant recommendation:
 
 * Recommendation 3: Encoding rules should be based on international, preferably open, standards.
 
@@ -89,14 +90,12 @@ D2.7 also lists several relevant recommendations:
 This section contains references to standards documents and related resources.
 
 * [GeoJSON - IETF RFC 7946](https://tools.ietf.org/html/rfc7946)
-* INSPIRE Addresses
-* INSPIRE Environmental Monitoring Facilities
+* [Data Specification - INSPIRE Addresses](https://inspire.ec.europa.eu/Themes/79/2892)
+* [Data Specification - INSPIRE Environmental Monitoring Facilities](https://inspire.ec.europa.eu/Themes/120/2892)
 
 ## Terms and Definitions
 
-A glossary of terms and their definitions used in the document.
-
-TODO: Add Terms from issues and other sources as discussed in the WG
+Terms and Definitions can be found in the [Glossary](../glossary.md) document.
 
 ## General Encoding Rules
 
@@ -135,10 +134,10 @@ Any conformance class in an encoding specification may  define a number of model
 
 This section describes which rules with which parameters are applied to the Addresses conceptual model before applying the general rules of this encoding:
 
-1. Substitute all occurences of GeographicName with the Simple Geographic Name through Rule `MT005(separator: '_')`. 
-2. Inline all addressComponents through Rule `MT003(separator: '_')`, using the respective typenames to create unique property names.
-3. Flatten the Locator/Designator structure through application of `MT004(separator: '_', keyProperty: 'type')` (Flatten aggregated or associated components using codelist values).
-4. Apply the General Flattening rule to simplify the remaining properties: `MT003(separator: '_')`
+1. Substitute all occurences of GeographicName with the Simple Geographic Name through Rule `MT005(separator: '.')`. 
+2. Inline all addressComponents through Rule `MT003(separator: '.')`, using the respective typenames to create unique property names.
+3. Flatten the Locator/Designator structure through application of `MT004(separator: '.', keyProperty: 'type')` (Flatten aggregated or associated components using codelist values).
+4. Apply the General Flattening rule to simplify the remaining properties: `MT003(separator: '.')`
 
 #### Abstract Test Suite
 
