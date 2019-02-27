@@ -130,6 +130,10 @@ Any conformance class in an encoding specification may  define a number of model
 
 ### Simple Addresses (ads)
 
+The Simple Addresses encoding is an alternate encoding for address data. It can be applied to data that fulfills the following requirements:
+
+
+
 #### Model Transformation
 
 This section describes which rules with which parameters are applied to the Addresses conceptual model before applying the general rules of this encoding:
@@ -148,6 +152,7 @@ TODO
 TODO
 
 ### Simple Environmental Monitoring Facilities (ems)
+
 
 
 

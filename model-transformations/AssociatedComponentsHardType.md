@@ -14,6 +14,12 @@
     <li>component_AdminUnitName</li>
     <li>component_AddressAreaName</li>
 </ul>
+<p>If more than one occurence of a specific type is present, it is differentiated by using a numeric postfix. Thse start with "1":</p>
+<ul>
+    <li>component_AdminUnitName_1</li>
+    <li>component_AdminUnitName_2</li>
+    <li>component_AdminUnitName_3</li>
+</ul>
 <p>This rule effectively denormalizes such associations. Please note the the individual properties such as `component_ThoroughfareName` are still complex; there is a need of additional rules to also simplify these.
 </td>
 </tr>
@@ -83,10 +89,10 @@
 <td>
 
 ```xml
-<ad:Address gml:id="MIG20172_example_Address">
-	<ad:inspireId>...</ad:inspireId>
-	<ad:position>...</ad:position>
-	<ad:locator>...</ad:locator>
+<ads:Address gml:id="MIG20172_example_Address">
+	<ads:inspireId>...</ads:inspireId>
+	<ads:position>...</ads:position>
+	<ads:locator>...</ads:locator>
 	<ads:component_ThoroughfareName">
         <ad:ThoroughfareName gml:id="ThoroughfareName_1">
             <ad:inspireId>...</ad:inspireId>
@@ -132,7 +138,7 @@
             <ad:postCode>21027</ad:postCode>
         </ad:PostalDescriptor>
     </ads:component_PostalDescriptor">
-</ad:Address>
+</ads:Address>
 ``` 
 
 </td>
@@ -168,7 +174,3 @@
 <td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
 </tr>
 </table>
-
-Notes/Enhancements:
-
-- We could expand this rule to allow higher cardinalities of the same type occuring using a postfix, e.g. `component_AddressAreaName_1` (or keep it simple)
