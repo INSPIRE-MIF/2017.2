@@ -165,54 +165,54 @@ This section describes which rules with which parameters are applied to the Addr
 
 The following table explains the mapping between the classes and properties of the original Addresses (AD) model to the Simplified Addresses (ADS) model.
 
-AD Name (condition) | AD Type | ADS Name | ADS Type 
---------------------|---------|----------|---------
-**Address** | AddressType | **SimpleAddress** | SimpleAddressType
-ad:alternativeIdentifier | String | alternativeIdentifier | String
-ad:beginLifespanVersion | DateTime | beginLifespanVersion | String
-ad:endLifespanVersion | DateTime | endLifespanVersion | String
-ad:building | ReferenceType | endLifespanVersion | String
-ad:component (class = ThoroughfareName) | ReferenceType | component.ThoroughfareName | String
-ad:component (class = PostalDescriptor) | ReferenceType | component.ThoroughfareName | String
-ad:component (class = AddressAreaName) | ReferenceType | component.ThoroughfareName | String
-ad:component (class = AdminUnitName, index = 0) | ReferenceType | component.AdminUnitName_1 | String
-ad:component (class = AdminUnitName, index = 1) | ReferenceType | component.AdminUnitName_2 | String
-ad:component (class = AdminUnitName, index = 2) | ReferenceType | component.AdminUnitName_3 | String
-ad:component (class = AdminUnitName, index = 3) | ReferenceType | component.AdminUnitName_4 | String
-ad:component (class = AdminUnitName, index = 4) | ReferenceType | component.AdminUnitName_5 | String
-ad:component (class = AdminUnitName, index = 5) | ReferenceType | component.AdminUnitName_6 | String
-gml:description | String | description | String
-gml:id | ID | *added as `id` to the root object* | String
-base:inspireId | IdentifierPropertyType | inspireId.localid | String
--"- |                        | inspireId.namespace | String
-ad:locator | AddressLocator | locator.designator.addressNumber | String
- |                | locator.designator.addressNumberExtension | String
- |                | locator.designator.addressNumber2ndExtension | String
- |                | locator.designator.buildingIdentifier | String
- |                | locator.designator.buildingIdentifierPrefix | String
- |                | locator.designator.cornerAddress1stIdentifier | String
- |                | locator.designator.cornerAddress2ndIdentifier | String
- |                | locator.designator.entranceDoorIdentifier | String
- |                | locator.designator.floorIdentifier | String
- |                | locator.designator.kilometrePoint | String
- |                | locator.designator.postalDeliveryIdentifier | String
- |                | locator.designator.staircaseIdentifier | String
- |                | locator.designator.unitIdentifier | String
- |                | locator.level | String
- |                | locator.level.href | String (URL)
-gml:name |
-ad:parcel | ReferenceType | parcel | String
-ad:parentAddress | ReferenceType | parentAddress | String
-ad:position | GeographicPosition | *added as `geometry` to the root object* | GeoJSON Geometry Object
- |                    | position.specification | String
- |                    | position.specification.href | String (URL)
- |                    | position.method | String
- |                    | position.method.href | String (URL)
- |                    | position.default | boolean
-ad:status | ReferenceType | status | String
- |               | status.href | String (URL)
-ad:validFrom | DateTime | validFrom | String
-ad:validTo | DateTime | validTo | String
+| AD Name (condition) | AD Type | ADS Name | ADS Type |
+|---------------------------------------------------|
+| *Address** | AddressType | **SimpleAddress** | SimpleAddressType |
+| ad:alternativeIdentifier | String | alternativeIdentifier | String |
+| ad:beginLifespanVersion | DateTime | beginLifespanVersion | String |
+| ad:endLifespanVersion | DateTime | endLifespanVersion | String |
+| ad:building | ReferenceType | endLifespanVersion | String |
+| ad:component (class = ThoroughfareName) | ReferenceType | component.ThoroughfareName | String |
+| ad:component (class = PostalDescriptor) | ReferenceType | component.ThoroughfareName | String |
+| ad:component (class = AddressAreaName) | ReferenceType | component.ThoroughfareName | String |
+| ad:component (class = AdminUnitName, index = 0) | ReferenceType | component.AdminUnitName_1 | String |
+| ad:component (class = AdminUnitName, index = 1) | ReferenceType | component.AdminUnitName_2 | String |
+| ad:component (class = AdminUnitName, index = 2) | ReferenceType | component.AdminUnitName_3 | String |
+| ad:component (class = AdminUnitName, index = 3) | ReferenceType | component.AdminUnitName_4 | String |
+| ad:component (class = AdminUnitName, index = 4) | ReferenceType | component.AdminUnitName_5 | String |
+| ad:component (class = AdminUnitName, index = 5) | ReferenceType | component.AdminUnitName_6 | String |
+| gml:description | String | description | String |
+| gml:id | ID | *added as `id` to the root object* | String |
+| base:inspireId | IdentifierPropertyType | inspireId.localid | String |
+|  |  | inspireId.namespace | String |
+| ad:locator | AddressLocator | locator.designator.addressNumber | String |
+|  |  | locator.designator.addressNumberExtension | String |
+|  |  | locator.designator.addressNumber2ndExtension | String |
+|  |  | locator.designator.buildingIdentifier | String |
+|  |  | locator.designator.buildingIdentifierPrefix | String |
+|  |  | locator.designator.cornerAddress1stIdentifier | String |
+|  |  | locator.designator.cornerAddress2ndIdentifier | String |
+|  |  | locator.designator.entranceDoorIdentifier | String |
+|  |  | locator.designator.floorIdentifier | String |
+|  |  | locator.designator.kilometrePoint | String |
+|  |  | locator.designator.postalDeliveryIdentifier | String |
+|  |  | locator.designator.staircaseIdentifier | String |
+|  |  | locator.designator.unitIdentifier | String |
+|  |  | locator.level | String |
+|  |  | locator.level.href | String (URL) |
+| gml:name | String | name | String |
+| ad:parcel | ReferenceType | parcel | String |
+| ad:parentAddress | ReferenceType | parentAddress | String |
+| ad:position | GeographicPosition | *added as `geometry` to the root object* | GeoJSON Geometry Object |
+|  |  | position.specification | String |
+|  |  | position.specification.href | String (URL) |
+|  |  | position.method | String |
+|  |  | position.method.href | String (URL) |
+|  |  | position.default | boolean |
+| ad:status | ReferenceType | status | String |
+|  |  | status.href | String (URL) |
+| ad:validFrom | DateTime | validFrom | String |
+| ad:validTo | DateTime | validTo | String |
 
 #### Examples (Informative)
 
