@@ -166,7 +166,7 @@ This section describes which rules with which parameters are applied to the Addr
 The following table explains the mapping between the classes and properties of the original Addresses (AD) model to the Simplified Addresses (ADS) model.
 
 | AD Name (condition) | AD Type | ADS Name | ADS Type |
-|---------------------------------------------------|
+| ------------------- | ------- | -------- | -------- |
 | *Address** | AddressType | **SimpleAddress** | SimpleAddressType |
 | ad:alternativeIdentifier | String | alternativeIdentifier | String |
 | ad:beginLifespanVersion | DateTime | beginLifespanVersion | String |
