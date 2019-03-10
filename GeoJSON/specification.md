@@ -11,6 +11,7 @@
 * [Normative References](#normative-references)
 * [Terms and Definitions](#terms-and-definitions)
 * [General Encoding rules](#general-encoding-rules)
+    * Mapping from Conceptual Model to GeoJSON Logical Model
     * Requirements and Recommendations
     * Alternate Coordinate Reference Systems
 * [Conformance Classes](#conformance-classes)
@@ -49,11 +50,6 @@ This alternate encoding specifically addresses data usability in web and desktop
 
 The encoding is also developed with the best practices for [Spatial data on the Web](https://www.w3.org/TR/sdw-bp/) and the [WFS 3.0 standard](https://github.com/opengeospatial/WFS_FES) in mind, for which it should provide a complementary format. 
 
-The encoding does not cover:
-
-* 3D geometries
-* Coverage/Raster data
-
 ### Coverage of INSPIRE Themes
 
 This encoding covers the following themes:
@@ -70,6 +66,11 @@ The encoding resolves specific technical issues that have been problematic when 
 * References to other features often cannot be resolved by GIS tools; Propertes of referenced features cannot be used in styling or for filtering ;
 * Abstract geometry types for an object mean that a wide range of different geometries can be used;
 * Mixed geometry types in a FeatureCollection are usually not supported;
+
+The encoding does not cover:
+
+* 3D geometries
+* Coverage/Raster data
 
 ### INSPIRE Requirements for Encodings
 
@@ -109,6 +110,10 @@ This section describes how the the logical model for the encoding is derived fro
 
 ### Mapping from Conceptual Model to GeoJSON Logical Model
 
+* DECIDE: Should namespace prefixes be retained?
+
+All model transformation rules are applied in such a way that the resulting proeprty names for valid XML element and type names, and are useable as property names in JSON.
+
 ### Common Rules
 
 * `GEOJSON-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
@@ -140,10 +145,11 @@ Any conformance class in an encoding specification may  define a number of model
 
 ### Simple Addresses (ADS)
 
-The Simple Addresses encoding is an alternate encoding for address data. It can be applied to data that fulfills the following requirements:
+The Simple Addresses encoding can be used as an *alternate encoding* for address data that fulfills the following requirements:
 
 * It is sufficient to provide one `GeographicName` for all elements that use it 
-* There is not more than 1 `AdminUnitName` address component per `AdministrativeUnitLevel`.
+* There is not more than 1 `AdminUnitName` address component per `AdministrativeUnitLevel`
+* There is only a single default position per `Address` object
 
 #### Model Transformation
 
@@ -153,11 +159,60 @@ This section describes which rules with which parameters are applied to the Addr
 2. Subsitute all attributes that have a property type with a Codelist Sterotype through a inline codelist reference using `MT008()`.
 3. Inline all `addressComponents` through Rule `MT003(separator: '.', cardinality: { AdminUnitName: 6 })`, using the respective typenames to create unique property names. In addition, define that for `AdminUnitName`, six properties shall be created, one for each `AdministrativeUnitLevel`.
 4. Flatten the Locator/Designator structure through application of `MT004(separator: '.', keyProperty: 'type')` (Flatten aggregated or associated components using codelist values).
-5. Apply the General Flattening rule to simplify the remaining properties: `MT003(separator: '.')`
+5. Apply the General Flattening rule to simplify the remaining properties: `MT001(separator: '.')`
 
 #### Model Mapping
 
-The following table explains the mapping between the classes and properties of the original Addresses model to the Simplified Addresses model.
+The following table explains the mapping between the classes and properties of the original Addresses (AD) model to the Simplified Addresses (ADS) model.
+
+AD Name (condition) | AD Type | ADS Name | ADS Type 
+--------------------|---------|----------|---------
+**Address** | AddressType | **SimpleAddress** | SimpleAddressType
+ad:alternativeIdentifier | String | alternativeIdentifier | String
+ad:beginLifespanVersion | DateTime | beginLifespanVersion | String
+ad:endLifespanVersion | DateTime | endLifespanVersion | String
+ad:building | ReferenceType | endLifespanVersion | String
+ad:component (class = ThoroughfareName) | ReferenceType | component.ThoroughfareName | String
+ad:component (class = PostalDescriptor) | ReferenceType | component.ThoroughfareName | String
+ad:component (class = AddressAreaName) | ReferenceType | component.ThoroughfareName | String
+ad:component (class = AdminUnitName, index = 0) | ReferenceType | component.AdminUnitName_1 | String
+ad:component (class = AdminUnitName, index = 1) | ReferenceType | component.AdminUnitName_2 | String
+ad:component (class = AdminUnitName, index = 2) | ReferenceType | component.AdminUnitName_3 | String
+ad:component (class = AdminUnitName, index = 3) | ReferenceType | component.AdminUnitName_4 | String
+ad:component (class = AdminUnitName, index = 4) | ReferenceType | component.AdminUnitName_5 | String
+ad:component (class = AdminUnitName, index = 5) | ReferenceType | component.AdminUnitName_6 | String
+gml:description | String | description | String
+gml:id | ID | *added as `id` to the root object* | String
+base:inspireId | IdentifierPropertyType | inspireId.localid | String
+               |                        | inspireId.namespace | String
+ad:locator | AddressLocator | locator.designator.addressNumber | String
+           |                | locator.designator.addressNumberExtension | String
+           |                | locator.designator.addressNumber2ndExtension | String
+           |                | locator.designator.buildingIdentifier | String
+           |                | locator.designator.buildingIdentifierPrefix | String
+           |                | locator.designator.cornerAddress1stIdentifier | String
+           |                | locator.designator.cornerAddress2ndIdentifier | String
+           |                | locator.designator.entranceDoorIdentifier | String
+           |                | locator.designator.floorIdentifier | String
+           |                | locator.designator.kilometrePoint | String
+           |                | locator.designator.postalDeliveryIdentifier | String
+           |                | locator.designator.staircaseIdentifier | String
+           |                | locator.designator.unitIdentifier | String
+           |                | locator.level | String
+           |                | locator.level.href | String (URL)
+gml:name |
+ad:parcel | ReferenceType | parcel | String
+ad:parentAddress | ReferenceType | parentAddress | String
+ad:position | GeographicPosition | *added as `geometry` to the root object* | GeoJSON Geometry Object
+            |                    | position.specification | String
+            |                    | position.specification.href | String (URL)
+            |                    | position.method | String
+            |                    | position.method.href | String (URL)
+            |                    | position.default | boolean
+ad:status | ReferenceType | status | String
+          |               | status.href | String (URL)
+ad:validFrom | DateTime | validFrom | String
+ad:validTo | DateTime | validTo | String
 
 #### Examples (Informative)
 
@@ -184,14 +239,14 @@ Example 1: One Address Feature with all components and locators inlined
                 "position.default": true,
                 "locator.designator.addressNumber": "5",
                 "locator.designator.addressNumberExtension": "A",
-                "level": "siteLevel",
-                "level.href": "http://inspire.ec.europa.eu/codelist/LocatorLevelValue/siteLevel",
+                "locator.level": "siteLevel",
+                "locator.level.href": "http://inspire.ec.europa.eu/codelist/LocatorLevelValue/siteLevel",
                 "component.ThoroughfareName": "Fraunhoferstraße",
                 "component.PostalDescriptor": "64283",
-                "component.AddressAreaName": "",
-                "component.AdminUnitName_1": "Darmstadt",
+                "component.AddressAreaName": "Innenstadt",
+                "component.AdminUnitName_1": "Deutschland",
                 "component.AdminUnitName_2": "Hessen",
-                "component.AdminUnitName_3": "Deutschland"
+                "component.AdminUnitName_3": "Darmstadt"
             }
         }
    ]
@@ -202,7 +257,7 @@ Example 1: One Address Feature with all components and locators inlined
 
 Environmental Monitoring Facilities describe measuring stations, networks and programs, and makes use of Observations & Measurement (`OM`) data, in many cases using specific observations (`OMSO`).
 
-The purpose of the `EMS` alternate encoding is to create a simple structure for the data directly related to the monitoring facility itself so that users can create simple maps with info on measurements station with the actual measures inlined. A typical feature will thus describe *one* monitoring facility with one measurement result for one given point in time. Since information about the point in time and the result are inlined, tools such as ArcGIS can use this information with the inbuilt time series visualsiation tools as well.
+The purpose of the `EMS` alternate encoding is to create a simple structure for the data directly related to the monitoring facility itself so that users can create simple maps with info on measurements station with the actual measures inlined. A typical feature will thus describe *one* monitoring facility with one measurement result for one given point in time. Since information about the point in time and the result are inlined, tools such as ArcGIS can use this information with the inbuilt time series visualisation tools as well.
 
 An additional objective is to provide an efficient structure for the measurements made by a monitoring facility. This is achieved by building on the rules defined in the `OMSF GeoJSON` encoding.
 
@@ -213,9 +268,9 @@ This section describes which rules with which parameters are applied to the Envi
 1. Substitute all occurences of `LegalCitation` with the Simple Citation through Rule `MT007()`.
 2. Substitute all attributes that have a property type with a Codelist Sterotype through a inline codelist reference using `MT008()`.
 3. Substitute `OperationalActivityPeriod` with the Simple Period using `MT009()`.
-3. Substitute all `OM` and `OMSO` model elements through the respective `OMSF` model elements
-4. Apply the `OMSF GeoJSON` model mapping to the `OMSO` model elements 
-5. Apply the General Flattening rule to simplify the remaining properties: `MT003(separator: '.')`
+4. Substitute all `OM` and `OMSO` model elements through the respective `OMSF` model elements
+5. Apply the `OMSF GeoJSON` model mapping to the `OMSO` model elements 
+6. Apply the General Flattening rule to simplify the remaining properties: `MT001(separator: '.')`
 
 #### Examples (Informative)
 
