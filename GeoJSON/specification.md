@@ -184,33 +184,33 @@ ad:component (class = AdminUnitName, index = 5) | ReferenceType | component.Admi
 gml:description | String | description | String
 gml:id | ID | *added as `id` to the root object* | String
 base:inspireId | IdentifierPropertyType | inspireId.localid | String
-               |                        | inspireId.namespace | String
+-"- |                        | inspireId.namespace | String
 ad:locator | AddressLocator | locator.designator.addressNumber | String
-           |                | locator.designator.addressNumberExtension | String
-           |                | locator.designator.addressNumber2ndExtension | String
-           |                | locator.designator.buildingIdentifier | String
-           |                | locator.designator.buildingIdentifierPrefix | String
-           |                | locator.designator.cornerAddress1stIdentifier | String
-           |                | locator.designator.cornerAddress2ndIdentifier | String
-           |                | locator.designator.entranceDoorIdentifier | String
-           |                | locator.designator.floorIdentifier | String
-           |                | locator.designator.kilometrePoint | String
-           |                | locator.designator.postalDeliveryIdentifier | String
-           |                | locator.designator.staircaseIdentifier | String
-           |                | locator.designator.unitIdentifier | String
-           |                | locator.level | String
-           |                | locator.level.href | String (URL)
+ |                | locator.designator.addressNumberExtension | String
+ |                | locator.designator.addressNumber2ndExtension | String
+ |                | locator.designator.buildingIdentifier | String
+ |                | locator.designator.buildingIdentifierPrefix | String
+ |                | locator.designator.cornerAddress1stIdentifier | String
+ |                | locator.designator.cornerAddress2ndIdentifier | String
+ |                | locator.designator.entranceDoorIdentifier | String
+ |                | locator.designator.floorIdentifier | String
+ |                | locator.designator.kilometrePoint | String
+ |                | locator.designator.postalDeliveryIdentifier | String
+ |                | locator.designator.staircaseIdentifier | String
+ |                | locator.designator.unitIdentifier | String
+ |                | locator.level | String
+ |                | locator.level.href | String (URL)
 gml:name |
 ad:parcel | ReferenceType | parcel | String
 ad:parentAddress | ReferenceType | parentAddress | String
 ad:position | GeographicPosition | *added as `geometry` to the root object* | GeoJSON Geometry Object
-            |                    | position.specification | String
-            |                    | position.specification.href | String (URL)
-            |                    | position.method | String
-            |                    | position.method.href | String (URL)
-            |                    | position.default | boolean
+ |                    | position.specification | String
+ |                    | position.specification.href | String (URL)
+ |                    | position.method | String
+ |                    | position.method.href | String (URL)
+ |                    | position.default | boolean
 ad:status | ReferenceType | status | String
-          |               | status.href | String (URL)
+ |               | status.href | String (URL)
 ad:validFrom | DateTime | validFrom | String
 ad:validTo | DateTime | validTo | String
 
