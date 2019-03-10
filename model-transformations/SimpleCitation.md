@@ -28,52 +28,7 @@
 <td>
 
 ```xml
-<gn:NamedPlace gml:id="MIG20172_example_NamedPlace">
-	<gn:beginLifespanVersion xsi:nil="true"/>
-	<gn:geometry>
-		<gml:Point gml:id="_d7180a8f-a590-44da-8b45-41d96d5cba5e" srsName="http://www.opengis.net/def/crs/EPSG/0/25832" srsDimension="2">
-		<gml:pos>471979.2568 5564594.2444</gml:pos>
-		</gml:Point>
-	</gn:geometry>
-	<gn:inspireId>
-		<base:Identifier>
-			<base:localId>NamedPlace_Example</base:localId>
-			<base:namespace>https://www.examples.eu/</base:namespace>
-		</base:Identifier>
-	</gn:inspireId>
-	<gn:localType xsi:nil="true"/>
-	<gn:name>
-		<gn:GeographicalName>
-			<gn:language>deu</gn:language>
-			<gn:nativeness xsi:nil="true"/>
-			<gn:nameStatus xsi:nil="true"/>
-			<gn:sourceOfName xsi:nil="true"/>
-			<gn:pronunciation xsi:nil="true"/>
-			<gn:spelling>
-				<gn:SpellingOfName>
-				<gn:text>München</gn:text>
-				<gn:script xsi:nil="true"/>
-				</gn:SpellingOfName>
-			</gn:spelling>
-		</gn:GeographicalName>
-	</gn:name>
-	<gn:name>
-		<gn:GeographicalName>
-			<gn:language>eng</gn:language>
-			<gn:nativeness xsi:nil="true"/>
-			<gn:nameStatus xsi:nil="true"/>
-			<gn:sourceOfName xsi:nil="true"/>
-			<gn:pronunciation xsi:nil="true"/>
-			<gn:spelling>
-				<gn:SpellingOfName>
-				<gn:text>Munich</gn:text>
-				<gn:script xsi:nil="true"/>
-				</gn:SpellingOfName>
-			</gn:spelling>
-		</gn:GeographicalName>
-	</gn:name>
-	<gn:type xsi:nil="true"/>
-</gn:NamedPlace>
+
 ```
    
 </td>
@@ -83,24 +38,7 @@
 <td>
 
 ```xml
-<gns:NamedPlace gml:id="MIG20172_example_NamedPlace">
-	<gns:beginLifespanVersion xsi:nil="true"/>
-	<gns:geometry>
-		<gml:Point gml:id="_d7180a8f-a590-44da-8b45-41d96d5cba5e" srsName="http://www.opengis.net/def/crs/EPSG/0/25832" srsDimension="2">
-		<gml:pos>471979.2568 5564594.2444</gml:pos>
-		</gml:Point>
-	</gns:geometry>
-	<gns:inspireId>
-		<base:Identifier>
-			<base:localId>NamedPlace_Example</base:localId>
-			<base:namespace>https://www.examples.eu/</base:namespace>
-		</base:Identifier>
-	</gns:inspireId>
-	<gns:localType xsi:nil="true"/>
-	<gns:name_deu>München</gns:name_deu>
-	<gns:name_eng>Munich</gns:name_eng>
-	<gns:type xsi:nil="true"/>
-</gns:NamedPlace>
+
 ``` 
 
 </td>

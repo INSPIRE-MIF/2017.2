@@ -15,9 +15,13 @@
     * Alternate Coordinate Reference Systems
 * [Conformance Classes](#conformance-classes)
     * Simple Addresses
+        * Model Transformation
+        * Model Mapping
+        * Examples
     * Simple Environmental Monitoring Facilities
-* Annex I (Normative/Informative): Abstract / Executable Test Suite
-* Annex II (Informative): Examples
+        * Model Transformation
+        * Model Mapping
+        * Examples 
 
 ## Introduction
 
@@ -90,6 +94,8 @@ D2.7 also contains a relevant recommendation:
 This section contains references to standards documents and related resources.
 
 * [GeoJSON - IETF RFC 7946](https://tools.ietf.org/html/rfc7946)
+* [OGC Observations and Measurements - Simple Feature model & encodings (OMSF)](https://github.com/opengeospatial/omsf-profile)
+* [OGC Observations and Measurements - Simple Feature GeoJSON Encoding (OMSF GeoJSON)](https://github.com/opengeospatial/omsf-profile/tree/master/omsf-json)
 * [Data Specification - INSPIRE Addresses](https://inspire.ec.europa.eu/Themes/79/2892)
 * [Data Specification - INSPIRE Environmental Monitoring Facilities](https://inspire.ec.europa.eu/Themes/120/2892)
 
@@ -99,7 +105,11 @@ Terms and Definitions can be found in the [Glossary](../glossary.md) document.
 
 ## General Encoding Rules
 
-This section describes which common rules have to be applied for this encoding.
+This section describes how the the logical model for the encoding is derived from teh conceptual model, and describes which common rules have to be applied for this encoding.
+
+### Mapping from Conceptual Model to GeoJSON Logical Model
+
+### Common Rules
 
 * `GEOJSON-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
 * `GEOJSON-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84)), unless there is prior arrangement.
@@ -120,7 +130,7 @@ While the required Coordinate Reference System for any data encoded in GeoJSON i
 
 This specification defines one conformance class per supported theme. 
 
-Any conformance class in an encoding specification may  define a number of model transformation rules that should be applied before the encoding. These transformations are documented in the [Model Transformation Rules](../model-transformations/TransformationRules.md) paper. They serve the purpose of adapting the conceptual model (UML) to better match the logical model of the target platform. In the context of this conformance class in the GeoJSON encoding, the described rules address the following issues:
+Any conformance class in an encoding specification may  define a number of model transformation rules that need to be applied before the encoding. These transformations are documented in the [Model Transformation Rules](../model-transformations/TransformationRules.md) paper. They serve the purpose of adapting the conceptual model (UML) to better match the logical model of the target platform. In the context of this conformance class in the GeoJSON encoding, the described rules address the following issues:
 
 * Multiple Geometries
 * Nested Properties
@@ -128,31 +138,198 @@ Any conformance class in an encoding specification may  define a number of model
 * Attributes such as `uom` and `nilReason`
 * Arrays/Lists
 
-### Simple Addresses (ads)
+### Simple Addresses (ADS)
 
 The Simple Addresses encoding is an alternate encoding for address data. It can be applied to data that fulfills the following requirements:
 
-
+* It is sufficient to provide one `GeographicName` for all elements that use it 
+* There is not more than 1 `AdminUnitName` address component per `AdministrativeUnitLevel`.
 
 #### Model Transformation
 
 This section describes which rules with which parameters are applied to the Addresses conceptual model before applying the general rules of this encoding:
 
-1. Substitute all occurences of GeographicName with the Simple Geographic Name through Rule `MT005(separator: '.')`. 
-2. Inline all addressComponents through Rule `MT003(separator: '.')`, using the respective typenames to create unique property names.
-3. Flatten the Locator/Designator structure through application of `MT004(separator: '.', keyProperty: 'type')` (Flatten aggregated or associated components using codelist values).
-4. Apply the General Flattening rule to simplify the remaining properties: `MT003(separator: '.')`
+1. Substitute all occurences of `GeographicName` with the Simple Geographic Name through Rule `MT005(separator: '.')`. 
+2. Subsitute all attributes that have a property type with a Codelist Sterotype through a inline codelist reference using `MT008()`.
+3. Inline all `addressComponents` through Rule `MT003(separator: '.', cardinality: { AdminUnitName: 6 })`, using the respective typenames to create unique property names. In addition, define that for `AdminUnitName`, six properties shall be created, one for each `AdministrativeUnitLevel`.
+4. Flatten the Locator/Designator structure through application of `MT004(separator: '.', keyProperty: 'type')` (Flatten aggregated or associated components using codelist values).
+5. Apply the General Flattening rule to simplify the remaining properties: `MT003(separator: '.')`
 
-#### Abstract Test Suite
+#### Model Mapping
 
-TODO
+The following table explains the mapping between the classes and properties of the original Addresses model to the Simplified Addresses model.
 
-#### Examples
+#### Examples (Informative)
 
-TODO
+Example 1: One Address Feature with all components and locators inlined
 
-### Simple Environmental Monitoring Facilities (ems)
+```json
+{  
+   "type":"FeatureCollection",
+   "features":[ 
+        {
+            "type": "Feature",
+            "id": "Address_1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 5.460372, 48.078589 ]
+            },
+            "properties": {
+                "inspireId.localId": "Address_1",
+                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ads/",
+                "position.specification": "parcel",
+                "position.specification.href": "http://inspire.ec.europa.eu/codelist/GeometrySpecificationValue/parcel",
+                "position.method": "fromFeature",
+                "position.method.href": "http://inspire.ec.europa.eu/codelist/GeometryMethodValue/fromFeature",
+                "position.default": true,
+                "locator.designator.addressNumber": "5",
+                "locator.designator.addressNumberExtension": "A",
+                "level": "siteLevel",
+                "level.href": "http://inspire.ec.europa.eu/codelist/LocatorLevelValue/siteLevel",
+                "component.ThoroughfareName": "Fraunhoferstraße",
+                "component.PostalDescriptor": "64283",
+                "component.AddressAreaName": "",
+                "component.AdminUnitName_1": "Darmstadt",
+                "component.AdminUnitName_2": "Hessen",
+                "component.AdminUnitName_3": "Deutschland"
+            }
+        }
+   ]
+}
+```
 
+### Simple Environmental Monitoring Facilities (EMS)
 
+Environmental Monitoring Facilities describe measuring stations, networks and programs, and makes use of Observations & Measurement (`OM`) data, in many cases using specific observations (`OMSO`).
 
+The purpose of the `EMS` alternate encoding is to create a simple structure for the data directly related to the monitoring facility itself so that users can create simple maps with info on measurements station with the actual measures inlined. A typical feature will thus describe *one* monitoring facility with one measurement result for one given point in time. Since information about the point in time and the result are inlined, tools such as ArcGIS can use this information with the inbuilt time series visualsiation tools as well.
 
+An additional objective is to provide an efficient structure for the measurements made by a monitoring facility. This is achieved by building on the rules defined in the `OMSF GeoJSON` encoding.
+
+#### Model Transformation
+
+This section describes which rules with which parameters are applied to the Environmental Monitoring Facilities conceptual model before applying the general rules of this encoding:
+
+1. Substitute all occurences of `LegalCitation` with the Simple Citation through Rule `MT007()`.
+2. Substitute all attributes that have a property type with a Codelist Sterotype through a inline codelist reference using `MT008()`.
+3. Substitute `OperationalActivityPeriod` with the Simple Period using `MT009()`.
+3. Substitute all `OM` and `OMSO` model elements through the respective `OMSF` model elements
+4. Apply the `OMSF GeoJSON` model mapping to the `OMSO` model elements 
+5. Apply the General Flattening rule to simplify the remaining properties: `MT003(separator: '.')`
+
+#### Examples (Informative)
+
+Example 1: One Environmental Monitoring Facility with a single measurement result
+
+```json
+{  
+   "type":"FeatureCollection",
+   "features":[ 
+        {
+            "type": "Feature",
+            "id": "EnvironmentalMonitoringFacility_1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 24.96131, 60.20307 ]
+            },
+            "properties": {
+                "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
+                "inspireId.localId": "EnvironmentalMonitoringFacility_1",
+                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/",
+                "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/EnvironmentalMonitoringFacility_1",
+                "legalBackground.citationDate": "",
+                "legalBackground.citationLink": "",
+                "legalBackground.citationName": "",
+                "legalBackground.citationLevel": "",
+                "legalBackground.citationType": "",
+                "mediaMonitored": "water",
+                "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
+                "mobile": false,
+                "name": "Piézomètre de St-Rémy - 01",
+                "observation.resultTime": "2017-08-17T12:11:20Z",
+                "observation.result": 12.5,
+                "observation.unitOfMeasureName": "Degree Celsius",
+                "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
+                "operationalActivityPeriod.beginPosition": "1977-10-08T23:00:00Z",
+                "operationalActivityPeriod.endPosition": "2014-10-14T06:00:00Z",
+                "purpose": "Ground water level measurement",
+                "purpose.href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
+                "resultAcquisitionSource": "in-situ",
+                "resultAcquisitionSource.href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
+                "specialisedEMFType": "Piezometre",
+                "specialisedEMFType.href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
+            }
+        }
+   ]
+}
+```
+
+Example 2: One Environmental Monitoring Facility with a reference to a `MeasureTimeseriesObservation`
+
+```json
+{  
+   "type":"FeatureCollection",
+   "features":[
+       {
+            "type": "Feature",
+            "id": "EnvironmentalMonitoringFacility_1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 24.96131, 60.20307 ]
+            },
+            "properties": {
+                "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
+                "inspireId.localId": "EnvironmentalMonitoringFacility_1",
+                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/",
+                "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/EnvironmentalMonitoringFacility_1",
+                "mediaMonitored": "water",
+                "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
+                "name": "Piézomètre de St-Rémy - 01",
+                "hasObservation.href": "#MeasureTimeseriesObservation_1",
+                "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
+                "operationalActivityPeriod.beginPosition": "1977-10-08T23:00:00Z",
+                "operationalActivityPeriod.endPosition": "2014-10-14T06:00:00Z",
+                "purpose": "Ground water level measurement",
+                "purpose.href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
+                "resultAcquisitionSource": "in-situ",
+                "resultAcquisitionSource.href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
+                "specialisedEMFType": "Piezometre",
+                "specialisedEMFType.href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
+            }
+        },
+        {
+            "type": "Feature",
+            "id": "MeasureTimeseriesObservation_1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 24.96131, 60.20307 ]
+            },
+            "properties": {
+                "observationType": "MeasureTimeseriesObservation",
+                "phenomenonTimeStart": "2017-08-17T12:00:00Z",
+                "phenomenonTimeEnd": "2017-08-17T18:00:00Z",
+                "resultTime": "2017-08-17T12:11:20Z",
+                "usedProcedureName": "Meteorological surface observations",
+                "usedProcedureReference": "http://xml.fmi.fi/process/met-surface-observations",
+                "observedPropertyName": "air_temperature",
+                "observedPropertyReference": "http://vocab.nerc.ac.uk/collection/P07/current/CFSN0023/",
+                "samplingFeatureName": "Helsinki Kumpula weather observation station",
+                "ultimateFeatureOfInterestName": "Helsinki Kumpula",
+                "ultimateFeatureOfInterestReference": "http://sws.geonames.org/843429/about.rdf",
+                "timeStep": [
+                    "2017-08-17T12:00:00Z",
+                    "2017-08-17T13:00:00Z",
+                    "2017-08-17T14:00:00Z",
+                    "2017-08-17T15:00:00Z",
+                    "2017-08-17T16:00:00Z",
+                    "2017-08-17T17:00:00Z",
+                    "2017-08-17T18:00:00Z"
+                ],
+                "unitOfMeasureName": "Degree Celsius",
+                "unitOfMeasureReference": "http://www.opengis.net/def/uom/UCUM/degC",
+                "result": [12.5, 12.0, 11.0, 13.2, 13.5, 14.1, 14.1]
+            }
+        }
+   ]
+}
+```

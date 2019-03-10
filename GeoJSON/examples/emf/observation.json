@@ -1,0 +1,78 @@
+{
+  "request" : "GetObservation",
+  "version" : "2.0.0",
+  "service" : "SOS",
+  "observations" : [
+    {
+      "type" : "http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement",
+      "identifier" : {
+        "codespace" : "http://www.ietf.org/rfc/rfc2616",
+        "value" : "http://ressource.brgm-rec.fr/obs/RawObservationPiezo/06512X0037/STREMY.2-32663950"
+      },
+      "procedure" : "http://id.eaufrance.fr/met/403.xml",
+      "parameter" : [
+        {
+          "NamedValue" : {
+            "name" : "RelatedMonitoringFeature",
+            "value" : {
+              "codespace" : "",
+              "value" : "http://ressource.brgm-rec.fr/data/Piezometre/06512X0037/STREMY.2"
+            }
+          }
+        },
+        {
+          "NamedValue" : {
+            "name" : "http://www.opengis.net/def/param-name/OGC-OM/2.0/samplingGeometry",
+            "value" : {
+              "type" : "Point",
+              "coordinates" : [
+                46.1909541655103,
+                5.18713262971692
+              ]
+            }
+          }
+        },
+        {
+          "NamedValue" : {
+            "name" : "observationQualification",
+            "value" : {
+              "codespace" : "",
+              "value" : "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:414::CdElement:0:::referentiel:3.1:xml"
+            }
+          }
+        },
+        {
+          "NamedValue" : {
+            "name" : "observationStatus",
+            "value" : {
+              "codespace" : "",
+              "value" : "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:415::CdElement:1:::referentiel:3.1:xml"
+            }
+          }
+        }
+      ],
+      "observableProperty" : "http://id.eaufrance.fr/par/1689.xml",
+      "featureOfInterest" : {
+        "identifier" : {
+          "codespace" : "http://www.ietf.org/rfc/rfc2616",
+          "value" : "http://ressource.brgm-rec.fr/data/Piezometre/06512X0037/STREMY.2"
+        },
+        "name" : "Piezo 06512X0037/STREMY.2",
+        "sampledFeature" : "https://sweet.jpl.nasa.gov/2.3/realmHydro.owl#Aquifer",
+        "geometry" : {
+          "type" : "Point",
+          "coordinates" : [
+            46.1909541655103,
+            5.18713262971692
+          ]
+        }
+      },
+      "phenomenonTime" : "2019-03-08T10:00:00.000Z",
+      "resultTime" : "2019-03-08T10:00:00.000Z",
+      "result" : {
+        "uom" : "m",
+        "value" : 4.702
+      }
+    }
+  ]
+}

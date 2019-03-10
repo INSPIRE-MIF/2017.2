@@ -51,3 +51,15 @@ This section contains a selection of examples for model transformations we have 
 ### MT006: Property Composition to Association
 
 [Property Composition to Association](./PropertyCompositionToAssocation.md)
+
+### MT007: Simple Citation
+
+[Simple Geographic Name](./SimpleCitation.md)
+
+### MT008: Inline Codelist Reference
+
+[Inline Codelist Reference](./InlineCodelistReference.md)
+
+### MT009: Simple Period
+
+[Simple Period](./SimplePeriod.md)
