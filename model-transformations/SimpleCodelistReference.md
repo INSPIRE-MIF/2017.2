@@ -7,16 +7,14 @@
 </tr>
 <tr>
 <td>Description</td>
-<td><p>Citations are another element type that is used in many different places throughout the INSPIRE data specifications. There are concrete types such as <code>LegislationCitation</code>, which is an INSPIRE base type, but also types coming from other schemas, such as <code>CI_Citation</code> from ISO 19115. All of these structures tend to bury key information in deeply nested structures, creating a lot of overhead. This rule proposes a simplified alternative representation.</p> 
-<p>The simplified citation is based on a link to an external publication and adds minimal information with four properties:</p>
+<td><p>References to codelists are one of the ubiquitous characteristics of the INSPIRE data specifications. They are usually encoded using a <code>ReferenceType, which is derived from an <code>xlink</code>. In the conceptual model, they are represented using property types that point to classes with a <code>&lt;&lt;Codelist&gt;&gt;</code> stereotype.</p> 
+<p>The main usability issue with ReferenceTypes is that they encode all relevant information in the xlink attributes of the element. In particular, the actual external link is encoded in the <code>xlink:href</code> attribute, while additional informaiton may be encoded in attributes such as <code>xlink:title</code>. An additional issue is that the actual, full codelist URLs are unwieldy to use for styling and filtering in most GIS. It would be much preferable to use the local codelist values. There is a recommendation to encode these using the mentioned <code>xlink:title</code>, but no strict requirement.</p>
+<p>This simplified codelist reference takes the property name and uses it to encode the title directly, while all othe properties are modelled as "subproperties":</p>
 <ul>
-    <li>citationDate</li>
-	<li>citationLink</li>
-	<li>citationName</li>
-	<li>citationLevel</li>
-	<li>citationType</li>
+    <li><code>reference</code></li>
+	  <li><code>reference.href</code></li>
 </ul>
-<p>Each of these properties maps directly to an existing property of the original citation types. The <code>citationType</code> property can be used to indicate what kind of citation is represented by this object; its values can be taken from the original type name, or can be based on a codelist.</p>
+<p>Both of these properties are mandatory in the <code>SimpleCitation</code>, while extra properties such as <code>arcRole</code>, <code>owns</code> and <code>type</code> are optional..</p>
 </td>
 </tr>
 <tr>
@@ -28,32 +26,13 @@
 <td>
 
 ```xml
-<am:ManagementRestrictionOrRegulationZone>
+<ad:Address gml:id="MIG20172_example_Address">
   <!-- ... -->
-  <am:legalBasis
-    xlink:href="http://www.retsinformation.dk/eli/lta/2017/122"
-    xlink:title="Bekendtgørelse af lov om skove">
-    <base2:LegislationCitation>
-      <base2:name>Bekendtgørelse af lov om skove</base2:name>
-      <base2:shortName>LBK nr 122 af 26/01/2017</base2:shortName>
-      <base2:date>
-        <gmd:CI_Date>
-          <gmd:date>
-            <gco:Date>2017-01-26</gco:Date>
-          </gmd:date>
-          <gmd:dateType>
-            <gmd:CI_DateTypeCode
-              codeListValue="creation"
-              codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" />
-          </gmd:dateType>
-        </gmd:CI_Date>
-      </base2:date>
-      <base2:link>http://www.retsinformation.dk/eli/lta/2017/122</base2:link>
-      <base2:level xlink:href="http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national" xlink:title="national" />
-    </base2:LegislationCitation>
-  </am:legalBasis>
+  <ad:status
+    xlink:href="http://inspire.ec.europa.eu/codelist/StatusValue/current"
+    xlink:title="current" />
   <!-- ... -->
-</am:ManagementRestrictionOrRegulationZone>
+</ad:Address>
 ```
    
 </td>
@@ -63,19 +42,12 @@
 <td>
 
 ```xml
-<ems:EnvironmentalMonitoringFacility>
+<ads:Address gml:id="MIG20172_example_Address">
   <!-- ... -->
-  <ems:legalBackground>
-    <simple:SimpleCitiation>
-      <simple:name>Bekendtgørelse af lov om skove</simple:name>
-      <simple:type>LegislationCitation</simple:type>
-      <simple:date>2017-01-26</simple:date>
-      <simple:link>http://www.retsinformation.dk/eli/lta/2017/122</simple:link>
-      <simple:level xlink:href="http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national" xlink:title="national" />
-    </simple:LegislationCitation>
-  </ems:legalBackground>
+  <simple:status>current</ads:status>
+  <simple:status.href>http://inspire.ec.europa.eu/codelist/StatusValue/current</ads:status.href>
   <!-- ... -->
-</ems:EnvironmentalMonitoringFacility>
+</ads:Address>
 ``` 
 
 </td>
@@ -83,24 +55,25 @@
 <tr>
 <td>Model transformation rule: </td>
 <td>
-    <p>Substitute existing <code>LegislationCitation</code> and <code>CI_Citation</code> types with this SimpleCitation type.</p>
+    <p>Parameters:</p> 
+    <ul>
+      <li><code>type</code>: The property for which the ReferenceType is to be substituted, e.g. <code>status</code>.</li>
+    </ul>
+    <p>Substitute existing <code>ReferenceType</code> on the <code>type</code> property with this SimpleReference type.</p>
 </td>
 </tr>
 <tr>
 <td>Instance transformation rule:</td>
 <td>
 	<ul>
-		<li>Copy the value of <code>base2:dateEnteredIntoForce</code> to the property <code>simple:date</code>.</li>
-		<li>Copy the value of <code>base2:name</code> to the property <code>simple:name</code>.</li>
-		<li>Copy the value of <code>base2:dateEnteredIntoForce</code> to the property <code>simple:date</code>.</li>
-		<li>Copy the value(s) of <code>base2:level</code> to the property <code>simple:level</code>. Note that only one link may be present in the data.</li>
-		<li>Insert the element name <code>LegislationCitation</code> to the property <code>simple:type</code>.</li>
+		<li>Copy the value of the <code>xlink:title</code> attribute to the property with the name of the <code>type</code> parameter.</li>
+		<li>Copy the value of the <code>xlink:href</code> attribute to the property with the name of the <code>type.href</code> parameter.</li>
 	</ul>
 </td>
 </tr>
 <tr>
 <td>Solves usability issues:</td>
-<td>The transformed data structure can easily be edited, filtered and symbolized in desktop GIS and web GIS software. This transformation also reduced data volume significantly in datasets that use in-place encoding of `GeographicalNames`.</td>
+<td>The transformed data structure can easily be edited, filtered and symbolized in desktop GIS and web GIS software.</td>
 </tr>
 <tr>
 <td>Known usability issues:</td>
@@ -108,7 +81,7 @@
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>
-<td>This rule works only with one external link, and it removed finer grained informationa bout dates. It can be combined with the [Property Composition to Association](./PropertyCompositiontoAssociation.md) rule to add more information from an external register.</td>
+<td>This rule is fully bijective.</td>
 </tr>
 <tr>
 <td>Examples of this encoding rule:</td>

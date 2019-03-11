@@ -67,7 +67,7 @@
 <td>
     <p>Parameters:</p> 
     <ul>
-      <li><code>type</code>: The type to be substituted, e.g. <code>OperationalActivityPerio</code>.</li>
+      <li><code>type</code>: The type to be substituted, e.g. <code>OperationalActivityPeriod</code>.</li>
     </ul>
     <p>Substitute existing type as indicated by the <code>type</code> parameter with this <code>SimplePeriod</code> type.</p>
 </td>
