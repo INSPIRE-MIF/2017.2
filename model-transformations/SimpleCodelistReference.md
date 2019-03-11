@@ -1,4 +1,4 @@
-## Simplified Citation
+## Simplified Codelist Reference
 
 <table>
 <tr>
@@ -11,10 +11,10 @@
 <p>The simplified citation is based on a link to an external publication and adds minimal information with four properties:</p>
 <ul>
     <li>citationDate</li>
-    <li>citationLink</li>
-    <li>citationName</li>
-    <li>citationLevel</li>
-    <li>citationType</li>
+	<li>citationLink</li>
+	<li>citationName</li>
+	<li>citationLevel</li>
+	<li>citationType</li>
 </ul>
 <p>Each of these properties maps directly to an existing property of the original citation types. The <code>citationType</code> property can be used to indicate what kind of citation is represented by this object; its values can be taken from the original type name, or can be based on a codelist.</p>
 </td>
@@ -100,7 +100,7 @@
 </tr>
 <tr>
 <td>Solves usability issues:</td>
-<td>The transformed data structure can easily be edited, filtered and symbolized in desktop GIS and web GIS software. This transformation also reduces data volume.</td>
+<td>The transformed data structure can easily be edited, filtered and symbolized in desktop GIS and web GIS software. This transformation also reduced data volume significantly in datasets that use in-place encoding of `GeographicalNames`.</td>
 </tr>
 <tr>
 <td>Known usability issues:</td>
@@ -108,7 +108,7 @@
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>
-<td>This rule works only with one external link, and it removed finer grained information about dates. It can be combined with the [Property Composition to Association](./PropertyCompositiontoAssociation.md) rule to add more information from an external register.</td>
+<td>This rule works only with one external link, and it removed finer grained informationa bout dates. It can be combined with the [Property Composition to Association](./PropertyCompositiontoAssociation.md) rule to add more information from an external register.</td>
 </tr>
 <tr>
 <td>Examples of this encoding rule:</td>

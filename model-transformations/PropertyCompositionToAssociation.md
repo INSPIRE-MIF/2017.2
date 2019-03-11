@@ -7,14 +7,14 @@
 </tr>
 <tr>
 <td>Description</td>
-<td><p>Information regarding resources such as legal documents can be stored in an external register or non-INSPIRE online application, possibly using other standardised encodings.  Such information should not be duplicated in the INSPIRE model if possible. THus, the information should be referred to from a GML application schema "by reference".</p>
+<td><p>Information regarding resources such as legal documents can be stored in an external register or non-INSPIRE online application, possibly using other standardised encodings.  Such information should not be duplicated in the INSPIRE model if possible. Thus, the information should be referred to from a GML application schema "by reference".</p>
 
 <p>It gives a lot of work for data providers when they have to document a lot of metadata regarding e.g. laws, documents, authorities, etc. that they are not responsible for, and when this information is already online somewhere else this is redundant work. Therefore, properties referring to laws, documents, authorities and other online resources not typically belonging to the geographic information domain should be implemented by reference, and it should be recognised that their values are not necessarily encoded in GML.</p>
 </td>
 </tr>
 <tr>
 <td>UML Model</td>
-<td>...</td>
+<td>Not applicable (there is no single UML model that results from this transformation rule)</td>
 </tr>
 <tr>
 <td>Original instance in default encoding:</td>
@@ -56,14 +56,14 @@
 <td>
 
 ```xml
-<am:ManagementRestrictionOrRegulationZone>
+<ams:ManagementRestrictionOrRegulationZone>
   <!-- ... -->
-  <am:legalBasis
+  <ams:legalBasis
     xlink:href="http://www.retsinformation.dk/eli/lta/2017/122"
     xlink:title="Bekendtgørelse af lov om skove"
   />
   <!-- ... -->
-</am:ManagementRestrictionOrRegulationZone>
+</ams:ManagementRestrictionOrRegulationZone>
 ```
 
 </td>
@@ -73,15 +73,15 @@
 <td>
     <p>Parameters:</p> 
     <ul>
-        <li>`referenceProperty`: The name of the property which to change to a reference.</li>
+        <li><code>referenceProperty</code>: The name of the property which to change to a reference.</li>
     </ul>
-    <p>On the model level, this changes the tagged value `inlineOrByReference` to have the value `byReference` on the property.</p>
+    <p>On the model level, this changes the tagged value <code>inlineOrByReference</code> to have the value <code>byReference</code> on the property.</p>
 </td>
 </tr>
 <tr>
 <td>Instance transformation rule:</td>
 <td><p>Parameters: None</p> 
-    <p>It is only possible to convert an instance using the "inline" pattern when the URL is present somewhere in the data, which then must be inserted in `@xlink:href`. A name or title, if present, may be inserted in `@xlink:title`.</p>
+    <p>It is only possible to convert an instance using the "inline" pattern when the URL is present somewhere in the data, which then must be inserted in <code>@xlink:href</code>. A name or title, if present, may be inserted in <code>@xlink:title</code>.</p>
     </td>
 </tr>
 <tr>
@@ -90,7 +90,7 @@
 </tr>
 <tr>
 <td>Known usability issues:</td>
-<td>Display of `@xlink:href` and `@xlink:title` may not be supported in all clients. However, this is the same problem as for code lists, which are widely used in INSPIRE.</td>
+<td>Display of <code>@xlink:href</code> and <code>@xlink:title</code> may not be supported in all clients. However, this is the same problem as for code lists, which are widely used in INSPIRE.</td>
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>

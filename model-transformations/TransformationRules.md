@@ -28,6 +28,8 @@ We describe each Model Transformation by using these properties:
 
 This section contains a selection of examples for model transformations we have identified so far. 
 
+The catalogue also contains several substitution rules, where existing types such as `GeographicName` are replaced with less complex types. These types are added to a new `simple` namespace (`http://inspire.ec.europa.eu/schemas/simple/1.0`).
+
 ### MT001: Flattening of nested structures
 
 [General Flattening of nested structures](./GeneralFlattening.md)
@@ -44,21 +46,21 @@ This section contains a selection of examples for model transformations we have 
 
 [Association/Aggregation to Composition with Soft Typing](./AssociatedComponentsSoftType.md)
 
-### MT005: Simple Geographic Name
-
-[Simple Geographic Name](./SimpleGeographicName.md)
-
 ### MT006: Property Composition to Association
 
 [Property Composition to Association](./PropertyCompositionToAssocation.md)
 
+### MT005: Simple Geographic Name
+
+[Simple Geographic Name](./SimpleGeographicName.md)
+
 ### MT007: Simple Citation
 
-[Simple Geographic Name](./SimpleCitation.md)
+[Simple Citation](./SimpleCitation.md)
 
-### MT008: Inline Codelist Reference
+### MT008: Simple Codelist Reference
 
-[Inline Codelist Reference](./InlineCodelistReference.md)
+[Simple Codelist Reference](./SimpleCodelistReference.md)
 
 ### MT009: Simple Period
 

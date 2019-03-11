@@ -10,15 +10,15 @@
 <td><p>The complex structure of model elements can be reduced by applying a flattening method. The principle of the flattening is to derive a flat model structure by moving the nested child elements to its parent. The elements can be renamed to represent the former element path in the name of the resulting element and to avoid naming conflicts. The cardinality of the derived elements should be calculated from the cardinalities of the former element path. When applied recursively, this method flattens the structure of multiple levels.</p> 
 <p>When applied recursively, this method flattens the structure of multiple levels and will result in properties such as these:</p>
 <ul>
-    <li>inspireId_namespace</li>
-    <li>name_spelling_text</li>
+    <li>inspireId.namespace</li>
+    <li>name.spelling.text</li>
 </ul>
 <p>This model transformation rule does not handle cardinalities greater than 1; it thus does not introduce any numeric elements into the new property name to account for multiple occurences. It also does not make use of the element names as they would be encoded in XML to keep the resulting proeprty names shorter. In most cases outside the use of substitution groups, this does not lead to issues. These should be resolved using any of the three Transformation Rules that can deal with that ([Primitive Array](./ExtractPrimitiveArray.md), [Associations to Soft Typed properties](./AssociatedComponentsSoftType.md), [Associations to Hard Typed properties](./AssociatedComponentsHardType.md)).</p>
 </td>
 </tr>
 <tr>
 <td>UML Model</td>
-<td>...</td>
+<td>Not applicable (there is no single UML model that results from this transformation rule)</td>
 </tr>
 <tr>
 <td>Original instance in default encoding:</td>
@@ -60,14 +60,14 @@
 ```xml
 <ams:ManagementRestrictionOrRegulationZone>
   <!-- ... -->
-  <ams:legalBasis_name>Bekendtgørelse af lov om skove</ams:legalBasis_name>
-  <ams:legalBasis_shortName>LBK nr 122 af 26/01/2017</ams:legalBasis_shortName>
-  <ams:legalBasis_date_date>2017-01-26</ams:legalBasis_date_date>
-  <ams:legalBasis_date_dateType_codeListValue>creation</ams:legalBasis_date_dateType_codeListValue>
-  <ams:legalBasis_date_dateType_codeList>http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode</ams:legalBasis_date_dateType_codeList>
-  <ams:legalBasis_link>http://www.retsinformation.dk/eli/lta/2017/122</ams:legalBasis_link>
-  <ams:legalBasis_linklevel_title>national</ams:legalBasis_linklevel>
-  <ams:legalBasis_linklevel_href>http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national</ams:legalBasis_linklevel>
+  <ams:legalBasis.name>Bekendtgørelse af lov om skove</ams:legalBasis.name>
+  <ams:legalBasis.shortName>LBK nr 122 af 26/01/2017</ams:legalBasis.shortName>
+  <ams:legalBasis.date.date>2017-01-26</ams:legalBasis.date.date>
+  <ams:legalBasis.date.dateType.codeListValue>creation</ams:legalBasis.date.dateType.codeListValue>
+  <ams:legalBasis.date.dateType.codeList>http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode</ams:legalBasis.date.dateType.codeList>
+  <ams:legalBasis.link>http://www.retsinformation.dk/eli/lta/2017/122</ams:legalBasis.link>
+  <ams:legalBasis.linklevel>national</ams:legalBasis.linklevel>
+  <ams:legalBasis.linklevel.href>http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national</ams:legalBasis.linklevel.href>
   <!-- ... -->
 </ams:ManagementRestrictionOrRegulationZone>
 ``` 
@@ -79,9 +79,9 @@
 <td>
     <p>Parameters:</p> 
     <ul>
-        <li>`separator`: The character to use to separate the original property name from the type name of the components.</li>
+        <li><code>separator`: The character to use to separate the original property name from the type name of the components.</li>
     </ul>
-    <p>Recursively go down through the complex structure of the property and concatenate the local name of the property, using the `separator` character in between each local name. This rule will drop inherited properties that have the same local name as a property declared on the feature type or property type itself, e.g. `gml:name` vs. `gn:name`. Note that Geometry properties are excluded from this rule!</p>
+    <p>Recursively go down through the complex structure of the property and concatenate the local name of the property, using the <code>separator</code> character in between each local name. This rule will drop inherited properties that have the same local name as a property declared on the feature type or property type itself, e.g. <code>gml:name</code> vs. <code>gn:name</code>. Note that Geometry properties are excluded from this rule!</p>
 </td>
 </tr>
 <tr>

@@ -110,9 +110,27 @@ This section describes how the the logical model for the encoding is derived fro
 
 ### Mapping from Conceptual Model to GeoJSON Logical Model
 
-* DECIDE: Should namespace prefixes be retained?
+* DECIDE: Should namespace prefixes be retained for the JSON property names?
 
 All model transformation rules are applied in such a way that the resulting proeprty names for valid XML element and type names, and are useable as property names in JSON.
+
+All property types are transformed to the simple types that JSON knows about: Number, String, Boolean and Object. The exact mapping is outlined in the following table:
+
+| XML Schema datatype | JSON datatype | Conversion Notes | 
+| ------ | ----- | ----- |
+| string | string |  |
+| boolean | boolean |  |
+| decimal | integer |  |
+| float | number |  |
+| double | number |  |
+| duration | string |  |
+| dateTime | string |  |
+| time | string |  |
+| date | string |  |
+| hexBinary | string |  |
+| base64Binary | string |  |
+| anyURI | string |  |
+| QName | string |  |
 
 ### Common Rules
 
@@ -266,11 +284,12 @@ An additional objective is to provide an efficient structure for the measurement
 This section describes which rules with which parameters are applied to the Environmental Monitoring Facilities conceptual model before applying the general rules of this encoding:
 
 1. Substitute all occurences of `LegalCitation` with the Simple Citation through Rule `MT007()`.
-2. Substitute all attributes that have a property type with a Codelist Sterotype through a inline codelist reference using `MT008()`.
-3. Substitute `OperationalActivityPeriod` with the Simple Period using `MT009()`.
-4. Substitute all `OM` and `OMSO` model elements through the respective `OMSF` model elements
-5. Apply the `OMSF GeoJSON` model mapping to the `OMSO` model elements 
-6. Apply the General Flattening rule to simplify the remaining properties: `MT001(separator: '.')`
+2. Apply `MT006()` to add optional external information about citations.
+3. Substitute all attributes that have a property type with a Codelist Sterotype through a simple codelist reference using `MT008()`.
+4. Substitute `OperationalActivityPeriod` with the Simple Period using `MT009()`.
+5. Substitute all `OM` and `OMSO` model elements through the respective `OMSF` model elements.
+6. Apply the `OMSF GeoJSON` model mapping to the `OMSO` model elements.
+7. Apply the General Flattening rule to simplify the remaining properties: `MT001(separator: '.')`.
 
 #### Examples (Informative)
 
@@ -292,11 +311,12 @@ Example 1: One Environmental Monitoring Facility with a single measurement resul
                 "inspireId.localId": "EnvironmentalMonitoringFacility_1",
                 "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/",
                 "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/EnvironmentalMonitoringFacility_1",
-                "legalBackground.citationDate": "",
-                "legalBackground.citationLink": "",
-                "legalBackground.citationName": "",
-                "legalBackground.citationLevel": "",
-                "legalBackground.citationType": "",
+                "legalBackground.date": "",
+                "legalBackground.link": "",
+                "legalBackground.name": "",
+                "legalBackground.level": "",
+                "legalBackground.level.href": "",
+                "legalBackground.type": "",
                 "mediaMonitored": "water",
                 "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
                 "mobile": false,

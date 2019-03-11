@@ -25,7 +25,7 @@
 </tr>
 <tr>
 <td>UML Model</td>
-<td>TODO</td>
+<td>Not applicable (there is no single UML model that results from this transformation rule)</td>
 </tr>
 <tr>
 <td>Original instance in default encoding:</td>
