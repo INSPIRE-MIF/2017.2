@@ -104,15 +104,92 @@ This section contains references to standards documents and related resources.
 
 Terms and Definitions can be found in the [Glossary](../glossary.md) document.
 
-## General Encoding Rules
+## Schema Conversion Rules
 
-This section describes how the the logical model for the encoding is derived from teh conceptual model, and describes which common rules have to be applied for this encoding.
+INSPIRE defines the conceptual model using UML, while the default encoding uses XML Schema to define the logical schema. There is no equivalent to such a logical schema language for JSON.  
+
+NOTE At this point, [JSON Schema](https://json-schema.org/) is undergoing rapid development and cannot be considered stable enough.
+
+As a consequence, the conversions required to go from the UML conceptual model to a model that can be directly encoded in simple GeoJSON, all model transformations are applied at the conceptual level of the UML model. 
+
+All model transformation rules are applied in such a way that the resulting property names for valid XML element and type names, and are useable as property names in JSON.
+
+### Types
+
+#### General types 
+
+Typenames remain as they are. All types that have the stereotype `<<featureType>>` are converted to GeoJSON objects, all other to regular JSON objects.
+
+#### ISO 19107 - Geometry types
+
+ISO 19107 defines a set of Geometry types, which need to be mapped to the types available in GeoJSON. Note that not all types can be mapped to GeoJSON; if an data set requires such a type, it cannot use this encoding as an alternative encoding.
+
+| XML Schema datatype | GeoJSON datatype | Conversion Notes | 
+| ------ | ----- | ----- |
+| GM_Aggregate      | GeometryCollection | Limitations apply as to which types in the collection can be included. |
+| GM_Curve          | LineString | In GML, Curves can also be nonlinear segments or arcs. GeoJSON only supports linear segments. |
+| GM_MultiCurve     | MultiLineString | In GML, Curves can also be nonlinear segments or arcs. GeoJSON only supports linear segments. |
+| GM_MultiPoint     | MultiPoint |  |
+| GM_MultiPrimitive | not supported | `GM_MultiPrimitive` is an abstract type. |
+| GM_MultiSurface   | Polygon |  |
+| GM_Object         | not supported | `GM_Object` is an abstract type. |
+| GM_Point          | Point |  |
+| GM_PolyhedralSurface | not supported | At this point, this specification does not support 3D meshes. |
+| GM_Primitive      | not supported | `GM_Primitive` is an abstract type. |
+| GM_Ring           | Polygon | A `GM_Ring` is not intended to be used as a standalone geometry object. It is typically used to define an interior or exterior boundary in a Surface and is thus mapped to Polygon. |
+| GM_Surface        | Polygon | A `GM_Surface` can have many SurfacePatches, it is thus mapped to MultiPolygon. |
+| GM_Tin            | not supported | TODO A TIN without triangulation could be converted to a MultiPoint object. |
+| GM_Triangle       | Polygon |  |
+
+#### ISO 19108 - Temporal types
+
+For types from ISO 19108 used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis. The default should be to use the [Simple Period](../model-transformation/SimplePeriod.md) substitution rule.
+
+#### ISO 19115 - Metadata types
+
+For types from ISO 19108 used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis. For `CI_Citation`, the [Simple Citation](../model-transformation/SimpleCitation.md) substitution rule can be applied.
+
+#### Abstract Types and Inheritance
+
+As `abstract` types cannot be encoded directly, the inheritance hierarchy is collapsed to the concrete types. Abstract types are then removed from the model. 
+
+#### Union Types
+
+A `union` represents a choice between multiple properties with different value types, such as a `ReferenceType` and a `BuildingType`. They can have a multiplicity other than exactly 1. The most common use case for union types in INSPIRE is to offer a choice between encoding an object in place or to encode it by reference.
+
+For the purpose of creating GeoJSON, `union` types are replaced with the concrete type in the `union`, unless the [Property Composition to Association transformation rule](../model-transformation/PropertyCompositionToAssociation.md) is applied by the theme profile.
+
+#### Enumerations and Code Lists
+
+Enumerations and classes with the sterotype `<<Codelist>>` remain unchanged.
+
+### Properties
+
+Property names remain as they are.
+
+* TODO: Should namespace prefixes be retained for the JSON property names?
+
+#### Properties with a `uom` attribute
+
+The unit of measurement attribute (`uom`) on any property `x` has to be retained. It is transformed to a new property of the type with the name `x.uom`.
+
+#### Arrays
+
+Property types for properties with a cardinality greater than `1` and a simple property type (e.g. String, Integer, Float, ...)may use arrays of these simple types. More information is available in the [Extract Primitive Array](../model-transformation/ExtractPrimitiveArray.md) transformation rule.
+
+#### Voidable
+
+The stereotype `<<voidable>>` is not converted.
+
+### Associations
+
+Associations are generally retained as they are, if they are not transformed using a profile-specific rule, such as [Inline associated or aggregated components using type names](../model-transformation/AssociatedComponentsHardType).
+
+## Instance Encoding Rules
+
+This section describes how the encoding is derived from the converted conceptual model, and describes which common rules have to be applied for this encoding.
 
 ### Mapping from Conceptual Model to GeoJSON Logical Model
-
-* DECIDE: Should namespace prefixes be retained for the JSON property names?
-
-All model transformation rules are applied in such a way that the resulting proeprty names for valid XML element and type names, and are useable as property names in JSON.
 
 All property types are transformed to the simple types that JSON knows about: Number, String, Boolean and Object. The exact mapping is outlined in the following table:
 
