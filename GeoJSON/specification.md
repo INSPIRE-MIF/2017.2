@@ -10,9 +10,13 @@
 	* Cross-cutting INSPIRE requirements
 * [Normative References](#normative-references)
 * [Terms and Definitions](#terms-and-definitions)
-* [General Encoding rules](#general-encoding-rules)
-    * Mapping from Conceptual Model to GeoJSON Logical Model
+* [Schema Conversion Rules](#schema-conversion-rules)
+    * Types
+    * Properties
+    * Associations
+* [Instance Encoding Rules](#instance-encoding-rules)
     * Requirements and Recommendations
+    * Mapping from Conceptual Model to GeoJSON Logical Model
     * Alternate Coordinate Reference Systems
 * [Conformance Classes](#conformance-classes)
     * Simple Addresses
@@ -189,7 +193,19 @@ Associations are generally retained as they are, if they are not transformed usi
 
 This section describes how the encoding is derived from the converted conceptual model, and describes which common rules have to be applied for this encoding.
 
-### Mapping from Conceptual Model to GeoJSON Logical Model
+### Common Rules
+
+* `GEOJSON-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
+* `GEOJSON-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84)), unless there is prior arrangement.
+
+NOTE As INSPIRE mandates the use of the European Terrestrial Reference System 1989  (ETRS89, see [Requirement 1](https://inspire.ec.europa.eu/reports/ImplementingRules/DataSpecifications/INSPIRE_Specification_CRS_v2.0.pdf)) for the areas within the geographical scope of ETRS89 and both CRS84 and ETRS89 use the GRS 80 ellipsoid (although with minor enhancements), we shall assume CRS 84 to be equivalent to ETRS89. If, for any dataset, this assumption would be problematic, then GeoJSON cannot serve as an alternative encoding for that dataset.
+
+* `GEOJSON-REQ-03`: In the GeoJSON encoding, `nilReason` information shall not be maintained per feature, but rather in the dataset metadata. Properties that have `nil` values shall thus be ignored in the encoding.
+
+NOTE If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding for that dataset
+
+
+### Mapping Property types from Conceptual Model to GeoJSON Logical Model
 
 All property types are transformed to the simple types that JSON knows about: Number, String, Boolean and Object. The exact mapping is outlined in the following table:
 
@@ -208,17 +224,6 @@ All property types are transformed to the simple types that JSON knows about: Nu
 | base64Binary | string |  |
 | anyURI | string |  |
 | QName | string |  |
-
-### Common Rules
-
-* `GEOJSON-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
-* `GEOJSON-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84)), unless there is prior arrangement.
-
-NOTE As INSPIRE mandates the use of the European Terrestrial Reference System 1989  (ETRS89, see [Requirement 1](https://inspire.ec.europa.eu/reports/ImplementingRules/DataSpecifications/INSPIRE_Specification_CRS_v2.0.pdf)) for the areas within the geographical scope of ETRS89 and both CRS84 and ETRS89 use the GRS 80 ellipsoid (although with minor enhancements), we shall assume CRS 84 to be equivalent to ETRS89. If, for any dataset, this assumption would be problematic, then GeoJSON cannot serve as an alternative encoding for that dataset.
-
-* `GEOJSON-REQ-03`: In the GeoJSON encoding, `nilReason` information shall not be maintained per feature, but rather in the dataset metadata. Properties that have `nil` values shall thus be ignored in the encoding.
-
-NOTE If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding for that dataset
 
 ### Alternate Coordinate Reference System support
 
