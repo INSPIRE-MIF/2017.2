@@ -7,19 +7,25 @@
 </tr>
 <tr>
 <td>Description</td>
-<td><p>Several INSPIRE themes, such as Transport and Addresses, use Assocations to add a set of properties to a feature. An example for this is the `components` in `Address` in the `Addresses` theme. This property has a set of 1..n `AddressComponents` that together describe the actual address. In a simplified model, we want to replace this construct with a set of inlined properties. The individual components have a set of properties that make them unique - the `Type` of each property. We can thus use those Typenames to create a new set of properties from the original associated structures, like so:</p>
+<td><p>Several INSPIRE themes, such as Transport and Addresses, use Assocations to add a set of properties to a feature. An example for this is the <code>components</code> in <code>Address</code> in the *Addresses* theme. This property has a set of 1..n <code>AddressComponents</code> that together describe the actual address. In a simplified model, we want to replace this construct with a set of inlined properties. The individual components have a set of properties that make them unique - the *Type* of each property. We can thus use those Typenames to create a new set of properties from the original associated structures, like so:</p>
 <ul>
-    <li>component_ThoroughfareName</li>
-    <li>component_PostalDescriptor</li>
-    <li>component_AdminUnitName</li>
-    <li>component_AddressAreaName</li>
+    <li><code>component.ThoroughfareName</code></li>
+    <li><code>component.PostalDescriptor</code></li>
+    <li><code>component.AdminUnitName</code></li>
+    <li><code>component.AddressAreaName</code></li>
 </ul>
-<p>This rule effectively denormalizes such associations. Please note the the individual properties such as `component_ThoroughfareName` are still complex; there is a need of additional rules to also simplify these.
+<p>If more than one occurence of a specific type is present, it is differentiated by using a numeric postfix. These start with "1":</p>
+<ul>
+    <li><code>component.AdminUnitName_1</code></li>
+    <li><code>component.AdminUnitName_2</code></li>
+    <li><code>component.AdminUnitName_3</code></li>
+</ul>
+<p>This rule effectively denormalizes such associations. Please note the the individual properties such as <code>component_ThoroughfareName</code> are still complex; there is a need of additional rules to also simplify these.
 </td>
 </tr>
 <tr>
 <td>UML Model</td>
-<td>TODO</td>
+<td>Not applicable (there is no single UML model that results from this transformation rule)</td>
 </tr>
 <tr>
 <td>Original instance in default encoding:</td>
@@ -83,11 +89,11 @@
 <td>
 
 ```xml
-<ad:Address gml:id="MIG20172_example_Address">
-	<ad:inspireId>...</ad:inspireId>
-	<ad:position>...</ad:position>
-	<ad:locator>...</ad:locator>
-	<ads:component_ThoroughfareName">
+<ads:Address gml:id="MIG20172_example_Address">
+	<ads:inspireId>...</ads:inspireId>
+	<ads:position>...</ads:position>
+	<ads:locator>...</ads:locator>
+	<ads:component_ThoroughfareName>
         <ad:ThoroughfareName gml:id="ThoroughfareName_1">
             <ad:inspireId>...</ad:inspireId>
             <ad:name>
@@ -107,8 +113,8 @@
                 </ad:ThoroughfareNameValue>
             </ad:name>
         </ad:ThoroughfareName>
-    </ads:component_ThoroughfareName">
-	<ads:component_AddressAreaName">
+    </ads:component_ThoroughfareName>
+	<ads:component_AddressAreaName>
         <ad:AddressAreaName gml:id="AddressAreaName_1">
             <ad:inspireId>...</ad:inspireId>
             <ad:name>
@@ -125,14 +131,14 @@
             </ad:name>
             <ad:namedPlace xsi:nil="true" nilReason="other:unpopulated"/>
         </ad:AddressAreaName>
-    </ads:component_AddressAreaName">
-	<ads:component_PostalDescriptor">
+    </ads:component_AddressAreaName>
+	<ads:component_PostalDescriptor>
         <ad:PostalDescriptor gml:id="PostalDescriptor_1">
             <ad:inspireId>...</ad:inspireId>
             <ad:postCode>21027</ad:postCode>
         </ad:PostalDescriptor>
-    </ads:component_PostalDescriptor">
-</ad:Address>
+    </ads:component_PostalDescriptor>
+</ads:Address>
 ``` 
 
 </td>
@@ -142,7 +148,8 @@
 <td>
     <p>Parameters:</p>
     <ul>
-        <li> `separator`: The character to use to separate the original property name from the type name of the components.</li>
+        <li><code>separator</code>: The character to use to separate the original property name from the type name of the components.</li>
+        <li><code>cardinality</code>: An optional map with typenames and a number that indicates how many properties for a give type should be created.</li>
     </ul>
     <p>Create a new property for every possible associated type, using the original property name, the separator, and the name of the element (i.e. without a ...type suffix) to build the new property name.</p>
 </td>
@@ -168,7 +175,3 @@
 <td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
 </tr>
 </table>
-
-Notes/Enhancements:
-
-- We could expand this rule to allow higher cardinalities of the same type occuring using a postfix, e.g. `component_AddressAreaName_1` (or keep it simple)

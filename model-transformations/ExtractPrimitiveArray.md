@@ -11,12 +11,11 @@
 <ul>
     <li>lowerLevelUnits: LinktoToUnit_01, LinktoToUnit_02, LinktoToUnit_03, ... </li>
 </ul>
-<p>...</p>
 </td>
 </tr>
 <tr>
 <td>UML Model</td>
-<td>...</td>
+<td>Not applicable (there is no single UML model that results from this transformation rule)</td>
 </tr>
 <tr>
 <td>Original instance in default encoding:</td>
@@ -59,9 +58,9 @@
 <td>Instance transformation rule:</td>
 <td><p>Parameters:</p> 
     <ul>
-        <li>`valueProperty`: The name of the property from which to take the values to be copied to the array in the transformed instance.</li>
+        <li><code>valueProperty</code>: The name of the property from which to take the values to be copied to the array in the transformed instance.</li>
     </ul>
-    <p>For each instance of the valueProperty, push its value to the array in the target property. The order of values that are copied from the source properties should be kept.</p>
+    <p>For each instance of the <code>valueProperty</code>, push its value to the array in the target property. The order of values that are copied from the source properties should be kept.</p>
 </td>
 </tr>
 <tr>
