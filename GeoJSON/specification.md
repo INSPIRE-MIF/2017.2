@@ -122,7 +122,7 @@ All model transformation rules are applied in such a way that the resulting prop
 
 #### General types 
 
-Typenames remain as they are. All types that have the stereotype `<<featureType>>` are converted to GeoJSON objects, all other to regular JSON objects.
+Typenames remain as they are. All types that have the stereotype `<<featureType>>` are converted to GeoJSON objects. All other types are mapped to regular JSON objects, where properties of the type are directly added to the root object instead of being added to the `properties` subobject.
 
 #### ISO 19107 - Geometry types
 
@@ -145,6 +145,8 @@ ISO 19107 defines a set of Geometry types, which need to be mapped to the types 
 | GM_Tin            | not supported | TODO A TIN without triangulation could be converted to a MultiPoint object. |
 | GM_Triangle       | Polygon |  |
 
+Where a class has one attribute with a geometry type, this attribute will be mapped to the `geometry` property in GeoJSON, while all other properties (attributes and association roles) will be mapped to properties inside the `properties`. A theme-specific profile has to define which geometry property is the "default" geometry that should be mapped to the `geometry` property in GeoJSON.
+
 #### ISO 19108 - Temporal types
 
 For types from ISO 19108 used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis. The default should be to use the [Simple Period](../model-transformation/SimplePeriod.md) substitution rule.
@@ -161,7 +163,7 @@ As `abstract` types cannot be encoded directly, the inheritance hierarchy is col
 
 A `union` represents a choice between multiple properties with different value types, such as a `ReferenceType` and a `BuildingType`. They can have a multiplicity other than exactly 1. The most common use case for union types in INSPIRE is to offer a choice between encoding an object in place or to encode it by reference.
 
-For the purpose of creating GeoJSON, `union` types are replaced with the concrete type in the `union`, unless the [Property Composition to Association transformation rule](../model-transformation/PropertyCompositionToAssociation.md) is applied by the theme profile.
+For the purpose of creating GeoJSON, `union` types are replaced with the concrete type in the `union`, unless the [Property Composition to Association transformation rule](../model-transformation/PropertyCompositionToAssociation.md) is applied by the theme profile. For 
 
 #### Enumerations and Code Lists
 
@@ -173,21 +175,42 @@ Property names remain as they are.
 
 * TODO: Should namespace prefixes be retained for the JSON property names?
 
+### Mapping Property types from Conceptual Model to GeoJSON Logical Model
+
+All property types are transformed to the simple types that JSON knows about: Number, String, Boolean and Object. The exact mapping from the UML model to the JSON datatypes is outlined in the following table:
+
+| UML Model property type | JSON datatype | Conversion Notes | 
+| ------ | ----- | ----- |
+| CharacterString | string |  |
+| LocalisedCharacterString | string | `LanguageCode` is added as a separate property. |
+| Boolean | boolean |  |
+| Integer | integer |  |
+| Float | number |  |
+| Double | number |  |
+| DateTime | string | The string must follow the ISO 8601 format, including timezone information (e.g. `2008-10-31T15:07:38-05:00`). |
+| Date | string | The string most follow the format `yyyy-mm-dd`. |
+| Length | double | `uom` is added as a separate property. |
+| Measure | double | `uom` is added as a separate property. |
+| URI | string |  |
+| URL | string |  |
+
+Any other UML Model property type are to be mapped to `string`, with specific rules being defined on a case-by-case basis in each theme profile.
+
 #### Properties with a `uom` attribute
 
 The unit of measurement attribute (`uom`) on any property `x` has to be retained. It is transformed to a new property of the type with the name `x.uom`.
 
 #### Arrays
 
-Property types for properties with a cardinality greater than `1` and a simple property type (e.g. String, Integer, Float, ...)may use arrays of these simple types. More information is available in the [Extract Primitive Array](../model-transformation/ExtractPrimitiveArray.md) transformation rule.
+Property types for properties with a cardinality greater than `1` and a simple property type (e.g. String, Integer, Float, ...) may use arrays of these simple types. More information is available in the [Extract Primitive Array](../model-transformation/ExtractPrimitiveArray.md) transformation rule.
 
 #### Voidable
 
-The stereotype `<<voidable>>` is not converted.
+The stereotype `<<voidable>>` is not converted. If a property has no value, it may be dropped.
 
-### Associations
+### Association Roles
 
-Associations are generally retained as they are, if they are not transformed using a profile-specific rule, such as [Inline associated or aggregated components using type names](../model-transformation/AssociatedComponentsHardType).
+Association roles are retained as they are, if they are not transformed using a profile-specific rule, such as [Inline associated or aggregated components using type names](../model-transformation/AssociatedComponentsHardType).
 
 ## Instance Encoding Rules
 
@@ -203,27 +226,6 @@ NOTE As INSPIRE mandates the use of the European Terrestrial Reference System 19
 * `GEOJSON-REQ-03`: In the GeoJSON encoding, `nilReason` information shall not be maintained per feature, but rather in the dataset metadata. Properties that have `nil` values shall thus be ignored in the encoding.
 
 NOTE If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding for that dataset
-
-
-### Mapping Property types from Conceptual Model to GeoJSON Logical Model
-
-All property types are transformed to the simple types that JSON knows about: Number, String, Boolean and Object. The exact mapping is outlined in the following table:
-
-| XML Schema datatype | JSON datatype | Conversion Notes | 
-| ------ | ----- | ----- |
-| string | string |  |
-| boolean | boolean |  |
-| decimal | integer |  |
-| float | number |  |
-| double | number |  |
-| duration | string |  |
-| dateTime | string |  |
-| time | string |  |
-| date | string |  |
-| hexBinary | string |  |
-| base64Binary | string |  |
-| anyURI | string |  |
-| QName | string |  |
 
 ### Alternate Coordinate Reference System support
 
