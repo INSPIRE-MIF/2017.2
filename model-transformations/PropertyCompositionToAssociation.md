@@ -129,7 +129,8 @@
 <tr>
 <td>Instance transformation rule:</td>
 <td><p>Parameters: None</p>
-    <p>It is only possible to convert an instance using the "inline" pattern when the URL is present in the original data or can be added upon transformation from the original data to the INSPIRE data. This URL must be inserted in <code>@xlink:href</code>. A name or title, if present, may be inserted in <code>@xlink:title</code>.</p>
+    <p>It is only possible to convert an instance using the "inline" pattern when the URL is present in the original data or can be added upon transformation from the original data to the INSPIRE data. This URL must be inserted in <code>@xlink:href</code>.</p>
+    <p>A name or title (e.g. "Bekendtgørelse af lov om skove"), or even a full-blown bibliographic reference (e.g. "Bekendtgørelse af lov om skove. 26 januar 2017. LBK nr 122."), if present, may be inserted in <code>@xlink:title</code>.</p>
     </td>
 </tr>
 <tr>
