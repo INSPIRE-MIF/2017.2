@@ -1,0 +1,41 @@
+{  
+   "type":"FeatureCollection",
+   "features":[ 
+        {
+            "type": "Feature",
+            "id": "EnvironmentalMonitoringFacility_1",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [ 5.18713, 46.19095 ]
+            },
+            "properties": {
+                "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
+                "inspireId.localId": "EnvironmentalMonitoringFacility_1",
+                "inspireId.namespace": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/ems/examples/",
+                "identifier": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/ems/examples/EnvironmentalMonitoringFacility_1",
+                "legalBackground.date": "",
+                "legalBackground.link": "",
+                "legalBackground.name": "",
+                "legalBackground.level": "",
+                "legalBackground.level.href": "",
+                "legalBackground.type": "",
+                "mediaMonitored": "water",
+                "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
+                "mobile": false,
+                "name": "Piézomètre de St-Rémy - 01",
+                "observation.resultTime": "2017-08-17T12:11:20Z",
+                "observation.result": 12.5,
+                "observation.unitOfMeasureName": "Degree Celsius",
+                "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
+                "operationalActivityPeriod.beginPosition": "1977-10-08T23:00:00Z",
+                "operationalActivityPeriod.endPosition": "2014-10-14T06:00:00Z",
+                "purpose": "Ground water level measurement",
+                "purpose.href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
+                "resultAcquisitionSource": "in-situ",
+                "resultAcquisitionSource.href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
+                "specialisedEMFType": "Piezometre",
+                "specialisedEMFType.href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
+            }
+        }
+   ]
+}
