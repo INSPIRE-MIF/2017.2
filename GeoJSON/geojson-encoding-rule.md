@@ -23,21 +23,26 @@
     * Mapping from Conceptual Model to GeoJSON Logical Model
     * Alternate Coordinate Reference Systems
     * TODO Identifiers
-* [Conformance Classes](#conformance-classes)
-    * Simple Addresses
-        * Model Transformation
-        * Model Mapping
-        * Examples
-    * Simple Environmental Monitoring Facilities
-        * Model Transformation
-        * Model Mapping
-        * Examples 
+* [INSPIRE Theme Encoding Rules](#inspire-theme-encoding-rules)
 
 ## Preface
 
-TODO https://github.com/INSPIRE-MIF/2017.2/issues/77 Task 1
+This document is the outcome of *[Action 2017.2](https://webgate.ec.europa.eu/fpfis/wikis/display/InspireMIG/Action+2017.2+on+alternative+encodings+for+INSPIRE+data) on alternative encodings for INSPIRE data*. In that action, we defined alternative encoding rules for the purpose of viewing and analysing INSPIRE data in mainstream GIS systems. In addition to the development of this GeoJSON encoding rule, theme-specific rules have been developed. The lessons learnt during the creation of these specifications are documented in a template and procedure for proposing and endorsing additional encoding rules.
 
-The work on this draft encoding rule encompassed the creation of specific encoding rules for the INSPIRE themes Addresses (including GeographicalName properties) and Environmental Monitoring Facilities (including O&M properties). These may be maintained separately in the future, and additional, theme-specific encoding rules may be developed by the MIG or the INSPIRE community.
+Specifically, the following tasks were part of this action:
+
+> * Develop concrete proposals for alternative encodings
+>     * In collaboration with thematic communities (through the Thematic Clusters platform and MIWP-14 sub-group), collect proposals for alternative encodings. These can be based on existing examples and/or on specific use cases and requirements. The proposals can be cross-cutting (i.e. cover all INSPIRE themes) or specific for one or several related themes.
+>     * In agreement with the MIG-T, prioritise the collected examples and select a small number of proposals, for which alternative encodings will be developed by the action.
+>     * For the selected examples, develop encoding rules that explain how (and/or under which conditions) the proposed encoding meets the requirements of the IRs. The action should also consider the potential loss of information for certain encodings and discuss whether such "lossy" encodings are meeting the IR requirements.
+> * Define a template and procedure for proposing and endorsing additional encoding rules
+>     * Based on the work on (1a), elaborate a template for proposals for additional encoding rules. The template should cover the actual encoding rule (including possible approaches for explicitly documenting mappings in UML), but also target use cases, expected benefits, known limitations and tools for conformity testing & validation.
+>     * Develop a procedure for how additional encoding rules can be proposed using the template and checked/endorsed by the MIG, and how these are referred to from the existing data specification TGs.
+>     * Develop a proposal for the update or maintenance of endorsed encoding rules.
+>     * Create a repository of addition encoding rules that have been endorsed by the MIG.
+>     * Develop a proposal for documenting the used encoding rules in data set/service metadata.
+
+The work on this draft encoding rule encompassed the creation of specific encoding rules for the INSPIRE themes Addresses (including `GeographicalName` properties) and Environmental Monitoring Facilities (including O&M properties). These may be maintained separately in the future, and additional, theme-specific encoding rules may be developed by the MIG or the INSPIRE community.
 
 ## Introduction
 
@@ -47,30 +52,30 @@ GeoJSON is an open standard format designed for representing simple geographical
 
 GeoJSON features need not represent entities of the physical world only; mobile routing and navigation apps, for example, might describe their service coverage using GeoJSON.
 
-The GeoJSON format has originally been defined by an Internet working group of developers who needed a solution to encode geometries for use in web applications. It has since been formalised as an [IETF internet standard](https://tools.ietf.org/html/rfc7946). The IETF is the premier Internet standards organization.
+The GeoJSON format has originally been defined by an Internet working group of developers who needed a solution to encode geometries for use in web applications. It has since been formalised as an [IETF internet standard](https://tools.ietf.org/html/rfc7946), a standards organisation, which develops specifications concerning the Internet.
 
 Within INSPIRE, this encoding rule can be to encode data from several themes, with a focus on usability of the data in GIS desktop and web clients such as ArcMap, QGIS, OpenLayers, Leaflet, FME and hale studio. It can serve as an *alternative encoding* that can be used instead of the default encoding for simple data, where there is no information loss. In other cases, this GeoJSON encoding may serve as an *additional* encoding only.
 
 ## Scope
 
-This sections describes the scope of the GeoJSON encoding rule. GeoJSON is not equally well suited for all themes and use cases.
+This sections describes the scope of the INSPIRE UML-to-GeoJSON encoding rule. GeoJSON is not equally well suited for all themes and use cases.
 
 ### Use Cases
 
-This encoding specifically addresses data usability in web and desktop client software, such as ArcMap, QGIS, Leaflet and OpenLayers. It optimizes usage of INSPIRE data for mapping and geoprocessing in such applications.
+This encoding rule specifically addresses data usability in web and desktop client software, such as ArcMap, QGIS, Leaflet and OpenLayers. It optimizes usage of INSPIRE data for mapping and geoprocessing in such applications.
 
-The encoding is also developed with the best practices for [Spatial data on the Web](https://www.w3.org/TR/sdw-bp/) and the [WFS 3.0 standard](https://github.com/opengeospatial/WFS_FES) in mind, for which it should provide a complementary format. 
+The encoding rule is also developed with the best practices for [Spatial data on the Web](https://www.w3.org/TR/sdw-bp/) and the [WFS 3.0 standard](https://github.com/opengeospatial/WFS_FES) in mind, for which it should provide a complementary format. 
 
 ### Coverage of INSPIRE Themes
 
-This encoding covers the following themes:
+This encoding rule covers the following themes:
 
-* Annex I: Addresses
-* Annex III: Environmental Monitoring Facilities
+* Annex I: [Addresses](./ads/simple-addresses.md)
+* Annex III: [Environmental Monitoring Facilities](./ems/simple-environmental-monitoring-facilities.md)
 
 ### Technical Issues
 
-The encoding addresses specific technical issues that have been problematic when using the default encoding:
+This encoding rule addresses specific technical issues that have been problematic when using the default encoding:
 
 * Most GIS software cannot fully make use of non-smple attributes and nested structures for styling, processing and filtering;
 * Multiple values per (complex) properties cannot be used fully in ArcGIS and other GIS tools;
@@ -78,12 +83,9 @@ The encoding addresses specific technical issues that have been problematic when
 * Abstract geometry types for an object mean that a wide range of different geometries can be used;
 * Mixed geometry types in a FeatureCollection are usually not supported;
 
-In some cases such as the handling of high-cardinality properties, the encoding makes a trade-off, so not all issues are resolved. Implementers can apply additional model and instance transformation rules to make adjustments for specific data sets and environments.
+In some cases such as the handling of high-cardinality properties, this encoding rule makes a trade-off, so not all issues are resolved. Implementers can apply additional model and instance transformation rules to make adjustments for specific data sets and environments.
 
-The encoding rule does not cover:
-
-* 3D geometries
-* Coverage/Raster data
+The GeoJSON format cannot deal with 3D geometries and coverage/raster data, therefore this encoding rule cannot be used for those types of data.
 
 ### INSPIRE Requirements for Encoding Rules
 
@@ -108,6 +110,7 @@ D2.7 also contains a relevant recommendation:
 This section contains references to standards documents and related resources.
 
 * [GeoJSON - IETF RFC 7946](https://tools.ietf.org/html/rfc7946)
+* [D2.7 INSPIRE DRAFTING TEAM “DATA SPECIFICATIONS.” D2.7: Guidelines for the encoding of spatial data, Version 3.3](http://inspire.ec.europa.eu/documents/guidelines-encoding-spatial-data)
 
 ## Terms and Definitions
 
@@ -115,13 +118,13 @@ Terms and Definitions can be found in the [Glossary](../glossary.md) document.
 
 ## Schema Conversion Rules
 
-INSPIRE defines the conceptual model using UML, while the default encoding rule uses XML Schema to define the logical schema. There is no equivalent to such a logical schema language for JSON.  
+INSPIRE defines the conceptual model using UML.
 
-NOTE At this point, [JSON Schema](https://json-schema.org/) is not used in any of the targeted GIS tools, TODO Not yet used normatively, but will help to develop test suites in future versions. 
+The default encoding rule maps this UML model to XML Schema. For JSON, [JSON Schema](https://json-schema.org/) can be used to perform simple validation on JSON documents.  
 
-As a consequence, the conversions required to go from the UML conceptual model to a model that can be directly encoded in simple GeoJSON, all model transformations are applied at the conceptual level of the UML model. 
+NOTE At this point, [JSON Schema](https://json-schema.org/) is not used in any of the targeted GIS tools. We thus do not yet use it normatively, but to provide a formal definition of the encoded data structures, and to help develop executable test suites in future versions. 
 
-All model transformation rules are applied in such a way that the resulting property names for valid XML element and type names, and are useable as property names in JSON.
+In this encoding rule, we take a two-step approach, where we apply model transformations on the level of the conceptual model. This model can then be encoded in simple GeoJSON using the general schema and instance conversion rules laid out in the next sections.
 
 ### Types
 
@@ -154,7 +157,7 @@ Any other UML Model property type are to be mapped to `string`, with specific ru
 
 #### ISO 19107 - Geometry types
 
-ISO 19107 defines a set of Geometry types, which need to be mapped to the types available in GeoJSON. Note that not all types can be mapped to GeoJSON; if an data set requires such a type, it cannot use this encoding as an alternative encoding.
+ISO 19107 defines a set of Geometry types, which need to be mapped to the types available in GeoJSON. Note that not all types can be mapped to GeoJSON; if an data set requires such a type, it cannot use this encoding rule as an alternative encoding rule.
 
 | XML Schema datatype | GeoJSON datatype | Conversion Notes | 
 | ------ | ----- | ----- |
@@ -210,7 +213,7 @@ NOTE The INSPIRE Registry can provide the JSON representation of the code list.
 
 Property names remain as they are.
 
-* TODO: Should namespace prefixes be retained for the JSON property names?
+NOTE Namespace prefixes, as used in the default encoding, are not used in the GeoJSON encoding rule.
 
 #### Properties with a `uom` attribute
 
@@ -230,23 +233,18 @@ Association roles are retained as they are, if they are not transformed using a 
 
 ## Instance Encoding Rules
 
-This section describes how the encoding is derived from the converted conceptual model, and describes which common rules have to be applied for this encoding.
+This section describes how the encoding is derived from the converted conceptual model, and describes which common rules have to be applied for this encoding rule.
 
 ### Common Rules
 
 * `GEOJSON-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
-* `GEOJSON-REQ-02`: TODO As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered in this encoding shall be the World Geodetic System 1984 ([CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84)), unless there is prior arrangement. The coordinate reference system for all GeoJSON coordinates is a
-   geographic coordinate reference system, using the World Geodetic
-   System 1984 (WGS 84) [WGS84] datum, with longitude and latitude units
-   of decimal degrees.  This is equivalent to the coordinate reference
-   system identified by the Open Geospatial Consortium (OGC) URN
-   urn:ogc:def:crs:OGC::CRS84.
+* `GEOJSON-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered using this encoding rule is a geographic coordinate reference system, using the World Geodetic System 1984 (WGS 84) datum, with longitude and latitude units of decimal degrees, unless there is prior arrangement. This is equivalent to the coordinate reference system identified by the Open Geospatial Consortium (OGC) URN `urn:ogc:def:crs:OGC::CRS84`.
 
-NOTE As INSPIRE mandates the use of the European Terrestrial Reference System 1989  (ETRS89, see [Requirement 1](https://inspire.ec.europa.eu/reports/ImplementingRules/DataSpecifications/INSPIRE_Specification_CRS_v2.0.pdf)) for the areas within the geographical scope of ETRS89 and both CRS84 and ETRS89 use the GRS 80 ellipsoid (although with minor enhancements), we shall assume CRS84 to be equivalent to ETRS89. If, for any dataset, this assumption would be problematic, then GeoJSON cannot serve as an alternative encoding for that dataset.
+NOTE As INSPIRE mandates the use of the European Terrestrial Reference System 1989  (ETRS89, see [Requirement 1](https://inspire.ec.europa.eu/reports/ImplementingRules/DataSpecifications/INSPIRE_Specification_CRS_v2.0.pdf)) for the areas within the geographical scope of ETRS89 and both CRS84 and ETRS89 use the GRS 80 ellipsoid (although with minor enhancements), we shall assume CRS84 to be equivalent to ETRS89. If, for any dataset, this assumption would be problematic, then GeoJSON cannot serve as an alternative encoding rule for that dataset.
 
-* `GEOJSON-REQ-03`: In the GeoJSON encoding, `nilReason` information shall not be maintained per feature, but rather in the dataset metadata. Properties that have `nil` values shall thus be ignored in the encoding.
+* `GEOJSON-REQ-03`: In the GeoJSON encoding rule, `nilReason` information shall not be maintained per feature, but rather in the dataset metadata. Properties that have `nil` values shall thus be ignored in the encoding process.
 
-NOTE If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding for that dataset
+NOTE If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding rule for that dataset
 
 ### Alternate Coordinate Reference System support
 
@@ -258,4 +256,4 @@ While the required Coordinate Reference System for any data encoded in GeoJSON i
 
 This document does not contain specific rules for each INSPIRE theme. These are maintained in separate documents to facilitate loosely coupled development cycles and groups.
 
-Each of the theme-specific encoding rules defines at least one conformance class. Any conformance class in a theme encoding rule may define a number of model transformation rules that need to be applied before the encoding. These transformations are documented in the [Model Transformation Rules](../model-transformations/TransformationRules.md) paper. They serve the purpose of adapting the conceptual model (UML) to better match the logical model of the target platform.
+Each of the theme-specific encoding rules defines at least one conformance class. Any conformance class in a theme encoding rule may define a number of model transformation rules that need to be applied before the encoding process. These transformations are documented in the [Model Transformation Rules](../model-transformations/TransformationRules.md) paper. They serve the purpose of adapting the conceptual model (UML) to better match the logical model of the target platform.
