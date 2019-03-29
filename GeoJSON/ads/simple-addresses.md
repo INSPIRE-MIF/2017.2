@@ -33,24 +33,20 @@ The following table explains the mapping between the classes and properties of t
 
 | AD Name (condition) | AD Type | ADS Name | ADS Type |
 | ------------------- | ------- | -------- | -------- |
-| **Address** | AddressType | **SimpleAddress** | SimpleAddressType |
+| **Address** | Address | **SimpleAddress** | SimpleAddressType |
 | ad:alternativeIdentifier | String | alternativeIdentifier | String |
 | ad:beginLifespanVersion | DateTime | beginLifespanVersion | String |
 | ad:endLifespanVersion | DateTime | endLifespanVersion | String |
-| ad:building | ReferenceType | endLifespanVersion | String |
-| ad:component (class = ThoroughfareName) | ReferenceType | component.ThoroughfareName | String |
-| ad:component (class = PostalDescriptor) | ReferenceType | component.ThoroughfareName | String |
-| ad:component (class = AddressAreaName) | ReferenceType | component.ThoroughfareName | String |
-| ad:component (class = AdminUnitName, index = 0) | ReferenceType | component.AdminUnitName_1 | String |
-| ad:component (class = AdminUnitName, index = 1) | ReferenceType | component.AdminUnitName_2 | String |
-| ad:component (class = AdminUnitName, index = 2) | ReferenceType | component.AdminUnitName_3 | String |
-| ad:component (class = AdminUnitName, index = 3) | ReferenceType | component.AdminUnitName_4 | String |
-| ad:component (class = AdminUnitName, index = 4) | ReferenceType | component.AdminUnitName_5 | String |
-| ad:component (class = AdminUnitName, index = 5) | ReferenceType | component.AdminUnitName_6 | String |
-| gml:description | String | description | String |
-| gml:id | ID | *added as `id` to the root object* | String |
-| base:inspireId | IdentifierPropertyType | inspireId.localid | String |
-|  |  | inspireId.namespace | String |
+| ad:building | Reference | endLifespanVersion | String |
+| ad:component (class = ThoroughfareName) | Component | component.ThoroughfareName | String |
+| ad:component (class = PostalDescriptor) | Component | component.ThoroughfareName | String |
+| ad:component (class = AddressAreaName) | Component | component.ThoroughfareName | String |
+| ad:component (class = AdminUnitName, index = 0) | Component | component.AdminUnitName_1 | String |
+| ad:component (class = AdminUnitName, index = 1) | Component | component.AdminUnitName_2 | String |
+| ad:component (class = AdminUnitName, index = 2) | Component | component.AdminUnitName_3 | String |
+| ad:component (class = AdminUnitName, index = 3) | Component | component.AdminUnitName_4 | String |
+| ad:component (class = AdminUnitName, index = 4) | Component | component.AdminUnitName_5 | String |
+| ad:component (class = AdminUnitName, index = 5) | Component | component.AdminUnitName_6 | String |
 | ad:locator | AddressLocator | locator.designator.addressNumber | String |
 |  |  | locator.designator.addressNumberExtension | String |
 |  |  | locator.designator.addressNumber2ndExtension | String |
@@ -67,15 +63,15 @@ The following table explains the mapping between the classes and properties of t
 |  |  | locator.level | String |
 |  |  | locator.level.href | String (URL) |
 | gml:name | String | name | String |
-| ad:parcel | ReferenceType | parcel | String |
-| ad:parentAddress | ReferenceType | parentAddress | String |
+| ad:parcel | Parcel | parcel | String |
+| ad:parentAddress | Address | parentAddress | String |
 | ad:position | GeographicPosition | *added as `geometry` to the root object* | GeoJSON Geometry Object |
 |  |  | position.specification | String |
 |  |  | position.specification.href | String (URL) |
 |  |  | position.method | String |
 |  |  | position.method.href | String (URL) |
 |  |  | position.default | boolean |
-| ad:status | ReferenceType | status | String |
+| ad:status | StatusValue | status | String |
 |  |  | status.href | String (URL) |
 | ad:validFrom | DateTime | validFrom | String |
 | ad:validTo | DateTime | validTo | String |

@@ -22,7 +22,7 @@
     * Requirements and Recommendations
     * Mapping from Conceptual Model to GeoJSON Logical Model
     * Alternate Coordinate Reference Systems
-    * TODO Identifiers
+    * Identifiers
 * [INSPIRE Theme Encoding Rules](#inspire-theme-encoding-rules)
 
 ## Preface
@@ -52,7 +52,7 @@ GeoJSON is an open standard format designed for representing simple geographical
 
 GeoJSON features need not represent entities of the physical world only; mobile routing and navigation apps, for example, might describe their service coverage using GeoJSON.
 
-The GeoJSON format has originally been defined by an Internet working group of developers who needed a solution to encode geometries for use in web applications. It has since been formalised as an [IETF internet standard](https://tools.ietf.org/html/rfc7946), a standards organisation, which develops specifications concerning the Internet.
+The GeoJSON format has originally been defined by an Internet working group of developers who needed a solution to encode geometries for use in web applications. It has since been formalised by the IETF, a standards organisation which develops specifications concerning the Internet as [RFC 7946](https://tools.ietf.org/html/rfc7946).
 
 Within INSPIRE, this encoding rule can be to encode data from several themes, with a focus on usability of the data in GIS desktop and web clients such as ArcMap, QGIS, OpenLayers, Leaflet, FME and hale studio. It can serve as an *alternative encoding* that can be used instead of the default encoding for simple data, where there is no information loss. In other cases, this GeoJSON encoding may serve as an *additional* encoding only.
 
@@ -128,11 +128,13 @@ In this encoding rule, we take a two-step approach, where we apply model transfo
 
 ### Types
 
-#### General types 
+#### Feature types 
 
-Typenames remain as they are. All types that have the stereotype `<<featureType>>` are converted to GeoJSON objects. All other types are mapped to regular JSON objects, where properties of the type are directly added to the root object instead of being added to the `properties` subobject.
+All types that have the stereotype `<<featureType>>` are converted to GeoJSON objects. Typenames remain as they are. 
 
-TODO split up into FT and DT sections with headings
+#### Data Types
+
+All data types are mapped to regular JSON objects, where properties of the type are directly added to the root object instead of being added to the `properties` subobject. Their typenames remain as they are.
 
 #### ISO 19103 - Basic types
 
@@ -159,55 +161,49 @@ Any other UML Model property type are to be mapped to `string`, with specific ru
 
 ISO 19107 defines a set of Geometry types, which need to be mapped to the types available in GeoJSON. Note that not all types can be mapped to GeoJSON; if an data set requires such a type, it cannot use this encoding rule as an alternative encoding rule.
 
-| XML Schema datatype | GeoJSON datatype | Conversion Notes | 
+| ISO 19107 type | GeoJSON datatype | Conversion Notes | 
 | ------ | ----- | ----- |
 | GM_Aggregate      | GeometryCollection | Limitations apply as to which types in the collection can be included. |
 | GM_Curve          | LineString | In GML, Curves can also be nonlinear segments or arcs. GeoJSON only supports linear segments. |
 | GM_MultiCurve     | MultiLineString | In GML, Curves can also be nonlinear segments or arcs. GeoJSON only supports linear segments. |
 | GM_MultiPoint     | MultiPoint |  |
 | GM_MultiPrimitive | not supported | `GM_MultiPrimitive` is an abstract type. |
-| GM_MultiSurface   | Polygon |  |
-| GM_Object         | not supported | `GM_Object` is an abstract type. |
+| GM_MultiSurface   | MultiPolygon |  |
+| GM_Object         | Any GeoJSON Geometry type | `GM_Object` is an abstract type, any GeoJSON geometry can be used. |
 | GM_Point          | Point |  |
 | GM_PolyhedralSurface | not supported | At this point, this specification does not support 3D meshes. |
-| GM_Primitive      | not supported | `GM_Primitive` is an abstract type. |
-| GM_Ring           | Polygon | A `GM_Ring` is not intended to be used as a standalone geometry object. It is typically used to define an interior or exterior boundary in a Surface and is thus mapped to Polygon. |
+| GM_Primitive      | Any GeoJSON Geometry type | `GM_Primitive` is an abstract type, any GeoJSON geometry can be used. |
 | GM_Surface        | Polygon | A `GM_Surface` can have many SurfacePatches, it is thus mapped to MultiPolygon. |
-| GM_Tin            | not supported | TODO A TIN without triangulation could be converted to a MultiPoint object. |
+| GM_Tin            | not supported | A TIN without triangulation could be converted to a MultiPoint object. |
 | GM_Triangle       | Polygon |  |
 
 Where a class has one attribute with a geometry type, this attribute will be mapped to the `geometry` property in GeoJSON, while all other properties (attributes and association roles) will be mapped to properties inside the `properties`. A theme-specific profile has to define which geometry property is the "default" geometry that should be mapped to the `geometry` property in GeoJSON.
 
 #### ISO 19108 - Temporal types
 
-For types from ISO 19108 used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis. The default should be to use the [Simple Period](../model-transformation/SimplePeriod.md) substitution rule.
+For types from ISO 19108 used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis. The default should be to use the [Simple Period](/model-transformations/SimplePeriod.md) substitution rule.
 
 #### ISO 19115 - Metadata types
 
-For types from ISO 19108 used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis. For `CI_Citation`, the [Simple Citation](../model-transformation/SimpleCitation.md) substitution rule can be applied.
+For types from ISO 19115 used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis. For `CI_Citation`, the [Simple Citation](/model-transformations/SimpleCitation.md) substitution rule can be applied.
 
-#### TODO Abstract Types as property types
+#### Abstract Types as property types
 
-
-
-#### Inheritance
-
-FIXME As `abstract` types cannot be encoded directly, the inheritance hierarchy is collapsed to the concrete types. Abstract types are then removed from the model.
+Where an abstract type with multiple concrete sub-types is used as a property type, a suitable choice of a concrete subtype should be made on a case-by-case basis, with the objective of limiting the potential geometry types that can occur and to make processing easier.
 
 #### Union Types
 
-TODO Fix definition based on Input from Peter, correct example (from Heidi), add definition to glossary as well.
-
-A `union` represents a choice between multiple properties with different value types, such as a `Reference` and a `Building`. They can have a multiplicity other than exactly 1.
+A `union` represents a choice between multiple properties with potentially different value types, such as in the AreaOfResponsibilityType, where there are options such as `areaOfResponsibilityByAdministrativeUnit` and `areaOfResponsibilityByNamedPlace`. `Reference` and a `Building`. The multiplicity of these options may also differ.
 
 For Union Types used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis.
 
 #### Enumerations and Code Lists
 
-TODO change to reflect SimpleCodelistRef implementation model
-Enumerations and classes with the sterotype `<<Codelist>>` remain unchanged.
+Properties that represent values form code lists are encoded using the `SimpleCodelistReference` [rule described here](/model-transformations/SimpleCodelistReference.md).
 
-NOTE The INSPIRE Registry can provide the JSON representation of the code list.
+In the conceptual model, enumerations and codelists remain unchanged.
+
+NOTE The INSPIRE Registry can provide the JSON representation of the code list and its entries.
 
 ### Properties
 
@@ -251,6 +247,24 @@ NOTE If, for any dataset, there is specific `nilReason` information per feature,
 While the required Coordinate Reference System for any data encoded in GeoJSON is CRS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
 
 * `GEOJSON-REC-01`: An INSPIRE Download service delivering data encoded in GeoJSON shall be able to deliver projected geometries if a client requests these explicitly, at least for the spatial reference systems documented in section 6.3. of the data specifications that fall within the scope of this encodign specification. When delivering data that is not in [CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84), the GeoJSON data should include the `crs` member as defined in the deprecated (Draft 6 of the GeoJSON specification)[http://wiki.geojson.org/GeoJSON_draft_version_6].
+
+### Identifiers
+
+A spatial object encoded using the default encoding rule may have several properties that identify it:
+
+* `gml:id`: This property with the `ID` property type is not present in the conceptual model, but mandatory for any spatial object encoded in GML. It represents a technical identifier that is unique within a document and can serve as the target of an anchor/reference.
+* `gml:identifier`: This property with the `gml:CodeWithAuthorityType` property type is not present in the conceptual model, but inherited from the `AbstractGML` type. It represents an identifier that is unique within the codeSpace given and serves as the external identifier of the object.
+* `inspireId:` This property with the type `IdentifierPropertyType` defines a unique, persistent domain identifier for the spatial object within the INSPIRE infrastructure.
+
+These properties are mapped to the encoded GeoJSON object as follows:
+
+| Default Encoding property | Property Type | GeoJSON Property | Property Type | Conversion Notes | 
+| ------ | ----- | ----- | ----- | ----- |
+| `gml:id` | ID | `id` | string |  |
+| `gml:identifier` | CodeWithAuthorityType | `properties.identifier` | string | Can be omitted if empty in the source object. |
+| `base:inspireId` | IdentifierPropertyType | `properties.inspireId.localid` | string |  |
+|  |  | `properties.inspireId.namespace` | string |  |
+|  |  | `properties.inspireId.versionId` | string | Can be omitted if empty in the source object. |
 
 ## INSPIRE Theme Encoding Rules
 
