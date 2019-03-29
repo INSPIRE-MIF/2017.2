@@ -80,7 +80,7 @@ This encoding rule addresses specific technical issues that have been problemati
 * Most GIS software cannot fully make use of non-smple attributes and nested structures for styling, processing and filtering;
 * Multiple values per (complex) properties cannot be used fully in ArcGIS and other GIS tools;
 * References to other features often cannot be resolved by GIS tools; Propertes of referenced features cannot be used in styling or for filtering ;
-* Abstract geometry types for an object mean that a wide range of different geometries can be used;
+* Abstract geometry types for an object mean that a wide range of different geometries can be used for any single feature class;
 * Mixed geometry types in a FeatureCollection are usually not supported;
 
 In some cases such as the handling of high-cardinality properties, this encoding rule makes a trade-off, so not all issues are resolved. Implementers can apply additional model and instance transformation rules to make adjustments for specific data sets and environments.
