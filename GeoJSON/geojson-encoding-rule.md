@@ -27,22 +27,19 @@
 
 ## Preface
 
-This document is the outcome of *[Action 2017.2](https://webgate.ec.europa.eu/fpfis/wikis/display/InspireMIG/Action+2017.2+on+alternative+encodings+for+INSPIRE+data) on alternative encodings for INSPIRE data*. In that action, we defined alternative encoding rules for the purpose of viewing and analysing INSPIRE data in mainstream GIS systems. In addition to the development of this GeoJSON encoding rule, theme-specific rules have been developed. The lessons learnt during the creation of these specifications are documented in a template and procedure for proposing and endorsing additional encoding rules.
+This document is the outcome of *[Action 2017.2](https://webgate.ec.europa.eu/fpfis/wikis/x/aAKOE) on alternative encodings for INSPIRE data*. 
 
-Specifically, the following tasks were part of this action:
+The action aimed at defining alternative encoding rules (mainly for the purpose of viewing/analysis in mainstream GIS systems) for a number of selected application schemas and a template and procedure for proposing and endorsing additional encoding rules in the future.
 
-> * Develop concrete proposals for alternative encodings
->     * In collaboration with thematic communities (through the Thematic Clusters platform and MIWP-14 sub-group), collect proposals for alternative encodings. These can be based on existing examples and/or on specific use cases and requirements. The proposals can be cross-cutting (i.e. cover all INSPIRE themes) or specific for one or several related themes.
->     * In agreement with the MIG-T, prioritise the collected examples and select a small number of proposals, for which alternative encodings will be developed by the action.
->     * For the selected examples, develop encoding rules that explain how (and/or under which conditions) the proposed encoding meets the requirements of the IRs. The action should also consider the potential loss of information for certain encodings and discuss whether such "lossy" encodings are meeting the IR requirements.
-> * Define a template and procedure for proposing and endorsing additional encoding rules
->     * Based on the work on (1a), elaborate a template for proposals for additional encoding rules. The template should cover the actual encoding rule (including possible approaches for explicitly documenting mappings in UML), but also target use cases, expected benefits, known limitations and tools for conformity testing & validation.
->     * Develop a procedure for how additional encoding rules can be proposed using the template and checked/endorsed by the MIG, and how these are referred to from the existing data specification TGs.
->     * Develop a proposal for the update or maintenance of endorsed encoding rules.
->     * Create a repository of addition encoding rules that have been endorsed by the MIG.
->     * Develop a proposal for documenting the used encoding rules in data set/service metadata.
+Proposals for alternative encodings rules were collected through an open call on the MIG collaboration platform and prioritised by Member State representatives in a survey. The results of the survey clearly showed support for GeoJSON as a possible alternative encoding. In addition, also simplified GML, database formats (geopackage, PostGIS, ESRI Geodatabase) and linked data had significant support. Further proposals included also GeoSciML as an alternative encoding for GE and MR.
 
-The work on this draft encoding rule encompassed the creation of specific encoding rules for the INSPIRE themes Addresses (including `GeographicalName` properties) and Environmental Monitoring Facilities (including O&M properties). These may be maintained separately in the future, and additional, theme-specific encoding rules may be developed by the MIG or the INSPIRE community.
+In the 48th MIG-T meeting, it was agreed to continue the 2017.2 work in a sub-group focussing on the following tasks:
+
+- developing an encoding rule for GeoJSON (as a first example)
+- developing generic rules / approaches for simplifying the INSPIRE data models (which will be useful for a number of alternative encodings)
+- developing the overall procedure for proposing and endorsing additional encodings 
+
+The work of the action encompassed the creation of generic encoding rules for GeoJSON as well as specific encoding rules for the INSPIRE themes Addresses (including `GeographicalName` properties) and Environmental Monitoring Facilities (including O&M properties). These encoding rules will be maintained as separate INSPIRE Good Practice documents, and in the future additional theme-specific encoding rules may be developed by thematic communities and proposed for endorsement by the MIG following the INSPIRE Good Practice procedure.
 
 ## Introduction
 
