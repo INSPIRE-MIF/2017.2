@@ -7,9 +7,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td><p>Information regarding resources such as legal documents can be stored in an external register or non-INSPIRE online application, possibly using other standardised encodings.  Such information should not be duplicated in the INSPIRE model if possible. Thus, the information should be referred to from a GML application schema "by reference".</p>
-
-<p>It gives a lot of work for data providers when they have to document a lot of metadata regarding e.g. laws, documents, authorities, etc. that they are not responsible for, and when this information is already online somewhere else this is redundant work. Therefore, properties referring to laws, documents, authorities and other online resources not typically belonging to the geographic information domain should be implemented by reference, and it should be recognised that their values are not necessarily encoded in a spatial data format.</p>
+<td><p>Information regarding certain types of resources is typically accessible through an external register or non-INSPIRE online application. Those resources should be referred to "by reference".</p>
 </td>
 </tr>
 <tr>
@@ -27,20 +25,20 @@
   <am:legalBasis>
     <base2:LegislationCitation>
       <base2:name>Bekendtgørelse af lov om skove</base2:name>
-      <base2:shortName>LBK nr 122 af 26/01/2017</base2:shortName>
+      <base2:shortName>LBK nr 315 af 28/03/2019</base2:shortName>
       <base2:date>
         <gmd:CI_Date>
           <gmd:date>
-            <gco:Date>2017-01-26</gco:Date>
+            <gco:Date>2019-03-30</gco:Date>
           </gmd:date>
           <gmd:dateType>
             <gmd:CI_DateTypeCode
-              codeListValue="creation"
+              codeListValue="publication"
               codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" />
           </gmd:dateType>
         </gmd:CI_Date>
       </base2:date>
-      <base2:link>http://www.retsinformation.dk/eli/lta/2017/122</base2:link>
+      <base2:link>http://www.retsinformation.dk/eli/lta/2019/315/dan/pdf</base2:link>
       <base2:level
         xlink:href="http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national"
         xlink:title="national" />
@@ -56,7 +54,7 @@
 <am:ManagementRestrictionOrRegulationZone>
   <!-- ... -->
   <am:legalBasis
-    xlink:href="http://www.retsinformation.dk/eli/lta/2017/122"
+    xlink:href="http://example.dk/path/to/specific/law/resource"
     xlink:title="Bekendtgørelse af lov om skove" />
   <!-- ... -->
 </am:ManagementRestrictionOrRegulationZone>
@@ -70,24 +68,24 @@
 <am:ManagementRestrictionOrRegulationZone>
   <!-- ... -->
   <am:legalBasis
-    xlink:href="http://www.retsinformation.dk/eli/lta/2017/122"
+    xlink:href="http://example.dk/path/to/specific/law/resource"
     xlink:title="Bekendtgørelse af lov om skove">
     <base2:LegislationCitation>
       <base2:name>Bekendtgørelse af lov om skove</base2:name>
-      <base2:shortName>LBK nr 122 af 26/01/2017</base2:shortName>
+      <base2:shortName>LBK nr 315 af 28/03/2019</base2:shortName>
       <base2:date>
         <gmd:CI_Date>
           <gmd:date>
-            <gco:Date>2017-01-26</gco:Date>
+            <gco:Date>2019-03-30</gco:Date>
           </gmd:date>
           <gmd:dateType>
             <gmd:CI_DateTypeCode
-              codeListValue="creation"
+              codeListValue="publication"
               codeList="http://standards.iso.org/ittf/PubliclyAvailableStandards/ISO_19139_Schemas/resources/codelist/ML_gmxCodelists.xml#CI_DateTypeCode" />
           </gmd:dateType>
         </gmd:CI_Date>
       </base2:date>
-      <base2:link>http://www.retsinformation.dk/eli/lta/2017/122</base2:link>
+      <base2:link>http://www.retsinformation.dk/eli/lta/2019/315/dan/pdf</base2:link>
       <base2:level
         xlink:href="http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national"
         xlink:title="national" />
@@ -107,7 +105,7 @@
 <ams:ManagementRestrictionOrRegulationZone>
   <!-- ... -->
   <ams:legalBasis
-    xlink:href="http://www.retsinformation.dk/eli/lta/2017/122"
+    xlink:href="http://example.dk/path/to/specific/law/resource"
     xlink:title="Bekendtgørelse af lov om skove"
   />
   <!-- ... -->
@@ -129,8 +127,8 @@
 <tr>
 <td>Instance transformation rule:</td>
 <td><p>Parameters: None</p>
-    <p>It is only possible to convert an instance using the "inline" pattern when the URL is present in the original data or can be added upon transformation from the original data to the INSPIRE data. This URL must be inserted in <code>@xlink:href</code>.</p>
-    <p>A name or title (e.g. "Bekendtgørelse af lov om skove"), or even a full-blown bibliographic reference (e.g. "Bekendtgørelse af lov om skove. 26 januar 2017. LBK nr 122."), if present, may be inserted in <code>@xlink:title</code>.</p>
+    <p>It is only possible to convert an instance using the "inline" pattern when a URL to the related resource is present in the original data or can be added upon transformation from the original data to the INSPIRE data. This URL must be inserted in <code>@xlink:href</code>.</p>
+    <p>A name or title (e.g. "Bekendtgørelse af lov om skove"), or even a full-blown bibliographic reference in the case of objects that are information resources (e.g. "Bekendtgørelse af lov om skove. 28 marts 2019. LBK nr 315."), if present, may be inserted in <code>@xlink:title</code>.</p>
     </td>
 </tr>
 <tr>
