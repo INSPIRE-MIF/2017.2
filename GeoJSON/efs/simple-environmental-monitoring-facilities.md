@@ -41,49 +41,104 @@ This section describes which rules with which parameters are applied to the Envi
 
 The following table explains the mapping between the classes and properties of the original Environmental Monitoring Facilities (EF) model to the Simplified Environmental Monitoring Facilities (EFS) model.
 
+#### EnvironmentalMonitoringActivity
+
 | EF Name (condition) | EF Type | EFS Name | EFS Type |
 | ------------------- | ------- | -------- | -------- |
-| **Address** | Address | **SimpleAddress** | SimpleAddressType |
-| ad:alternativeIdentifier | String | alternativeIdentifier | String |
-| ad:beginLifespanVersion | DateTime | beginLifespanVersion | String |
-| ad:endLifespanVersion | DateTime | endLifespanVersion | String |
-| ad:building | Reference | endLifespanVersion | String |
-| ad:component (class = ThoroughfareName) | Component | component.ThoroughfareName | String |
-| ad:component (class = PostalDescriptor) | Component | component.ThoroughfareName | String |
-| ad:component (class = AddressAreaName) | Component | component.ThoroughfareName | String |
-| ad:component (class = AdminUnitName, index = 0) | Component | component.AdminUnitName_1 | String |
-| ad:component (class = AdminUnitName, index = 1) | Component | component.AdminUnitName_2 | String |
-| ad:component (class = AdminUnitName, index = 2) | Component | component.AdminUnitName_3 | String |
-| ad:component (class = AdminUnitName, index = 3) | Component | component.AdminUnitName_4 | String |
-| ad:component (class = AdminUnitName, index = 4) | Component | component.AdminUnitName_5 | String |
-| ad:component (class = AdminUnitName, index = 5) | Component | component.AdminUnitName_6 | String |
-| ad:locator | AddressLocator | locator.designator.addressNumber | String |
-|  |  | locator.designator.addressNumberExtension | String |
-|  |  | locator.designator.addressNumber2ndExtension | String |
-|  |  | locator.designator.buildingIdentifier | String |
-|  |  | locator.designator.buildingIdentifierPrefix | String |
-|  |  | locator.designator.cornerAddress1stIdentifier | String |
-|  |  | locator.designator.cornerAddress2ndIdentifier | String |
-|  |  | locator.designator.entranceDoorIdentifier | String |
-|  |  | locator.designator.floorIdentifier | String |
-|  |  | locator.designator.kilometrePoint | String |
-|  |  | locator.designator.postalDeliveryIdentifier | String |
-|  |  | locator.designator.staircaseIdentifier | String |
-|  |  | locator.designator.unitIdentifier | String |
-|  |  | locator.level | String |
-|  |  | locator.level.href | String (URL) |
-| ad:parcel | Parcel | parcel | String |
-| ad:parentAddress | Address | parentAddress | String |
-| ad:position | GeographicPosition | *added as `geometry` to the root object* | GeoJSON Geometry Object |
-|  |  | position.specification | String |
-|  |  | position.specification.href | String (URL) |
-|  |  | position.method | String |
-|  |  | position.method.href | String (URL) |
-|  |  | position.default | boolean |
-| ad:status | StatusValue | status | String |
-|  |  | status.href | String (URL) |
-| ad:validFrom | DateTime | validFrom | String |
-| ad:validTo | DateTime | validTo | String |
+| ef:activityConditions | CharacterString | activityConditions | String |
+| ef:activityTime | TM_Object | activityTime | SimplePeriod |
+| ef:boundingBox | GM_Boundary | boundingBox | GeoJSON Geometry Object |
+| ef:onlineResource | URL | onlineResource | String[] |
+| ef:responsibleParty | RelatedParty | responsibleParty | SimpleCitation |
+| ef:setUpFor | anyType | setUpFor | String[] |
+| ef:uses | anyType | uses | String[] |
+
+#### EnvironmentalMonitoringFacility
+
+| EF Name (condition) | EF Type | EFS Name | EFS Type |
+| ------------------- | ------- | -------- | -------- |
+| ef:additionalDescription | CharacterString | additionalDescription | String |
+| ef:belongsTo | EnvironmentalMonitoringNetwork | belongsTo | String (Reference) |
+| ef:broader | AbstractMonitoringObject | broader | String (Reference) |
+| ef:geometry | GM_Object | broader | GeoJSON Geometry Object |
+| ef:hasObservation (count() = 1) | CharacterString | hasObservation | String (Reference) |
+|  |  | observation.resultTime | String |
+|  |  | observation.result | Number |
+|  |  | observation.unitOfMeasureName | String |
+| ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
+| ef:involvedIn | CharacterString | involvedIn | String |
+| ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
+| ef:measurementRegime | MeasurementRegimeValue | measurementRegime |  (Reference) |
+| ef:mediaMonitored | MediaValue | mediaMonitored | SimpleCodelistReference |
+| ef:mobile | Boolean | mobile | Boolean |
+| ef:name | CharacterString | name | String |
+| ef:narrower | AbstractMonitoringObject | narrower | String (Reference) |
+| ef:observingCapability | ObservingCapability | observingCapability | ObservingCapability |
+| ef:onlineResource | URL | onlineResource | String[] (URL) |
+| ef:operationalActivityPeriod | TM_Object | operationalActivityPeriod | SimplePeriod |
+| ef:purpose | PurposeOfCollectionValue | purpose | SimpleCodelistReference |
+| ef:relatedTo | AnyDomainLink | relatedTo | String |
+| ef:reportedTo | ReportToLegalAct | reportedTo | String |
+| ef:representativePoint | GM_Point | representativePoint | in-line GeoJSON property |
+| ef:responsibleParty | RelatedParty | responsibleParty | SimpleCitation |
+| ef:resultAcquisitionSource | ResultAcquisitionSourceValue | resultAcquisitionSource | SimpleCodelistReference |
+| ef:specialisedEMFType | SpecialisedEMFTypeValue | specialisedEMFType | SimpleCodelistReference |
+| ef:supersededBy | AbstractMonitoringObject | supersededBy | String[] (Reference) |
+| ef:supersedes | AbstractMonitoringObject | supersedes | String[] (Reference) |
+
+#### EnvironmentalMonitoringNetwork
+
+| EF Name (condition) | EF Type | EFS Name | EFS Type |
+| ------------------- | ------- | -------- | -------- |
+| ef:additionalDescription | CharacterString | additionalDescription | String |
+| ef:belongsTo | EnvironmentalMonitoringNetwork | belongsTo | String (Reference) |
+| ef:broader | AbstractMonitoringObject | broader | String (Reference) |
+| ef:contains | EnvironmentalMonitoringFacility | broader | String[] (Reference) |
+| ef:geometry | GM_Object | broader | GeoJSON Geometry Object |
+| ef:hasObservation (count() = 1) | CharacterString | hasObservation | String (Reference) |
+|  |  | observation.resultTime | String |
+|  |  | observation.result | Number |
+|  |  | observation.unitOfMeasureName | String |
+| ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
+| ef:involvedIn | CharacterString | involvedIn | String |
+| ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
+| ef:mediaMonitored | MediaValue | mediaMonitored | SimpleCodelistReference |
+| ef:name | CharacterString | name | String |
+| ef:narrower | AbstractMonitoringObject | narrower | String (Reference) |
+| ef:observingCapability | ObservingCapability | observingCapability | ObservingCapability |
+| ef:onlineResource | URL | onlineResource | String[] (URL) |
+| ef:operationalActivityPeriod | TM_Object | operationalActivityPeriod | SimplePeriod |
+| ef:organisationLevel | LegislationLevelValue | organisationLevel | SimpleCodelistReference |
+| ef:purpose | PurposeOfCollectionValue | purpose | SimpleCodelistReference |
+| ef:relatedTo | AnyDomainLink | relatedTo | String |
+| ef:reportedTo | ReportToLegalAct | reportedTo | String |
+| ef:responsibleParty | RelatedParty | responsibleParty | SimpleCitation |
+| ef:supersededBy | AbstractMonitoringObject | supersededBy | String[] (Reference) |
+| ef:supersedes | AbstractMonitoringObject | supersedes | String[] (Reference) |
+
+#### EnvironmentalMonitoringProgramme
+
+| EF Name (condition) | EF Type | EFS Name | EFS Type |
+| ------------------- | ------- | -------- | -------- |
+| ef:additionalDescription | CharacterString | additionalDescription | String |
+| ef:broader | AbstractMonitoringObject | broader | String (Reference) |
+| ef:geometry | GM_Object | broader | GeoJSON Geometry Object |
+| ef:hasObservation (count() = 1) | CharacterString | hasObservation | String (Reference) |
+|  |  | observation.resultTime | String |
+|  |  | observation.result | Number |
+|  |  | observation.unitOfMeasureName | String |
+| ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
+| ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
+| ef:mediaMonitored | MediaValue | mediaMonitored | SimpleCodelistReference |
+| ef:name | CharacterString | name | String |
+| ef:narrower | AbstractMonitoringObject | narrower | String (Reference) |
+| ef:observingCapability | ObservingCapability | observingCapability | ObservingCapability |
+| ef:onlineResource | URL | onlineResource | String[] (URL) |
+| ef:purpose | PurposeOfCollectionValue | purpose | SimpleCodelistReference |
+| ef:responsibleParty | RelatedParty | responsibleParty | SimpleCitation |
+| ef:supersededBy | AbstractMonitoringObject | supersededBy | String[] (Reference) |
+| ef:supersedes | AbstractMonitoringObject | supersedes | String[] (Reference) |
+| ef:triggers | EnvironmentalMonitoringActivity | triggers | String[] (Reference) |
 
 ### Examples (Informative)
 

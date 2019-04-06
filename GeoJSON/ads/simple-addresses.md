@@ -32,9 +32,10 @@ This section describes which transformation rules with which parameters are appl
 
 The following table explains the mapping between the classes and properties of the original Addresses (AD) model to the Simplified Addresses (ADS) model.
 
+#### Address
+
 | AD Name (condition) | AD Type | ADS Name | ADS Type |
 | ------------------- | ------- | -------- | -------- |
-| **Address** | Address | **SimpleAddress** | SimpleAddressType |
 | ad:alternativeIdentifier | String | alternativeIdentifier | String |
 | ad:beginLifespanVersion | DateTime | beginLifespanVersion | String |
 | ad:endLifespanVersion | DateTime | endLifespanVersion | String |
