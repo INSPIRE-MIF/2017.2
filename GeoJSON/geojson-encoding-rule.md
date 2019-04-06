@@ -11,6 +11,7 @@
     * Use Cases
 	* Themes
     * Technical Issues
+    * Technical Limitations
 	* Cross-cutting INSPIRE requirements
 * [Normative References](#normative-references)
 * [Terms and Definitions](#terms-and-definitions)
@@ -65,10 +66,7 @@ The encoding rule is also developed with the best practices for [Spatial data on
 
 ### Coverage of INSPIRE Themes
 
-This encoding rule covers the following themes:
-
-* Annex I: [Addresses](./ads/simple-addresses.md)
-* Annex III: [Environmental Monitoring Facilities](./ems/simple-environmental-monitoring-facilities.md)
+For each theme to be covered, a specific GeoJSON Encoding Rule is provided. These can reside in subfolders in the same repository as this general encoding rule (e.g. [`ads`](./ads/) and [`efs`](./efs/)), but can also be maintained in other places.
 
 ### Technical Issues
 
@@ -79,6 +77,8 @@ This encoding rule addresses specific technical issues that have been problemati
 * References to other features often cannot be resolved by GIS tools; Propertes of referenced features cannot be used in styling or for filtering ;
 * Abstract geometry types for an object mean that a wide range of different geometries can be used for any single feature class;
 * Mixed geometry types in a FeatureCollection are usually not supported;
+
+### Technical Limitations
 
 In some cases such as the handling of high-cardinality properties, this encoding rule makes a trade-off, so not all issues are resolved. Implementers can apply additional model and instance transformation rules to make adjustments for specific data sets and environments.
 
@@ -107,7 +107,7 @@ D2.7 also contains a relevant recommendation:
 This section contains references to standards documents and related resources.
 
 * [GeoJSON - IETF RFC 7946](https://tools.ietf.org/html/rfc7946)
-* [D2.7 INSPIRE DRAFTING TEAM “DATA SPECIFICATIONS.” D2.7: Guidelines for the encoding of spatial data, Version 3.3](http://inspire.ec.europa.eu/documents/guidelines-encoding-spatial-data)
+* [INSPIRE Drafting Team Data Specifications. D2.7: Guidelines for the encoding of spatial data, Version 3.3](http://inspire.ec.europa.eu/documents/guidelines-encoding-spatial-data)
 
 ## Terms and Definitions
 
@@ -119,7 +119,7 @@ INSPIRE defines the conceptual model using UML.
 
 The default encoding rule maps this UML model to XML Schema. For JSON, [JSON Schema](https://json-schema.org/) can be used to perform simple validation on JSON documents.  
 
-NOTE At this point, [JSON Schema](https://json-schema.org/) is not used in any of the targeted GIS tools. We thus do not yet use it normatively, but to provide a formal definition of the encoded data structures, and to help develop executable test suites in future versions. 
+NOTE At this point, [JSON Schema](https://json-schema.org/) is not used in any of the targeted GIS tools. We thus do not use it normatively. Theme-specific GeoJSON Encoding Rules may use JSON Schema to provide a formal definition of the encoded data structures, and to help develop executable test suites. 
 
 In this encoding rule, we take a two-step approach, where we apply model transformations on the level of the conceptual model. This model can then be encoded in simple GeoJSON using the general schema and instance conversion rules laid out in the next sections.
 
@@ -127,11 +127,13 @@ In this encoding rule, we take a two-step approach, where we apply model transfo
 
 #### Feature types 
 
-All types that have the stereotype `<<featureType>>` are converted to GeoJSON objects. Typenames remain as they are. 
+All types that have the stereotype `<<featureType>>` are converted to GeoJSON objects. The typenames remain as they are. 
+
+Where a class has one attribute with a geometry type, this attribute will be mapped to the `geometry` property in GeoJSON, while all other properties (attributes and association roles) will be mapped to properties inside the `properties` sub-object. Where a class has more than one Geometry property, a theme-specific profile has to define which geometry property is the "default" geometry that should be mapped to the `geometry` property in GeoJSON. Additional geometry properties can either be mapped to additional GeoJSON objects, or they can be retained in the set of `properties`.  
 
 #### Data Types
 
-All data types are mapped to regular JSON objects, where properties of the type are directly added to the root object instead of being added to the `properties` subobject. Their typenames remain as they are.
+All data types are mapped to JSON objects, where properties of the type are directly added to the root object. Their typenames remain as they are.
 
 #### ISO 19103 - Basic types
 
@@ -156,7 +158,9 @@ Any other UML Model property type are to be mapped to `string`, with specific ru
 
 #### ISO 19107 - Geometry types
 
-ISO 19107 defines a set of Geometry types, which need to be mapped to the types available in GeoJSON. Note that not all types can be mapped to GeoJSON; if an data set requires such a type, it cannot use this encoding rule as an alternative encoding rule.
+ISO 19107 defines a set of Geometry types, which need to be mapped to the types available in GeoJSON. 
+
+NOTE Not all types can be mapped to GeoJSON; if a data set requires such a type, it cannot use this encoding rule as an alternative encoding rule.
 
 | ISO 19107 type | GeoJSON datatype | Conversion Notes | 
 | ------ | ----- | ----- |
@@ -174,8 +178,6 @@ ISO 19107 defines a set of Geometry types, which need to be mapped to the types 
 | GM_Tin            | not supported | A TIN without triangulation could be converted to a MultiPoint object. |
 | GM_Triangle       | Polygon |  |
 
-Where a class has one attribute with a geometry type, this attribute will be mapped to the `geometry` property in GeoJSON, while all other properties (attributes and association roles) will be mapped to properties inside the `properties`. A theme-specific profile has to define which geometry property is the "default" geometry that should be mapped to the `geometry` property in GeoJSON.
-
 #### ISO 19108 - Temporal types
 
 For types from ISO 19108 used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis. The default should be to use the [Simple Period](/model-transformations/SimplePeriod.md) substitution rule.
@@ -186,25 +188,27 @@ For types from ISO 19115 used in INSPIRE schemas, suitable mappings need to be f
 
 #### Abstract Types as property types
 
-Where an abstract type with multiple concrete sub-types is used as a property type, a suitable choice of a concrete subtype should be made on a case-by-case basis, with the objective of limiting the potential geometry types that can occur and to make processing easier.
+Where an abstract type with multiple concrete sub-types is used as a property type, a suitable choice of a concrete subtype should be made on a case-by-case basis. As an example, limiting the potential geometry types in this way can make processing easier.
 
 #### Union Types
 
-A `union` represents a choice between multiple properties with potentially different value types, such as in the AreaOfResponsibilityType, where there are options such as `areaOfResponsibilityByAdministrativeUnit` and `areaOfResponsibilityByNamedPlace`. `Reference` and a `Building`. The multiplicity of these options may also differ.
+A `union` represents a choice between multiple properties with potentially different value types, such as in the AreaOfResponsibilityType, where there are options such as `areaOfResponsibilityByAdministrativeUnit` and `areaOfResponsibilityByNamedPlace`. The multiplicity of these options may also differ.
 
-For Union Types used in INSPIRE schemas, suitable mappings need to be found on a case-by-case basis.
+For Union Types used in INSPIRE models, suitable mappings need to be found on a case-by-case basis.
 
 #### Enumerations and Code Lists
 
-Properties that represent values form code lists are encoded using the `SimpleCodelistReference` [rule described here](/model-transformations/SimpleCodelistReference.md).
-
-In the conceptual model, enumerations and codelists remain unchanged.
+No mapping for code lists and enumerations is required. Their values shall be identified by (ideally resolvable) HTTP URIs.
 
 NOTE The INSPIRE Registry can provide the JSON representation of the code list and its entries.
 
 ### Properties
 
 Property names remain as they are.
+
+If a property has a cardinality > 1, a suitable mapping needs to be found on a case-by-case basis. There is a [model transformation rule](/model-transformations/ExtractPrimitiveArray.md) that extracts a single value from a complex property and builds a JSON array which should be used if the number of occurences of such a property can be very high. 
+
+Properties that represent values form code lists are encoded using the `SimpleCodelistReference` [rule described here](/model-transformations/SimpleCodelistReference.md).
 
 NOTE Namespace prefixes, as used in the default encoding, are not used in the GeoJSON encoding rule.
 
@@ -228,22 +232,27 @@ Association roles are retained as they are, if they are not transformed using a 
 
 This section describes how the encoding is derived from the converted conceptual model, and describes which common rules have to be applied for this encoding rule.
 
-### Common Rules
+### Character Encoding
 
-* `GEOJSON-REQ-01`: The character encoding of all data encoding in GeoJSON shall be UTF-8.
-* `GEOJSON-REQ-02`: As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered using this encoding rule is a geographic coordinate reference system, using the World Geodetic System 1984 (WGS 84) datum, with longitude and latitude units of decimal degrees, unless there is prior arrangement. This is equivalent to the coordinate reference system identified by the Open Geospatial Consortium (OGC) URN `urn:ogc:def:crs:OGC::CRS84`.
+The character encoding of all data encoding in GeoJSON shall be UTF-8.
+
+### Coordinate Reference Systems 
+
+As per the requirements of the GeoJSON - IETF RFC 7946 specification, the default CRS for any data set delivered using this encoding rule is a geographic coordinate reference system, using the World Geodetic System 1984 (WGS 84) datum, with longitude and latitude units of decimal degrees, unless there is prior arrangement. This is equivalent to the coordinate reference system identified by the Open Geospatial Consortium (OGC) URN `urn:ogc:def:crs:OGC::CRS84`.
 
 NOTE As INSPIRE mandates the use of the European Terrestrial Reference System 1989  (ETRS89, see [Requirement 1](https://inspire.ec.europa.eu/reports/ImplementingRules/DataSpecifications/INSPIRE_Specification_CRS_v2.0.pdf)) for the areas within the geographical scope of ETRS89 and both CRS84 and ETRS89 use the GRS 80 ellipsoid (although with minor enhancements), we shall assume CRS84 to be equivalent to ETRS89. If, for any dataset, this assumption would be problematic, then GeoJSON cannot serve as an alternative encoding rule for that dataset.
-
-* `GEOJSON-REQ-03`: In the GeoJSON encoding rule, `nilReason` information shall not be maintained per feature, but rather in the dataset metadata. Properties that have `nil` values shall thus be ignored in the encoding process.
-
-NOTE If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding rule for that dataset
 
 ### Alternate Coordinate Reference System support
 
 While the required Coordinate Reference System for any data encoded in GeoJSON is CRS84, a client may request delivery of a data set using a different projected reference system, as per the mechanism described in Requirement 8 in the [WFS 3.0 draft specification](https://github.com/opengeospatial/WFS_FES). 
 
-* `GEOJSON-REC-01`: An INSPIRE Download service delivering data encoded in GeoJSON shall be able to deliver projected geometries if a client requests these explicitly, at least for the spatial reference systems documented in section 6.3. of the data specifications that fall within the scope of this encodign specification. When delivering data that is not in [CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84), the GeoJSON data should include the `crs` member as defined in the deprecated (Draft 6 of the GeoJSON specification)[http://wiki.geojson.org/GeoJSON_draft_version_6].
+An INSPIRE Download service delivering data encoded in GeoJSON shall be able to deliver projected geometries if a client requests these explicitly, at least for the spatial reference systems documented in section 6.3. of the data specifications that fall within the scope of this encodign specification. When delivering data that is not in [CRS 84](http://www.opengis.net/def/crs/OGC/1.3/CRS84), the GeoJSON data should include the `crs` member as defined in the deprecated (Draft 6 of the GeoJSON specification)[http://wiki.geojson.org/GeoJSON_draft_version_6].
+
+### nilReason information
+
+In the GeoJSON encoding rule, `nilReason` information shall not be maintained per feature, but rather in the dataset metadata. Properties that have `nil` values shall thus be ignored in the encoding process.
+
+NOTE If, for any dataset, there is specific `nilReason` information per feature, then GeoJSON cannot serve as an alternative encoding rule for that dataset
 
 ### Identifiers
 

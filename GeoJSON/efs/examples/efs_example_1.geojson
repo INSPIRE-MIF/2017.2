@@ -11,8 +11,8 @@
             "properties": {
                 "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
                 "inspireId.localId": "EnvironmentalMonitoringFacility_1",
-                "inspireId.namespace": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/ems/examples/",
-                "identifier": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/ems/examples/EnvironmentalMonitoringFacility_1",
+                "inspireId.namespace": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/efs/examples/",
+                "identifier": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/efs/examples/EnvironmentalMonitoringFacility_1",
                 "legalBackground.date": "",
                 "legalBackground.link": "",
                 "legalBackground.name": "",

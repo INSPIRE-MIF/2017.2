@@ -11,6 +11,7 @@ The Simple Addresses encoding can be used as an *alternative encoding* for addre
 
 ## Normative References
 
+* [INSPIRE UML-to-GeoJSON encoding rule version 0.1](/GeoJSON/geojson-encoding-rule.md)
 * [Data Specification - INSPIRE Addresses version 3.1](https://inspire.ec.europa.eu/Themes/79/2892)
 
 ## Conformance Class Core
@@ -62,7 +63,6 @@ The following table explains the mapping between the classes and properties of t
 |  |  | locator.designator.unitIdentifier | String |
 |  |  | locator.level | String |
 |  |  | locator.level.href | String (URL) |
-| gml:name | String | name | String |
 | ad:parcel | Parcel | parcel | String |
 | ad:parentAddress | Address | parentAddress | String |
 | ad:position | GeographicPosition | *added as `geometry` to the root object* | GeoJSON Geometry Object |
@@ -78,7 +78,9 @@ The following table explains the mapping between the classes and properties of t
 
 ### Examples (Informative)
 
-Example 1: One Address Feature with all components and locators inlined
+NOTE Additional examples can be added to the [`/ads/examples/`](/GeoJSON/ads/examples/) folder in this repository.
+
+**Example 1:** One Address Feature with all components and locators inlined ([Standalone Example](./examples/ads_example_1.geojson))
 
 ```json
 {  

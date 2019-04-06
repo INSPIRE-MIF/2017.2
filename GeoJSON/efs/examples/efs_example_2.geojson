@@ -11,8 +11,8 @@
             "properties": {
                 "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
                 "inspireId.localId": "EnvironmentalMonitoringFacility_1",
-                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/",
-                "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/EnvironmentalMonitoringFacility_1",
+                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/",
+                "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/EnvironmentalMonitoringFacility_1",
                 "mediaMonitored": "water",
                 "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
                 "name": "Piézomètre de St-Rémy - 01",

@@ -16,6 +16,7 @@ This encoding rule can be used as an *alternative encoding* for Environmental Mo
 
 ## Normative References
 
+* [INSPIRE UML-to-GeoJSON encoding rule version 0.1](/GeoJSON/geojson-encoding-rule.md)
 * [Data Specification - INSPIRE Environmental Monitoring Facilities version 3.0](https://inspire.ec.europa.eu/Themes/120/2892)
 * [OGC Observations and Measurements - Simple Feature model & encodings (OMSF)](https://github.com/opengeospatial/omsf-profile)
 * [OGC Observations and Measurements - Simple Feature GeoJSON Encoding (OMSF GeoJSON)](https://github.com/opengeospatial/omsf-profile/tree/master/omsf-json)
@@ -38,9 +39,57 @@ This section describes which rules with which parameters are applied to the Envi
 
 ### Model Mapping
 
+The following table explains the mapping between the classes and properties of the original Environmental Monitoring Facilities (EF) model to the Simplified Environmental Monitoring Facilities (EFS) model.
+
+| EF Name (condition) | EF Type | EFS Name | EFS Type |
+| ------------------- | ------- | -------- | -------- |
+| **Address** | Address | **SimpleAddress** | SimpleAddressType |
+| ad:alternativeIdentifier | String | alternativeIdentifier | String |
+| ad:beginLifespanVersion | DateTime | beginLifespanVersion | String |
+| ad:endLifespanVersion | DateTime | endLifespanVersion | String |
+| ad:building | Reference | endLifespanVersion | String |
+| ad:component (class = ThoroughfareName) | Component | component.ThoroughfareName | String |
+| ad:component (class = PostalDescriptor) | Component | component.ThoroughfareName | String |
+| ad:component (class = AddressAreaName) | Component | component.ThoroughfareName | String |
+| ad:component (class = AdminUnitName, index = 0) | Component | component.AdminUnitName_1 | String |
+| ad:component (class = AdminUnitName, index = 1) | Component | component.AdminUnitName_2 | String |
+| ad:component (class = AdminUnitName, index = 2) | Component | component.AdminUnitName_3 | String |
+| ad:component (class = AdminUnitName, index = 3) | Component | component.AdminUnitName_4 | String |
+| ad:component (class = AdminUnitName, index = 4) | Component | component.AdminUnitName_5 | String |
+| ad:component (class = AdminUnitName, index = 5) | Component | component.AdminUnitName_6 | String |
+| ad:locator | AddressLocator | locator.designator.addressNumber | String |
+|  |  | locator.designator.addressNumberExtension | String |
+|  |  | locator.designator.addressNumber2ndExtension | String |
+|  |  | locator.designator.buildingIdentifier | String |
+|  |  | locator.designator.buildingIdentifierPrefix | String |
+|  |  | locator.designator.cornerAddress1stIdentifier | String |
+|  |  | locator.designator.cornerAddress2ndIdentifier | String |
+|  |  | locator.designator.entranceDoorIdentifier | String |
+|  |  | locator.designator.floorIdentifier | String |
+|  |  | locator.designator.kilometrePoint | String |
+|  |  | locator.designator.postalDeliveryIdentifier | String |
+|  |  | locator.designator.staircaseIdentifier | String |
+|  |  | locator.designator.unitIdentifier | String |
+|  |  | locator.level | String |
+|  |  | locator.level.href | String (URL) |
+| ad:parcel | Parcel | parcel | String |
+| ad:parentAddress | Address | parentAddress | String |
+| ad:position | GeographicPosition | *added as `geometry` to the root object* | GeoJSON Geometry Object |
+|  |  | position.specification | String |
+|  |  | position.specification.href | String (URL) |
+|  |  | position.method | String |
+|  |  | position.method.href | String (URL) |
+|  |  | position.default | boolean |
+| ad:status | StatusValue | status | String |
+|  |  | status.href | String (URL) |
+| ad:validFrom | DateTime | validFrom | String |
+| ad:validTo | DateTime | validTo | String |
+
 ### Examples (Informative)
 
-**Example 1:** One Environmental Monitoring Facility with a single measurement result ([Standalone Example](./examples/example_1.geojson))
+NOTE Additional examples can be added to the [`/efs/examples/`](/GeoJSON/efs/examples/) folder in this repository.
+
+**Example 1:** One Environmental Monitoring Facility with a single measurement result ([Standalone Example](./examples/efs_example_1.geojson))
 
 ```json
 {  
@@ -56,8 +105,8 @@ This section describes which rules with which parameters are applied to the Envi
             "properties": {
                 "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
                 "inspireId.localId": "EnvironmentalMonitoringFacility_1",
-                "inspireId.namespace": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/ems/examples/",
-                "identifier": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/ems/examples/EnvironmentalMonitoringFacility_1",
+                "inspireId.namespace": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/efs/examples/",
+                "identifier": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/efs/examples/EnvironmentalMonitoringFacility_1",
                 "legalBackground.date": "1977-10-08T23:00:00Z",
                 "legalBackground.link": "",
                 "legalBackground.name": "",
@@ -86,7 +135,7 @@ This section describes which rules with which parameters are applied to the Envi
 }
 ```
 
-**Example 2:** One Environmental Monitoring Facility with a reference to a `PointTimeSeriesObservation` ([Standalone Example](./examples/example_2.geojson))
+**Example 2:** One Environmental Monitoring Facility with a reference to a `PointTimeSeriesObservation` ([Standalone Example](./examples/efs_example_2.geojson))
 
 ```json
 {  
@@ -102,8 +151,8 @@ This section describes which rules with which parameters are applied to the Envi
             "properties": {
                 "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
                 "inspireId.localId": "EnvironmentalMonitoringFacility_1",
-                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/",
-                "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/ems/EnvironmentalMonitoringFacility_1",
+                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/",
+                "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/EnvironmentalMonitoringFacility_1",
                 "mediaMonitored": "water",
                 "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
                 "name": "Piézomètre de St-Rémy - 01",
