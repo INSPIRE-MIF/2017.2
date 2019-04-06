@@ -18,8 +18,8 @@ This encoding rule can be used as an *alternative encoding* for Environmental Mo
 
 * [INSPIRE UML-to-GeoJSON encoding rule version 0.1](/GeoJSON/geojson-encoding-rule.md)
 * [Data Specification - INSPIRE Environmental Monitoring Facilities version 3.0](https://inspire.ec.europa.eu/Themes/120/2892)
-* [OGC Observations and Measurements - Simple Feature model & encodings (OMSF)](https://github.com/opengeospatial/omsf-profile)
-* [OGC Observations and Measurements - Simple Feature GeoJSON Encoding (OMSF GeoJSON)](https://github.com/opengeospatial/omsf-profile/tree/master/omsf-json)
+* [OGC Observations and Measurements - Simple Feature model & encodings (OMSF) version 1.0](https://github.com/opengeospatial/omsf-profile/tree/v1.0/)
+* [OGC Observations and Measurements - Simple Feature GeoJSON Encoding (OMSF GeoJSON) version 1.0](https://github.com/opengeospatial/omsf-profile/tree/v1.0/omsf-json)
 
 ## Conformance Class Core
 
