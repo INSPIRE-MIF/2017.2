@@ -22,7 +22,7 @@
 * [Instance Encoding Rules](#instance-encoding-rules)
     * Requirements and Recommendations
     * Mapping from Conceptual Model to GeoJSON Logical Model
-    * Alternate Coordinate Reference Systems
+    * Alternative Coordinate Reference Systems
     * Identifiers
 * [INSPIRE Theme Encoding Rules](#inspire-theme-encoding-rules)
 
