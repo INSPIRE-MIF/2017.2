@@ -42,6 +42,8 @@ In the 48th MIG-T meeting, it was agreed to continue the 2017.2 work in a sub-gr
 
 The work of the action encompassed the creation of generic encoding rules for GeoJSON as well as specific encoding rules for the INSPIRE themes Addresses (including `GeographicalName` properties) and Environmental Monitoring Facilities (including O&M properties). These encoding rules will be maintained as separate INSPIRE Good Practice documents, and in the future additional theme-specific encoding rules may be developed by thematic communities and proposed for endorsement by the MIG following the INSPIRE Good Practice procedure.
 
+This work is also related to `2017.3`, where a major outcome is a dertailed view on the capabilities of various GIS software of working with INSPIRE data (called [CanIUse](https://github.com/INSPIRE-MIF/caniuse/)), encoded in GML or GeoJSON.
+
 ## Introduction
 
 This section describes what this document contains and what the high-level objective of this encoding is.
@@ -76,7 +78,7 @@ This encoding rule addresses specific technical issues that have been problemati
 * Multiple values per (complex) properties cannot be used fully in ArcGIS and other GIS tools;
 * References to other features often cannot be resolved by GIS tools; Propertes of referenced features cannot be used in styling or for filtering ;
 * Abstract geometry types for an object mean that a wide range of different geometries can be used for any single feature class;
-* Mixed geometry types in a FeatureCollection are usually not supported;
+* Mixed geometry types in a FeatureCollection are usually not supported.
 
 ### Technical Limitations
 
