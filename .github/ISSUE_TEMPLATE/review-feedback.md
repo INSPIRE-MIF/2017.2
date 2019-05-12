@@ -10,23 +10,26 @@ Use the sections below to document your feedback on the proposed alternative enc
 
 ## Encoding rule
 
-Specify which encoding rule has been used, e.g. 
+Specify which specification you would like to comment on. 
 
 * AD GeoJSON encoding
 * EF GeoJSON encoding 
+* Generic UML-to-GeoJSON encoding rule
+* Model simplification rule(s) - specify which one(s)
 
 ## Issues encountered
 
-Describe any issues you have found with the proposed encoding(s). 
+Describe any issues you have found with the specification(s). 
 
-Propose (where appropriate) changes or improvements to the specification.
+Propose (where appropriate) changes or improvements to the specification(s).
 
 ## Future plans
 
-Are you considerin to use the GeoJSON encodings as alternative/additional encodings for your data? Please explain why (not)?
+Are you considering to use the GeoJSON encodings as alternative/additional encodings
+for your data? Please explain why (not)?
 
-Would you like to see further alternative/additional encodings to be developed? If so, for which themes and based on which
-base standard (GeoJSON, Geopackage, GML, ...)?
+Would you like further alternative/additional encodings to be developed? If so,
+for which themes and based on which base standard (GeoJSON, Geopackage, GML, ...)?
 
 ## Other comments
 
