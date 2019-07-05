@@ -39,10 +39,10 @@ The following table explains the mapping between the classes and properties of t
 | ad:alternativeIdentifier | String | alternativeIdentifier | String |
 | ad:beginLifespanVersion | DateTime | beginLifespanVersion | String |
 | ad:endLifespanVersion | DateTime | endLifespanVersion | String |
-| ad:building | Reference | endLifespanVersion | String |
+| ad:building | Reference | building | Reference |
 | ad:component (class = ThoroughfareName) | Component | component.ThoroughfareName | String |
-| ad:component (class = PostalDescriptor) | Component | component.ThoroughfareName | String |
-| ad:component (class = AddressAreaName) | Component | component.ThoroughfareName | String |
+| ad:component (class = PostalDescriptor) | Component | component.PostalDescriptor | String |
+| ad:component (class = AddressAreaName) | Component | component.AddressAreaName | String |
 | ad:component (class = AdminUnitName, index = 0) | Component | component.AdminUnitName_1 | String |
 | ad:component (class = AdminUnitName, index = 1) | Component | component.AdminUnitName_2 | String |
 | ad:component (class = AdminUnitName, index = 2) | Component | component.AdminUnitName_3 | String |
