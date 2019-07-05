@@ -39,7 +39,7 @@ The following table explains the mapping between the classes and properties of t
 | ad:alternativeIdentifier | String | alternativeIdentifier | String |
 | ad:beginLifespanVersion | DateTime | beginLifespanVersion | String |
 | ad:endLifespanVersion | DateTime | endLifespanVersion | String |
-| ad:building | Reference | building | Reference |
+| ad:building | bu-base:AbstractConstruction | building | String (URL) |
 | ad:component (class = ThoroughfareName) | Component | component.ThoroughfareName | String |
 | ad:component (class = PostalDescriptor) | Component | component.PostalDescriptor | String |
 | ad:component (class = AddressAreaName) | Component | component.AddressAreaName | String |
