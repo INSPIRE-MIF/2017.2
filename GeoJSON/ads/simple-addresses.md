@@ -62,6 +62,7 @@ The following table explains the mapping between the classes and properties of t
 |  |  | locator.designator.postalDeliveryIdentifier | String |
 |  |  | locator.designator.staircaseIdentifier | String |
 |  |  | locator.designator.unitIdentifier | String |
+|  |  | locator.name | SimpleGeographicName |
 |  |  | locator.level | String |
 |  |  | locator.level.href | String (URL) |
 | ad:parcel | Parcel | parcel | String |
@@ -106,6 +107,7 @@ NOTE Additional examples can be added to the [`/ads/examples/`](/GeoJSON/ads/exa
                 "locator.designator.addressNumberExtension": "A",
                 "locator.level": "siteLevel",
                 "locator.level.href": "http://inspire.ec.europa.eu/codelist/LocatorLevelValue/siteLevel",
+                "locator.name": "Fraunhofer IGD",
                 "component.ThoroughfareName": "Fraunhoferstraße",
                 "component.PostalDescriptor": "64283",
                 "component.AddressAreaName": "Innenstadt",
