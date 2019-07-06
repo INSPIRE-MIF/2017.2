@@ -42,7 +42,7 @@ In the 48th MIG-T meeting, it was agreed to continue the 2017.2 work in a sub-gr
 
 The work of the action encompassed the creation of generic encoding rules for GeoJSON as well as specific encoding rules for the INSPIRE themes Addresses (including `GeographicalName` properties) and Environmental Monitoring Facilities (including O&M properties). These encoding rules will be maintained as separate INSPIRE Good Practice documents, and in the future additional theme-specific encoding rules may be developed by thematic communities and proposed for endorsement by the MIG following the INSPIRE Good Practice procedure.
 
-This work is also related to `2017.3`, where a major outcome is a dertailed view on the capabilities of various GIS software of working with INSPIRE data (called [CanIUse](https://github.com/INSPIRE-MIF/caniuse/)), encoded in GML or GeoJSON.
+This work is also related to `2017.3`, where a major outcome is a detailed view on the capabilities of various GIS software of working with INSPIRE data (called [CanIUse](https://github.com/INSPIRE-MIF/caniuse/)), encoded in GML or GeoJSON.
 
 ## Introduction
 
