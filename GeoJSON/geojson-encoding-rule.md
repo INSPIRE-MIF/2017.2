@@ -74,7 +74,7 @@ For each theme to be covered, a specific GeoJSON Encoding Rule is provided. Thes
 
 This encoding rule addresses specific technical issues that have been problematic when using the default encoding:
 
-* Most GIS software cannot fully make use of non-smple attributes and nested structures for styling, processing and filtering;
+* Most GIS software cannot fully make use of non-simple attributes and nested structures for styling, processing and filtering;
 * Multiple values per (complex) properties cannot be used fully in ArcGIS and other GIS tools;
 * References to other features often cannot be resolved by GIS tools; Propertes of referenced features cannot be used in styling or for filtering ;
 * Abstract geometry types for an object mean that a wide range of different geometries can be used for any single feature class;
