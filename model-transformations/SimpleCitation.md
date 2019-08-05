@@ -72,7 +72,7 @@
       <simple:date>2017-01-26</simple:date>
       <simple:link>http://www.retsinformation.dk/eli/lta/2017/122</simple:link>
       <simple:level xlink:href="http://inspire.ec.europa.eu/codelist/LegislationLevelValue/national" xlink:title="national" />
-    </simple:LegislationCitation>
+    </simple:SimpleCitation>
   </ems:legalBackground>
   <!-- ... -->
 </ems:EnvironmentalMonitoringFacility>
