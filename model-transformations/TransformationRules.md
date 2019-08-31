@@ -28,7 +28,7 @@ We describe each Model Transformation by using these properties:
 
 This section contains a selection of examples for model transformations we have identified so far. 
 
-The catalogue also contains several substitution rules, where existing types such as `GeographicName` are replaced with less complex types. These types are added to a new `simple` namespace (`http://inspire.ec.europa.eu/schemas/simple/1.0`).
+The catalogue also contains several substitution rules, where existing types such as `GeographicName` are replaced with less complex types. These types are added to the theme namespaces under draft schemas  (`https://inspire.ec.europa.eu/draft-schemas/`).
 
 ### MT001: Flattening of nested structures
 
