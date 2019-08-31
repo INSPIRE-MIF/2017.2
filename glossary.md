@@ -85,3 +85,9 @@ default encoding
 encoding rule that is specified in [D2.7, Annex B (normative) Default encoding rule]
 
 NOTE The INSPIRE default encoding rule is the encoding rule specified in ISO 19136 Annex E with the extensions in GML 3.3 together with the additional rules stated in [D2.7, Annex B].
+
+**Property name**<br />
+field name<br />
+attribute name
+
+The name of a column or property, as defined through a feature type or table schema.
