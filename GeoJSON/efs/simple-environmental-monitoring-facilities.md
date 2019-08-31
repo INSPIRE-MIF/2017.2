@@ -1,7 +1,7 @@
 # GeoJSON Encoding Rule for INSPIRE Environmental Monitoring Facilities
 
-`Version: 0.1`
-`Date: 2019-03-29`
+`Version: 0.2`
+`Date: 2019-08-31`
 
 Environmental Monitoring Facilities describe measuring stations, networks and programs, and makes use of Observations & Measurement (`OM`) data, in many cases using specific observations (`OMSO`).
 
@@ -16,7 +16,7 @@ This encoding rule can be used as an *alternative encoding* for Environmental Mo
 
 ## Normative References
 
-* [INSPIRE UML-to-GeoJSON encoding rule version 0.1](/GeoJSON/geojson-encoding-rule.md)
+* [INSPIRE UML-to-GeoJSON encoding rule version 0.2](/GeoJSON/geojson-encoding-rule.md)
 * [Data Specification - INSPIRE Environmental Monitoring Facilities version 3.0](https://inspire.ec.europa.eu/Themes/120/2892)
 * [OGC Observations and Measurements - Simple Feature model & encodings (OMSF) version 1.0](https://github.com/opengeospatial/omsf-profile/tree/v1.0/)
 * [OGC Observations and Measurements - Simple Feature GeoJSON Encoding (OMSF GeoJSON) version 1.0](https://github.com/opengeospatial/omsf-profile/tree/v1.0/omsf-json)
@@ -35,7 +35,7 @@ This section describes which rules with which parameters are applied to the Envi
 4. Substitute `OperationalActivityPeriod` with the Simple Period using `MT009()`.
 5. Substitute all `OM` and `OMSO` model elements through the respective `OMSF` model elements.
 6. Apply the `OMSF GeoJSON` model mapping to the `OMSO` model elements.
-7. Apply the General Flattening rule to simplify the remaining properties: `MT001(separator: '.')`.
+7. Apply the General Flattening rule to simplify the remaining properties: `MT001(separator: '_')`.
 
 ### Model Mapping
 
@@ -62,9 +62,9 @@ The following table explains the mapping between the classes and properties of t
 | ef:broader | AbstractMonitoringObject | broader | String (Reference) |
 | ef:geometry | GM_Object | broader | GeoJSON Geometry Object |
 | ef:hasObservation (count() = 1) | CharacterString | hasObservation | String (Reference) |
-|  |  | observation.resultTime | String |
-|  |  | observation.result | Number |
-|  |  | observation.unitOfMeasureName | String |
+|  |  | observation_resultTime | String |
+|  |  | observation_result | Number |
+|  |  | observation_unitOfMeasureName | String |
 | ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
 | ef:involvedIn | CharacterString | involvedIn | String |
 | ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
@@ -96,9 +96,9 @@ The following table explains the mapping between the classes and properties of t
 | ef:contains | EnvironmentalMonitoringFacility | broader | String[] (Reference) |
 | ef:geometry | GM_Object | broader | GeoJSON Geometry Object |
 | ef:hasObservation (count() = 1) | CharacterString | hasObservation | String (Reference) |
-|  |  | observation.resultTime | String |
-|  |  | observation.result | Number |
-|  |  | observation.unitOfMeasureName | String |
+|  |  | observation_resultTime | String |
+|  |  | observation_result | Number |
+|  |  | observation_unitOfMeasureName | String |
 | ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
 | ef:involvedIn | CharacterString | involvedIn | String |
 | ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
@@ -124,9 +124,9 @@ The following table explains the mapping between the classes and properties of t
 | ef:broader | AbstractMonitoringObject | broader | String (Reference) |
 | ef:geometry | GM_Object | broader | GeoJSON Geometry Object |
 | ef:hasObservation (count() = 1) | CharacterString | hasObservation | String (Reference) |
-|  |  | observation.resultTime | String |
-|  |  | observation.result | Number |
-|  |  | observation.unitOfMeasureName | String |
+|  |  | observation_resultTime | String |
+|  |  | observation_result | Number |
+|  |  | observation_unitOfMeasureName | String |
 | ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
 | ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
 | ef:mediaMonitored | MediaValue | mediaMonitored | SimpleCodelistReference |
@@ -159,31 +159,31 @@ NOTE Additional examples can be added to the [`/efs/examples/`](/GeoJSON/efs/exa
             },
             "properties": {
                 "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
-                "inspireId.localId": "EnvironmentalMonitoringFacility_1",
-                "inspireId.namespace": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/efs/examples/",
+                "inspireId_localId": "EnvironmentalMonitoringFacility_1",
+                "inspireId_namespace": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/efs/examples/",
                 "identifier": "https://github.com/INSPIRE-MIF/2017.2/GeoJSON/efs/examples/EnvironmentalMonitoringFacility_1",
-                "legalBackground.date": "1977-10-08T23:00:00Z",
-                "legalBackground.link": "",
-                "legalBackground.name": "",
-                "legalBackground.level": "",
-                "legalBackground.level.href": "",
-                "legalBackground.type": "",
+                "legalBackground_date": "1977-10-08T23:00:00Z",
+                "legalBackground_link": "",
+                "legalBackground_name": "",
+                "legalBackground_level": "",
+                "legalBackground_level_href": "",
+                "legalBackground_type": "",
                 "mediaMonitored": "water",
-                "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
+                "mediaMonitored_href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
                 "mobile": false,
                 "name": "Piézomètre de St-Rémy - 01",
-                "observation.resultTime": "2017-08-17T12:11:20Z",
-                "observation.result": 220.58,
-                "observation.unitOfMeasureName": "meter",
+                "legalBackground_resultTime": "2017-08-17T12:11:20Z",
+                "legalBackground_result": 220.58,
+                "legalBackground_unitOfMeasureName": "meter",
                 "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
-                "operationalActivityPeriod.beginPosition": "1977-10-08T23:00:00Z",
-                "operationalActivityPeriod.endPosition": "2014-10-14T06:00:00Z",
+                "operationalActivityPeriod_beginPosition": "1977-10-08T23:00:00Z",
+                "operationalActivityPeriod_endPosition": "2014-10-14T06:00:00Z",
                 "purpose": "Ground water level measurement",
-                "purpose.href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
+                "purpose_href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
                 "resultAcquisitionSource": "in-situ",
-                "resultAcquisitionSource.href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
+                "resultAcquisitionSource_href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
                 "specialisedEMFType": "Piezometre",
-                "specialisedEMFType.href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
+                "specialisedEMFType_href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
             }
         }
    ]
@@ -205,22 +205,22 @@ NOTE Additional examples can be added to the [`/efs/examples/`](/GeoJSON/efs/exa
             },
             "properties": {
                 "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
-                "inspireId.localId": "EnvironmentalMonitoringFacility_1",
-                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/",
+                "inspireId_localId": "EnvironmentalMonitoringFacility_1",
+                "inspireId_namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/",
                 "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/EnvironmentalMonitoringFacility_1",
                 "mediaMonitored": "water",
-                "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
+                "mediaMonitored_href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
                 "name": "Piézomètre de St-Rémy - 01",
-                "hasObservation.href": "#MeasureTimeseriesObservation_1",
+                "haslegalBackground_href": "#MeasureTimeseriesObservation_1",
                 "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
-                "operationalActivityPeriod.beginPosition": "1977-10-08T23:00:00Z",
-                "operationalActivityPeriod.endPosition": "2014-10-14T06:00:00Z",
+                "operationalActivityPeriod_beginPosition": "1977-10-08T23:00:00Z",
+                "operationalActivityPeriod_endPosition": "2014-10-14T06:00:00Z",
                 "purpose": "Ground water level measurement",
-                "purpose.href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
+                "purpose_href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
                 "resultAcquisitionSource": "in-situ",
-                "resultAcquisitionSource.href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
+                "resultAcquisitionSource_href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
                 "specialisedEMFType": "Piezometre",
-                "specialisedEMFType.href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
+                "specialisedEMFType_href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
             }
         },
         {

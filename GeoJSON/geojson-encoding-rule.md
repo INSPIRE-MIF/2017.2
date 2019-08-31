@@ -270,9 +270,9 @@ These properties are mapped to the encoded GeoJSON object as follows:
 | ------ | ----- | ----- | ----- | ----- |
 | `gml:id` | ID | `id` | string |  |
 | `gml:identifier` | CodeWithAuthorityType | `properties.identifier` | string | Can be omitted if empty in the source object. |
-| `base:inspireId` | IdentifierPropertyType | `properties.inspireId.localid` | string |  |
-|  |  | `properties.inspireId.namespace` | string |  |
-|  |  | `properties.inspireId.versionId` | string | Can be omitted if empty in the source object. |
+| `base:inspireId` | IdentifierPropertyType | `properties.inspireId_localid` | string |  |
+|  |  | `properties.inspireId_namespace` | string |  |
+|  |  | `properties.inspireId_versionId` | string | Can be omitted if empty in the source object. |
 
 ## INSPIRE Theme Encoding Rules
 
