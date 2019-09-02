@@ -7,7 +7,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td><p>Citations are another element type that is used in many different places throughout the INSPIRE data specifications. There are concrete types such as <code>LegislationCitation</code>, which is an INSPIRE base type, but also types coming from other schemas, such as <code>CI_Citation</code> from ISO 19115. All of these structures tend to bury key information in deeply nested structures, creating a lot of overhead. This rule proposes a simplified alternative representation.</p> 
+<td><p>Citations are another element type that is used in many different places throughout the INSPIRE data specifications. ISO 19115 defines <code>CI_Citation</code>, which has a very deep structure that tend to bury key information, creating a lot of overhead. INSPIRE introduced two base types to simplify citations, <code>LegislationCitation</code> and <code>DocumentCitation</code>. However, in many places, <code>CI_Citation</code> is in use. This rule proposes a simplified alternative representation for <code>CI_Citation</code>. For consistency, it can also be used as a substitute to <code>LegislationCitation</code> and <code>DocumentCitation</code> when no external register is available.</p> 
 <p>The simplified citation is based on a link to an external publication and adds minimal information with four properties:</p>
 <ul>
     <li>citationDate</li>
