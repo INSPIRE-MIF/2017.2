@@ -86,6 +86,13 @@ encoding rule that is specified in [D2.7, Annex B (normative) Default encoding r
 
 NOTE The INSPIRE default encoding rule is the encoding rule specified in ISO 19136 Annex E with the extensions in GML 3.3 together with the additional rules stated in [D2.7, Annex B].
 
+**partial transformation**<br />
+partial function
+
+Most transformations between the elements of two sets do not pair each element of one set with exactly one element of the other set. They are thus regarded partial transformations, even if they can be reversed.
+
+NOTE As a consequence, there are no unpaired elements in the two sets.
+
 **Property name**<br />
 field name<br />
 attribute name
