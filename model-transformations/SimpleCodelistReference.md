@@ -18,10 +18,6 @@
 </td>
 </tr>
 <tr>
-<td>UML Model</td>
-<td>TODO</td>
-</tr>
-<tr>
 <td>Original instance in default encoding:</td>
 <td>
 

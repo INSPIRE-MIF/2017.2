@@ -17,10 +17,6 @@
 </td>
 </tr>
 <tr>
-<td>UML Model</td>
-<td>...</td>
-</tr>
-<tr>
 <td>Original instance in default encoding:</td>
 <td>
 
@@ -70,10 +66,6 @@
 <tr>
 <td>INSPIRE Compliance:</td>
 <td>...</td>
-</tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
 </tr>
 </table>
 

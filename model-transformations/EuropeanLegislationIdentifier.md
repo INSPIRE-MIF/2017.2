@@ -13,10 +13,6 @@
 </td>
 </tr>
 <tr>
-<td>UML Model</td>
-<td>TODO (no official UML model for ELI exists currently)</td>
-</tr>
-<tr>
 <td>Original instance in default encoding:</td>
 <td>
 
