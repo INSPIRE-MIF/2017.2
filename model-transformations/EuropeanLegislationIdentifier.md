@@ -65,7 +65,6 @@
     <eli:title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bekendtgørelse af lov om skove</eli:title>
     <eli:title_short rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LBK nr 315 af 28/03/2019</eli:title_short>
 </eli:LegalExpression>
-<!-- TODO level? eli:AdministrativeArea?-->
 <eli:Format rdf:about="http://www.retsinformation.dk/eli/lta/2019/315/dan/pdf">
     <eli:embodies rdf:resource="http://www.retsinformation.dk/eli/lta/2019/315/dan" />
 </eli:Format>
@@ -87,7 +86,7 @@
 <td>Instance transformation rule:</td>
 <td><p>Parameters:</p>
     <ul>
-        <li>`valueProperty`: The name of the property from which to take the value to be copied to the transformed instance.</li>
+        <li><code>valueProperty</code>: The name of the property from which to take the value to be copied to the transformed instance.</li>
     </ul>
     <p>...</p>
     </td>
@@ -103,10 +102,6 @@
 <tr>
 <td>INSPIRE Compliance:</td>
 <td>...</td>
-</tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similar ones.</td>
 </tr>
 </table>
 

@@ -143,10 +143,6 @@
 <td>INSPIRE Compliance:</td>
 <td>Fully compliant if the referenced resource is stored in an external register or non-INSPIRE online application.</td>
 </tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similar ones.</td>
-</tr>
 </table>
 
 Notes: No notes.

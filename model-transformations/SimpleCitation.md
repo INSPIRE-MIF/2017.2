@@ -110,10 +110,6 @@
 <td>INSPIRE Compliance:</td>
 <td>This rule works only with one external link, and it removed finer grained information about dates. It can be combined with the [Property Composition to Association](./PropertyCompositiontoAssociation.md) rule to add more information from an external register.</td>
 </tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
-</tr>
 </table>
 
 Notes:

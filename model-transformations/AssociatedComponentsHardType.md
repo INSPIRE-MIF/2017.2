@@ -170,8 +170,4 @@
 <td>INSPIRE Compliance:</td>
 <td>This rule can only be applied if there is at maximum one occurence of each type in a set of properties, i.e. where the components are a key-value map with the keys beign defined by the typenames.</td>
 </tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
-</tr>
 </table>

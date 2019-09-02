@@ -129,11 +129,7 @@
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>
-<td>This rule discards individual metadata about geographical names, such as the name status and its nativeness. If this information is homogeneous, it should be documented in the dataset metadata. If it is heterogeneous, this transformation will result in a loss of information and is not bijective.</td>
-</tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
+<td>This rule discards individual metadata about geographical names, such as the name status and its nativeness. If this information is homogeneous, it should be documented in the dataset metadata. If it is heterogeneous, this transformation will result in a loss of information.</td>
 </tr>
 </table>
 
