@@ -13,6 +13,7 @@ This encoding rule can be used as an *alternative encoding* for Environmental Mo
 
 * Only one legal background document needs to be referenced
 * The measurements are of the following types: Simple result, `PointObservation`, `PointTimeSeriesObservation`, `MultiPointObservation`, `ProfileObservation` or `TrajectoryObservation` 
+* Only one `observedCapability` per Environmental Monitoring Facility may be defined
 
 ## Normative References
 
@@ -75,12 +76,19 @@ The following table explains the mapping between the classes and properties of t
 | ef:mobile | Boolean | mobile | Boolean |
 | ef:name | CharacterString | name | String |
 | ef:narrower | AbstractMonitoringObject | narrower | String (Reference) |
-| ef:observingCapability | ObservingCapability | observingCapability | ObservingCapability |
+| ef:observingCapability | ObservingCapability | observingCapability_featureOfInterest | String (Reference) |
+|  |  | observingCapability_name | String |
+|  |  | observingCapability_time | SimplePeriod |
+|  |  | observingCapability_property | String |
+|  |  | observingCapability_onlineResource | String (URL) |
+|  |  | observingCapability_procedure_href | String (OM_Process, Reference) |
+|  |  | observingCapability_processType | SimpleCodelistReference (ProcessTypeValue) |
+|  |  | observingCapability_resultNature | SimpleCodelistReference (ResultNatureValue) |
 | ef:onlineResource | URL | onlineResource | String[] (URL) |
 | ef:operationalActivityPeriod | TM_Object | operationalActivityPeriod | SimplePeriod |
 | ef:purpose | PurposeOfCollectionValue | purpose | SimpleCodelistReference |
-| ef:relatedTo | AnyDomainLink | relatedTo | String |
-| ef:reportedTo | ReportToLegalAct | reportedTo | String |
+| ef:relatedTo | AnyDomainLink | relatedTo | String (Reference) |
+| ef:reportedTo | ReportToLegalAct | reportedTo | String (Reference) |
 | ef:representativePoint | GM_Point | representativePoint | in-line GeoJSON property |
 | ef:responsibleParty | RelatedParty | responsibleParty | SimpleCitation |
 | ef:resultAcquisitionSource | ResultAcquisitionSourceValue | resultAcquisitionSource | SimpleCodelistReference |
@@ -109,7 +117,14 @@ The following table explains the mapping between the classes and properties of t
 | ef:mediaMonitored | MediaValue | mediaMonitored | SimpleCodelistReference |
 | ef:name | CharacterString | name | String |
 | ef:narrower | AbstractMonitoringObject | narrower | String (Reference) |
-| ef:observingCapability | ObservingCapability | observingCapability | ObservingCapability |
+| ef:observingCapability | ObservingCapability | observingCapability_featureOfInterest | String (Reference) |
+|  |  | observingCapability_name | String |
+|  |  | observingCapability_time | SimplePeriod |
+|  |  | observingCapability_property | String |
+|  |  | observingCapability_onlineResource | String (URL) |
+|  |  | observingCapability_procedure_href | String (OM_Process, Reference) |
+|  |  | observingCapability_processType | SimpleCodelistReference (ProcessTypeValue) |
+|  |  | observingCapability_resultNature | SimpleCodelistReference (ResultNatureValue) |
 | ef:onlineResource | URL | onlineResource | String[] (URL) |
 | ef:operationalActivityPeriod | TM_Object | operationalActivityPeriod | SimplePeriod |
 | ef:organisationLevel | LegislationLevelValue | organisationLevel | SimpleCodelistReference |
@@ -138,7 +153,14 @@ The following table explains the mapping between the classes and properties of t
 | ef:mediaMonitored | MediaValue | mediaMonitored | SimpleCodelistReference |
 | ef:name | CharacterString | name | String |
 | ef:narrower | AbstractMonitoringObject | narrower | String (Reference) |
-| ef:observingCapability | ObservingCapability | observingCapability | ObservingCapability |
+| ef:observingCapability | ObservingCapability | observingCapability_featureOfInterest | String (Reference) |
+|  |  | observingCapability_name | String |
+|  |  | observingCapability_time | SimplePeriod |
+|  |  | observingCapability_property | String |
+|  |  | observingCapability_onlineResource | String (URL) |
+|  |  | observingCapability_procedure_href | String (OM_Process, Reference) |
+|  |  | observingCapability_processType | SimpleCodelistReference (ProcessTypeValue) |
+|  |  | observingCapability_resultNature | SimpleCodelistReference (ResultNatureValue) |
 | ef:onlineResource | URL | onlineResource | String[] (URL) |
 | ef:purpose | PurposeOfCollectionValue | purpose | SimpleCodelistReference |
 | ef:responsibleParty | RelatedParty | responsibleParty | SimpleCitation |
