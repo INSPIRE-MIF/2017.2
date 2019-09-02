@@ -8,17 +8,13 @@
 <tr>
 <td>Description</td>
 <td><p>Geographical Names are re-used throughout more than 20 INSPIRE themes overall, ranging from Cardastral Parcels and Addresses to Statistical Units. For many existing data sets, the <code>GeographicalName</code> type is overspecified, with very little information being unique to each instance. For cases where only minimal information on names is available, this simplifed structure can be used. One key use case that is quite frequent however is to have names in more than one language. There are multiple official languages in more than half of the countries affected by INSPIRE.</p> 
-<p>The simplified name consists of one property per language, which will contain the <code>spelling.text</code> subproperty value of the originall property:</p>
+<p>The simplified name consists of one property per language, which will contain the <code>spelling.text</code> subproperty value of the original property:</p>
 <ul>
-    <li><code>name.deu</code></li>
-	<li><code>name.fra</code></li>
+    <li><code>name_deu</code></li>
+	<li><code>name_fra</code></li>
 </ul>
 <p>For other properties of the original <code>GeographicalName</code>, such as <code>nameStatus</code> and <code>nativeness</code>, defaults may be documented in the dataset metadata.</p>
 </td>
-</tr>
-<tr>
-<td>UML Model</td>
-<td>TODO</td>
 </tr>
 <tr>
 <td>Original instance in default encoding:</td>
@@ -107,7 +103,7 @@
 <td>
     <p>Parameters:</p> 
     <ul>
-        <li><code>separator</code>: The character to use to separate the original property name from the ISO 639-3 language code.</li>
+        <li><code>separator</code>: The character to use to separate the original property name from the ISO 693-3 or ISO 693-5 language codes.</li>
 		<li><code>languageCodes</code>: A List of ISO 693-3 or ISO 693-5 codes for which to create the specific proeprties.</li>
     </ul>
     <p>Create a new property for every language given as a parameter. Give each property as name the concatenation of "name", the value of the separator parameter and the ISO 693-3 or ISO 693-5 code of the language.</p>
