@@ -65,6 +65,8 @@ The following table explains the mapping between the classes and properties of t
 |  |  | observation_resultTime | String |
 |  |  | observation_result | Number |
 |  |  | observation_unitOfMeasureName | String |
+|  |  | observation_observedPropertyName | String |
+|  |  | observation_observedPropertyReference | String |
 | ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
 | ef:involvedIn | CharacterString | involvedIn | String |
 | ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
@@ -99,6 +101,8 @@ The following table explains the mapping between the classes and properties of t
 |  |  | observation_resultTime | String |
 |  |  | observation_result | Number |
 |  |  | observation_unitOfMeasureName | String |
+|  |  | observation_observedPropertyName | String |
+|  |  | observation_observedPropertyReference | String |
 | ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
 | ef:involvedIn | CharacterString | involvedIn | String |
 | ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
@@ -127,6 +131,8 @@ The following table explains the mapping between the classes and properties of t
 |  |  | observation_resultTime | String |
 |  |  | observation_result | Number |
 |  |  | observation_unitOfMeasureName | String |
+|  |  | observation_observedPropertyName | String |
+|  |  | observation_observedPropertyReference | String |
 | ef:hasObservation (count() > 1) | CharacterString | hasObservation | String (Reference) |
 | ef:legalBackground | LegislationCitation | legalBackground | SimpleCitation |
 | ef:mediaMonitored | MediaValue | mediaMonitored | SimpleCodelistReference |
@@ -172,12 +178,14 @@ NOTE Additional examples can be added to the [`/efs/examples/`](/GeoJSON/efs/exa
                 "mediaMonitored_href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
                 "mobile": false,
                 "name": "Piézomètre de St-Rémy - 01",
-                "legalBackground_resultTime": "2017-08-17T12:11:20Z",
-                "legalBackground_result": 220.58,
-                "legalBackground_unitOfMeasureName": "meter",
+                "observation_resultTime": "2017-08-17T12:11:20Z",
+                "observation_result": 220.58,
+                "observation_unitOfMeasureName": "m",
+                "observation_observedPropertyName": "",
+                "observation_observedPropertyReference": "",
                 "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
                 "operationalActivityPeriod_beginPosition": "1977-10-08T23:00:00Z",
-                "operationalActivityPeriod_endPosition": "2014-10-14T06:00:00Z",
+                "operationalActivityPeriod_endPosition": "2018-10-14T06:00:00Z",
                 "purpose": "Ground water level measurement",
                 "purpose_href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
                 "resultAcquisitionSource": "in-situ",
@@ -214,7 +222,7 @@ NOTE Additional examples can be added to the [`/efs/examples/`](/GeoJSON/efs/exa
                 "haslegalBackground_href": "#MeasureTimeseriesObservation_1",
                 "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
                 "operationalActivityPeriod_beginPosition": "1977-10-08T23:00:00Z",
-                "operationalActivityPeriod_endPosition": "2014-10-14T06:00:00Z",
+                "operationalActivityPeriod_endPosition": "2018-10-14T06:00:00Z",
                 "purpose": "Ground water level measurement",
                 "purpose_href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
                 "resultAcquisitionSource": "in-situ",
@@ -237,7 +245,7 @@ NOTE Additional examples can be added to the [`/efs/examples/`](/GeoJSON/efs/exa
                 "resultTime": "2015-12-19T12:11:20Z",
                 "usedProcedureName": "",
                 "usedProcedureReference": "",
-                "observedPropertyName": "",
+                "observedPropertyName": "ground_water_level",
                 "observedPropertyReference": "",
                 "samplingFeatureName": "Piézomètre de St-Rémy - 01",
                 "ultimateFeatureOfInterestName": "",
@@ -251,7 +259,7 @@ NOTE Additional examples can be added to the [`/efs/examples/`](/GeoJSON/efs/exa
                     "2015-12-12T12:00:00Z",
                     "2015-12-19T12:00:00Z"
                 ],
-                "unitOfMeasureName": "meter",
+                "unitOfMeasureName": "m",
                 "unitOfMeasureReference": "http://www.opengis.net/def/uom/UCUM/m",
                 "result": [220.91, 220.78, 220.54, 220.61, 220.28, 220.12, 220.20]
             }

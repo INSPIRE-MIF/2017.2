@@ -10,39 +10,39 @@
             },
             "properties": {
                 "description": "Water well from national BSS (Banque du Sous-Sol) Data database. Piezometer monitoring ground water level",
-                "inspireId.localId": "EnvironmentalMonitoringFacility_1",
-                "inspireId.namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/",
+                "inspireId_localId": "EnvironmentalMonitoringFacility_1",
+                "inspireId_namespace": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/",
                 "identifier": "https://https://github.com/INSPIRE-MIF/2017.2/GeoJSON/examples/efs/EnvironmentalMonitoringFacility_1",
                 "mediaMonitored": "water",
-                "mediaMonitored.href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
+                "mediaMonitored_href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
                 "name": "Piézomètre de St-Rémy - 01",
-                "hasObservation.href": "#MeasureTimeseriesObservation_1",
+                "haslegalBackground_href": "#MeasureTimeseriesObservation_1",
                 "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
-                "operationalActivityPeriod.beginPosition": "1977-10-08T23:00:00Z",
-                "operationalActivityPeriod.endPosition": "2014-10-14T06:00:00Z",
+                "operationalActivityPeriod_beginPosition": "1977-10-08T23:00:00Z",
+                "operationalActivityPeriod_endPosition": "2018-10-14T06:00:00Z",
                 "purpose": "Ground water level measurement",
-                "purpose.href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
+                "purpose_href": "http://www.sandre.eaufrance.fr/?urn=urn:sandre:donnees:148::CdElement:2:::referentiel:3.1:xml",
                 "resultAcquisitionSource": "in-situ",
-                "resultAcquisitionSource.href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
+                "resultAcquisitionSource_href": "http://inspire.ec.europa.eu/codelist/ResultAcquisitionSourceValue/inSitu/",
                 "specialisedEMFType": "Piezometre",
-                "specialisedEMFType.href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
+                "specialisedEMFType_href": "http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:PTE::entite:Piezometre:ressource:2.1:::html"
             }
         },
         {
             "type": "Feature",
-            "id": "MeasureTimeseriesObservation_1",
+            "id": "PointTimeSeriesObservation_1",
             "geometry": {
                 "type": "Point",
                 "coordinates": [ 5.18713, 46.19095 ]
             },
             "properties": {
-                "observationType": "MeasureTimeseriesObservation",
+                "observationType": "PointTimeSeriesObservation",
                 "phenomenonTimeStart": "2015-11-07T12:00:00Z",
                 "phenomenonTimeEnd": "2015-12-19T12:00:00Z",
                 "resultTime": "2015-12-19T12:11:20Z",
                 "usedProcedureName": "",
                 "usedProcedureReference": "",
-                "observedPropertyName": "",
+                "observedPropertyName": "ground_water_level",
                 "observedPropertyReference": "",
                 "samplingFeatureName": "Piézomètre de St-Rémy - 01",
                 "ultimateFeatureOfInterestName": "",
@@ -56,7 +56,7 @@
                     "2015-12-12T12:00:00Z",
                     "2015-12-19T12:00:00Z"
                 ],
-                "unitOfMeasureName": "meter",
+                "unitOfMeasureName": "m",
                 "unitOfMeasureReference": "http://www.opengis.net/def/uom/UCUM/m",
                 "result": [220.91, 220.78, 220.54, 220.61, 220.28, 220.12, 220.20]
             }
