@@ -10,8 +10,8 @@
 <td><p>The complex structure of model elements can be reduced by applying a flattening method. The principle of the flattening is to derive a flat model structure by moving the nested child elements to its parent. The elements can be renamed to represent the former element path in the name of the resulting element and to avoid naming conflicts. The cardinality of the derived elements should be calculated from the cardinalities of the former element path. When applied recursively, this method flattens the structure of multiple levels.</p> 
 <p>When applied recursively, this method flattens the structure of multiple levels and will result in properties such as these:</p>
 <ul>
-    <li>inspireId.namespace</li>
-    <li>name.spelling.text</li>
+    <li>inspireId_namespace</li>
+    <li>name_spelling_text</li>
 </ul>
 <p>This model transformation rule does not handle cardinalities greater than 1; it thus does not introduce any numeric elements into the new property name to account for multiple occurences. It also does not make use of the element names as they would be encoded in XML to keep the resulting proeprty names shorter. In most cases outside the use of substitution groups, this does not lead to issues. These should be resolved using any of the three Transformation Rules that can deal with that ([Primitive Array](./ExtractPrimitiveArray.md), [Associations to Soft Typed properties](./AssociatedComponentsSoftType.md), [Associations to Hard Typed properties](./AssociatedComponentsHardType.md)).</p>
 </td>
@@ -79,7 +79,7 @@
 <td>
     <p>Parameters:</p> 
     <ul>
-        <li><code>separator`: The character to use to separate the original property name from the type name of the components.</li>
+        <li><code>separator</code>: The character to use to separate the original property name from the type name of the components.</li>
     </ul>
     <p>Recursively go down through the complex structure of the property and concatenate the local name of the property, using the <code>separator</code> character in between each local name. This rule will drop inherited properties that have the same local name as a property declared on the feature type or property type itself, e.g. <code>gml:name</code> vs. <code>gn:name</code>. Note that Geometry properties are excluded from this rule!</p>
 </td>
@@ -100,11 +100,7 @@
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>
-<td>Data transformed using this rule is INSPIRE compliant as long as the cardinality of the soruce data was 0..1 for all affected properties.</td>
-</tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
+<td>Data transformed using this rule is INSPIRE compliant as long as the cardinality of the source data was 0..1 for all affected properties.</td>
 </tr>
 </table>
 

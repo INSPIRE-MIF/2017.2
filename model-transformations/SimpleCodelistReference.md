@@ -81,11 +81,7 @@
 </tr>
 <tr>
 <td>INSPIRE Compliance:</td>
-<td>This rule is fully bijective.</td>
-</tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
+<td>Fully compliant.</td>
 </tr>
 </table>
 

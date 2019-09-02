@@ -75,10 +75,6 @@
 <td>INSPIRE Compliance:</td>
 <td>The transformed model is fully compliant to INSPIRE as long as no mandatory properties other than the valueProperty have been left out.</td>
 </tr>
-<tr>
-<td>Examples of this encoding rule:</td>
-<td>TODO List issues in 2017.2 repo that have applied this pattern or very similiar ones.</td>
-</tr>
 </table>
 
 Notes: No notes.
