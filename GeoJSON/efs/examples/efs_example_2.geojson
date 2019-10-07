@@ -16,7 +16,7 @@
                 "mediaMonitored": "water",
                 "mediaMonitored_href": "http://inspire.ec.europa.eu/codelist/MediaValue/water",
                 "name": "Piézomètre de St-Rémy - 01",
-                "haslegalBackground_href": "#MeasureTimeseriesObservation_1",
+                "hasObservation_href": "#MeasureTimeseriesObservation_1",
                 "onlineResource": "http://fichebsseau.brgm.fr/bss_eau/fiche.jsf?code=06512X0037/STREMY",
                 "operationalActivityPeriod_beginPosition": "1977-10-08T23:00:00Z",
                 "operationalActivityPeriod_endPosition": "2018-10-14T06:00:00Z",
@@ -37,6 +37,7 @@
             },
             "properties": {
                 "observationType": "PointTimeSeriesObservation",
+                "relatedMonitoringFeature": "EnvironmentalMonitoringFacility_1",
                 "phenomenonTimeStart": "2015-11-07T12:00:00Z",
                 "phenomenonTimeEnd": "2015-12-19T12:00:00Z",
                 "resultTime": "2015-12-19T12:11:20Z",

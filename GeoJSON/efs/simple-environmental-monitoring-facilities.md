@@ -36,7 +36,8 @@ This section describes which rules with which parameters are applied to the Envi
 4. Substitute `OperationalActivityPeriod` with the Simple Period using `MT009()`.
 5. Substitute all `OM` and `OMSO` model elements through the respective `OMSF` model elements.
 6. Apply the `OMSF GeoJSON` model mapping to the `OMSO` model elements.
-7. Apply the General Flattening rule to simplify the remaining properties: `MT001(separator: '_')`.
+7. Add the `relatedMonitoringFeature` property to the `OMSO` observation to link back to an Environmental Monitoring Facility or an Environmental Monitoring Network. 
+8. Apply the General Flattening rule to simplify the remaining properties: `MT001(separator: '_')`.
 
 ### Model Mapping
 
@@ -95,6 +96,7 @@ The following table explains the mapping between the classes and properties of t
 | ef:specialisedEMFType | SpecialisedEMFTypeValue | specialisedEMFType | SimpleCodelistReference |
 | ef:supersededBy | AbstractMonitoringObject | supersededBy | String[] (Reference) |
 | ef:supersedes | AbstractMonitoringObject | supersedes | String[] (Reference) |
+|  |  | relatedMonitoringFeature  | String (Reference) |
 
 #### EnvironmentalMonitoringNetwork
 
@@ -134,6 +136,7 @@ The following table explains the mapping between the classes and properties of t
 | ef:responsibleParty | RelatedParty | responsibleParty | SimpleCitation |
 | ef:supersededBy | AbstractMonitoringObject | supersededBy | String[] (Reference) |
 | ef:supersedes | AbstractMonitoringObject | supersedes | String[] (Reference) |
+|  |  | relatedMonitoringFeature  | String (Reference) |
 
 #### EnvironmentalMonitoringProgramme
 
@@ -262,6 +265,7 @@ NOTE Additional examples can be added to the [`/efs/examples/`](/GeoJSON/efs/exa
             },
             "properties": {
                 "observationType": "PointTimeSeriesObservation",
+                "relatedMonitoringFeature": "EnvironmentalMonitoringFacility_1",
                 "phenomenonTimeStart": "2015-11-07T12:00:00Z",
                 "phenomenonTimeEnd": "2015-12-19T12:00:00Z",
                 "resultTime": "2015-12-19T12:11:20Z",
