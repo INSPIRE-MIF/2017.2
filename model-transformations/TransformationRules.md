@@ -48,7 +48,9 @@ The catalogue also contains several substitution rules, where existing types suc
 
 ### MT006: Property Composition to Association
 
-[Property Composition to Association](./PropertyCompositionToAssocation.md)
+[Property Composition to Association](./PropertyCompositionToAssociation.md)
+
+
 
 ### MT005: Simple Geographic Name
 
